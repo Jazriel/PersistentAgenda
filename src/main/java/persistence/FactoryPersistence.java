@@ -1,7 +1,9 @@
 package persistence;
 
 public interface FactoryPersistence {
-	
-	public FacadePersistence createPersistence();
+
+	public IFacadeContactPersistence createContactPersistence();
+	public IFacadeCallPersistence createCallPersistence();
+	public IFacadeContactTypePersistence createContactTypePersistence();
 	
 }

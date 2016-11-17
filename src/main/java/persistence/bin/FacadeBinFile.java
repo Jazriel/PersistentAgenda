@@ -1,21 +1,12 @@
 package persistence.bin;
 
-import java.util.List;
-
-import model.Call;
 import model.Contact;
-import persistence.FacadePersistence;
+import persistence.IFacadeContactPersistence;
 
-public class FacadeBinFile implements FacadePersistence{
+public class FacadeBinFile implements IFacadeContactPersistence{
 
 	@Override
 	public Contact getContactById(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Call> getCallsByContact(Contact contact) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -27,7 +18,7 @@ public class FacadeBinFile implements FacadePersistence{
 	}
 
 	@Override
-	public void saveCall(Call call) {
+	public void updateContact(Contact contact) {
 		// TODO Auto-generated method stub
 		
 	}
