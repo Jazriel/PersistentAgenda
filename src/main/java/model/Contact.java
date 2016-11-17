@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class Contact implements Serializable{
 
@@ -13,6 +14,30 @@ public class Contact implements Serializable{
 	email, notes;
 	
 	private ContactType contactType;
+	
+	public Contact(int id, Iterable<String> attribs, ContactType contactType) {
+		super();
+		this.id = id;
+		Iterator<String> its = attribs.iterator();
+		this.name = its.next();
+		this.surname = its.next();
+		this.title = its.next();
+		this.address = its.next();
+		this.city = its.next();
+		this.province = its.next();
+		this.postalCode = its.next();
+		this.region = its.next();
+		this.country = its.next();
+		this.companyName = its.next();
+		this.workstation = its.next();
+		this.workPhone = its.next();
+		this.workExtension = its.next();
+		this.mobilePhone = its.next();
+		this.faxNumber = its.next();
+		this.email = its.next();
+		this.notes = its.next();
+		this.contactType = contactType;
+	}
 	
 	public Contact(int id, String name, String surname,
 			String title, String address, String city, String province,
