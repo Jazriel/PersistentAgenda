@@ -18,7 +18,8 @@ public class SingletonStatementGenerator {
 	}
 
 	public String updateContactStatement() {
-		return "UPDATE NAME=?,  SURNAME=? ,  TITLE=?,  ADDRESS=? ,  CITY=? ,  PROVINCE=? ,  POSTAL_CODE=? ,  REGION=? , COUNTRY=? ,  COMPANY_NAME=? ,  WORKSTATION=?,  WORK_PHONE=? ,  WORK_EXTENSION=? ,  MOBILE_PHONE=? ,  FAX_NUMBER=? , EMAIL=?, NOTES=?, CONTACT_TYPE_ID=? FROM CONTACTS WHERE ID=?;";
+		return "UPDATE CONTACTS SET (name,  surname,  title,  address,  city,  province,  postal_Code,  region, country ,  company_Name,  workstation,  work_Phone,  work_Extension,  mobile_Phone,  fax_Number, email, notes) = (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)  WHERE id=?";
+
 	}
 
 	public String insertContactStatement() {
