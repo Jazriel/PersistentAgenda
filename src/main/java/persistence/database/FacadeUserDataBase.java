@@ -32,11 +32,10 @@ public class FacadeUserDataBase implements IFacadeContactPersistence {
 	public void saveContact(Contact contact) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
-		ResultSetManager resultSetManager = null;
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledSaveContactStatement(contact.getId());
+			stmFiller.getFilledSaveContactStatement(contact);
 			stmFiller.executeQuery();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
@@ -53,7 +52,7 @@ public class FacadeUserDataBase implements IFacadeContactPersistence {
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledUpdateContactStatement(contact.getId());
+			stmFiller.getFilledUpdateContactStatement(contact);
 			stmFiller.executeQuery();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
