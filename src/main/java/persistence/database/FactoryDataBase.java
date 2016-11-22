@@ -9,20 +9,17 @@ public class FactoryDataBase implements FactoryPersistence{
 	
 	@Override
 	public IFacadeContactPersistence createContactPersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeUserDataBase();
 	}
 
 	@Override
 	public IFacadeCallPersistence createCallPersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeCallDataBase();
 	}
 
 	@Override
 	public IFacadeContactTypePersistence createContactTypePersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeContactTypeDataBase();
 	}
 
 }
