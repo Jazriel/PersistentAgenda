@@ -23,6 +23,12 @@ public class FacadeCallBinFile implements IFacadeCallPersistence{
 		
 	}
 
+	@Override
+	public int getMaxCallId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }

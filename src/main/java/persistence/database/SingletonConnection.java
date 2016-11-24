@@ -31,7 +31,7 @@ public class SingletonConnection {
 			connection = null;
 			connectionInstance = null;
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		}
 	}
 

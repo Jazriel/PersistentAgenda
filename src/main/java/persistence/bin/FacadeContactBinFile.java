@@ -24,4 +24,10 @@ public class FacadeContactBinFile implements IFacadeContactPersistence{
 		
 	}
 
+	@Override
+	public int getMaxContactId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -62,7 +62,7 @@ VALUES
 (9, 'Nombre009', 'Apellidos009', 'Estimado009', ' Direccion009', 'Ciudad009', 'Prov009', 'CodPostal0009', 'Region0009', 'Pais0009', 'NombreCompania0009', 'Cargo009', 'TelefonoTrabajo009', 'ExtensionTrabajo009', 'TelefonoMovil009', 'NumFax009', ' NomCorreoElectronico009@ubu.es', 3,  'Notas009'),
 (10, 'Nombre010', 'Apellidos010', 'Estimado010', ' Direccion010', 'Ciudad010', 'Prov010', 'CodPostal0010', 'Region0010', 'Pais0010', 'NombreCompania0010', 'Cargo010', 'TelefonoTrabajo010', 'ExtensionTrabajo010', 'TelefonoMovil010', 'NumFax010', ' NomCorreoElectronico010@ubu.es', 4,  'Notas010');
 
-INSERT INTO  Llamadas( id ,  contact_id ,  call_date ,   subject ,  notes )
+INSERT INTO  Calls ( id ,  contact_id ,  call_date ,   subject ,  notes )
 VALUES
 (1,1, '2016-10-18 01:00:00',  'AsuntoLlamada001', 'NotaLlamada001'),
 (2,1, '2016-10-18 02:00:00',   'AsuntoLlamada002', 'NotaLlamada002'),
@@ -70,7 +70,7 @@ VALUES
 (4,1, '2016-10-18 04:00:00',   'AsuntoLlamada004', 'NotaLlamada004'),
 (5,1, '2016-10-18 05:00:00',   'AsuntoLlamada005', 'NotaLlamada005');
 
-INSERT INTO  Llamadas( id ,  contact_id ,  call_date ,   subject ,  notes )
+INSERT INTO  Calls ( id ,  contact_id ,  call_date ,   subject ,  notes )
 VALUES
 (6,10, '2016-10-18 06:00:00',  'AsuntoLlamada006', 'NotaLlamada006'),
 (7,10, '2016-10-18 07:00:00',   'AsuntoLlamada007', 'NotaLlamada007'),

@@ -13,6 +13,11 @@ public class SingletonStatementGenerator {
 		return statementGeneratorInstance;
 	}
 
+	//
+	public String getLastIdStatement(String table) {
+		return "SELECT * FROM " + table + " order by id desc";
+	}
+
 	// Contact Statements
 	public String insertContactStatement() {
 		return "INSERT INTO CONTACTS"
@@ -38,11 +43,11 @@ public class SingletonStatementGenerator {
 				+ "FAX_NUMBER , EMAIL, NOTES, CONTACTSTYPES.ID, CONTACT_TYPE "
 				+ "FROM CONTACTS JOIN CONTACTSTYPES ON CONTACTSTYPES.ID = CONTACTS.ID " + "WHERE CONTACTS.ID=?;";
 	}
-	
+
 	public String getAllContacts() {
 		return "SELECT * FROM CONTACTS";
 	}
-	
+
 	// Call Statements
 	public String insertCallStatement() {
 		return "INSERT INTO CALLS" + "( \"ID\", \"CONTACT_ID\", \"CALL_DATE\", \"SUBJECT\", \"NOTES\" )"
@@ -52,25 +57,25 @@ public class SingletonStatementGenerator {
 	public String updateCallStatement() {
 		return "UPDATE CALLS SET (call_date, subject, notes) = ( ?, ?, ?)";
 	}
-	
+
 	public String getCallByIdStatement() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public String getAllCallsStatement() {
 		return "SELECT * FROM CALLS";
 	}
-	
+
 	// Contact types statements
 	public String insertContactTypeStatement() {
 		return "INSERT INTO CONTACTSTYPES( \"ID\", \"CONTACT_TYPE\" ) VALUES ( ?, ?)";
 	}
-	
+
 	public String updateContactTypeStatement() {
 		return "UPDATE CONTACTSTYPES SET (CONTACT_TYPE) = ? WHERE ID = ?";
 	}
-	
+
 	public String getAllContactsTypes() {
 		return "SELECT * FROM CONTACTSTYPES";
 	}
