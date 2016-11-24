@@ -18,7 +18,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			stmFiller = new StatementManager();
 			stmFiller.getFilledCallByIdStatement(id);
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
-			call = resultSetManager.getNext();
+			call = resultSetManager.next();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {

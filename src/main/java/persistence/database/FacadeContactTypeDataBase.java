@@ -19,7 +19,7 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 			// TODO : Evaluate if result set manager and statement manager need multiple implementations one for each kind of object.
 			stmFiller.getFilledContactTypeByIdStatement(id);
 			resultSetManager = new ContactTypeResultSetManager(stmFiller.executeQuery());
-			contactType = resultSetManager.getNext();
+			contactType = resultSetManager.next();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {

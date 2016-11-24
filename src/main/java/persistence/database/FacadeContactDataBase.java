@@ -17,7 +17,7 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			stmFiller = new StatementManager();
 			stmFiller.getFilledContactByIdStatement(id);
 			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
-			contact = resultSetManager.getNext();
+			contact = resultSetManager.next();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {

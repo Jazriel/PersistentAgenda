@@ -2,16 +2,21 @@ package persistence.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 
-public abstract class ABCResultSetManager<E> {
+public abstract class ABCResultSetManager<E> implements Iterator<E> {
 
 	protected ResultSet rs;
 	
 	public ABCResultSetManager(ResultSet rs) {
 		this.rs = rs;
 	}
-
-	public abstract E getNext() throws SQLException;
+	
+	@Override
+	public abstract E next();
+	
+	@Override
+	public abstract boolean hasNext();
 	
 	public void close() {
 		try {

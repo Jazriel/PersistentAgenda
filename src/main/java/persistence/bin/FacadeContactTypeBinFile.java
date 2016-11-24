@@ -4,6 +4,7 @@ import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 
 public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
+	// TODO Implementarlo mediante diccionarios(HashMap) deberia hacerlo sencillo 
 
 	@Override
 	public ContactType getContactTypeById(int i) {
