@@ -67,6 +67,30 @@ public class Contact implements Serializable{
 		this.contactType = contactType;
 	}
 	
+	public Contact(Iterable<String> attribs, ContactType contactType) {
+		// TODO Auto-generated constructor stub
+		Iterator<String> its = attribs.iterator();
+		this.name = its.next();
+		this.surname = its.next();
+		this.title = its.next();
+		this.address = its.next();
+		this.city = its.next();
+		this.province = its.next();
+		this.postalCode = its.next();
+		this.region = its.next();
+		this.country = its.next();
+		this.companyName = its.next();
+		this.workstation = its.next();
+		this.workPhone = its.next();
+		this.workExtension = its.next();
+		this.mobilePhone = its.next();
+		this.faxNumber = its.next();
+		this.email = its.next();
+		this.notes = its.next();
+		this.contactType = contactType;
+
+	}
+
 	public String basicInfo(){
 		return "Contacto [id = " + id + "nombre = " + name + ", apellidos = " + surname +"]";
 	}

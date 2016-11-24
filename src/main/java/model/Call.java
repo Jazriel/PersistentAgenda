@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class Call implements Serializable{
 	
@@ -21,6 +22,20 @@ public class Call implements Serializable{
 		this.notes = notes;
 	}
 	
+	public Call(Contact contact, String subject, String notes) {
+		// TODO Auto-generated constructor stub
+		this.contact = contact;
+		this.callDate =  new Timestamp(System.currentTimeMillis()).toString();
+		this.subject = subject;
+		this.notes = notes;
+	}
+
+	public Call(int id, String subject, String notes) {
+		this.id = id;
+		this.subject = subject;
+		this.notes = notes;
+	}
+
 	@Override
 	public String toString() {
 		return "Llamada [id llamada = " + id + ", contacto = " + contact.basicInfo()

@@ -17,6 +17,12 @@ public class ContactType implements Serializable{
 	}
 
 
+	public ContactType(String name) {
+		// TODO Auto-generated constructor stub
+		this.contactTypeName = name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Tipo Contacto [id Tipo Contacto = " + id
