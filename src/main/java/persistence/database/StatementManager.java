@@ -5,50 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.Call;
 import model.Contact;
+import model.ContactType;
 
 public class StatementManager {
 
 	private PreparedStatement preparedStatement;
 
-	public void getFilledContactByIdStatement(int id) throws SQLException {
+	private Connection conn;
+	
+	public StatementManager() throws SQLException {
 		// Open connection
-		Connection conn = SingletonConnection.getInstance().getConnection();
-		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getContactByIdStatement();
-		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		// Prepare statement
-		preparedStatement.setInt(1, id);
-		this.preparedStatement = preparedStatement;
-	}
-
-	public void getFilledUpdateContactStatement(Contact contact) throws SQLException {
-		// Open connection
-		Connection conn = SingletonConnection.getInstance().getConnection();
-		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().updateContactStatement();
-		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		// Prepare statement
-		// TODO
-		//preparedStatement.setInt(1, id);
-		this.preparedStatement = preparedStatement;
-		
-	}
-
-	public void getFilledSaveContactStatement(Contact contact) throws SQLException {
-		// Open connection
-		Connection conn = SingletonConnection.getInstance().getConnection();
-		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().insertContactStatement();
-		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		// Prepare statement
-		//preparedStatement.setInt(1, id);
-		// TODO
-		this.preparedStatement = preparedStatement;
-		
+		this.conn =  SingletonConnection.getInstance().getConnection();
 	}
 
 	public ResultSet executeQuery() throws SQLException {
@@ -63,6 +32,103 @@ public class StatementManager {
 		} catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}
+	}
+	
+	// Contacts 
+	public void getFilledContactByIdStatement(int id) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getContactByIdStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		preparedStatement.setInt(1, id);
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledUpdateContactStatement(Contact contact) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().updateContactStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+		
+	}
+
+	public void getFilledSaveContactStatement(Contact contact) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().insertContactStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+		
+	}
+
+	// Calls
+	public void getFilledCallByIdStatement(int id) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getCallByIdStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledUpdateCallStatement(Call call) throws SQLException {		
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().updateCallStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+		
+	}
+
+	public void getFilledSaveCallStatement(Call call) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().insertCallStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+		
+	}
+	
+	// Contact Types
+	public void getFilledContactTypeByIdStatement(int id) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getContactTypeByIdStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledSaveContactTypeStatement(ContactType contactType) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().insertContactTypeStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;		
+	}
+
+	public void getFilledUpdateContactTypeStatement(ContactType contactType) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().updateContactTypeStatement();
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		// TODO
+		this.preparedStatement = preparedStatement;	
 	}
 
 

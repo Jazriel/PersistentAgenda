@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 
 import model.Contact;
 import persistence.IFacadeContactPersistence;
-import persistence.database.FacadeUserDataBase;
+import persistence.database.FacadeContactDataBase;
 
 public class FacadePersistenceTest {
 	
 	@Test
 	public void testGetContactById(){
-		IFacadeContactPersistence fp = new FacadeUserDataBase();
+		IFacadeContactPersistence fp = new FacadeContactDataBase();
 		Contact c = fp.getContactById(1);
 		assertTrue(c.getId() == 1);
 	}

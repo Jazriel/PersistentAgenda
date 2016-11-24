@@ -9,15 +9,14 @@ import java.util.List;
 import model.Contact;
 import model.ContactType;
 
-public class ResultSetManager {
+public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 
-	private ResultSet rs;
-
-	public ResultSetManager(ResultSet rs) {
-		this.rs = rs;
+	public ContactResultSetManager(ResultSet rs) {
+		super(rs);
 	}
 
-	public Contact getContact() throws SQLException {
+	@Override
+	public Contact getNext() throws SQLException {
 		rs.next();
 		ResultSetMetaData rsMD = rs.getMetaData();
 		String lastColumnName = rsMD.getColumnTypeName(rsMD.getColumnCount() - 2);
@@ -28,16 +27,6 @@ public class ResultSetManager {
 		}
 		ContactType ct = new ContactType(rs.getInt(rsMD.getColumnCount() - 2), rs.getString(rsMD.getColumnCount() - 1));
 		return new Contact(id, attribs, ct);
-	}
-
-	public void close() {
-		try {
-			if (rs != null && !rs.isClosed())
-				rs.close();
-			rs = null;
-		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
-		}
 	}
 
 }

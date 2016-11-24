@@ -9,7 +9,7 @@ public class FactoryDataBase implements FactoryPersistence{
 	
 	@Override
 	public IFacadeContactPersistence createContactPersistence() {
-		return new FacadeUserDataBase();
+		return new FacadeContactDataBase();
 	}
 
 	@Override

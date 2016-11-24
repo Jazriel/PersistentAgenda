@@ -11,15 +11,14 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 	public Call getCallById(int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
-		ResultSetManager resultSetManager = null;
+		ABCResultSetManager<Call> resultSetManager = null;
 		Call call = null;
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need multiple implementations one for each kind of object.
 			stmFiller.getFilledCallByIdStatement(id);
-			resultSetManager = new ResultSetManager(stmFiller.executeQuery());
-			call = resultSetManager.getCall();
+			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
+			call = resultSetManager.getNext();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
@@ -37,7 +36,6 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need multiple implementations one for each kind of object.
 			stmFiller.getFilledUpdateCallStatement(call);
 			stmFiller.executeQuery();
 		}catch (SQLException e) {
@@ -55,7 +53,6 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need multiple implementations one for each kind of object.
 			stmFiller.getFilledSaveCallStatement(call);
 			stmFiller.executeQuery();
 		}catch (SQLException e) {

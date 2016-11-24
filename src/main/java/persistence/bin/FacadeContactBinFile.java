@@ -3,7 +3,7 @@ package persistence.bin;
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
-public class FacadeBinFile implements IFacadeContactPersistence{
+public class FacadeContactBinFile implements IFacadeContactPersistence{
 
 	@Override
 	public Contact getContactById(int i) {

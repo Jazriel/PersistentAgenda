@@ -4,20 +4,20 @@ import java.sql.SQLException;
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
-public class FacadeUserDataBase implements IFacadeContactPersistence {
+public class FacadeContactDataBase implements IFacadeContactPersistence {
 
 	@Override
 	public Contact getContactById(int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
-		ResultSetManager resultSetManager = null;
+		ABCResultSetManager<Contact> resultSetManager = null;
 		Contact contact = null;
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			stmFiller.getFilledContactByIdStatement(id);
-			resultSetManager = new ResultSetManager(stmFiller.executeQuery());
-			contact = resultSetManager.getContact();
+			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
+			contact = resultSetManager.getNext();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {

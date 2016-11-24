@@ -53,11 +53,17 @@ public class SingletonStatementGenerator {
 		return "UPDATE CALLS SET (call_date, subject, notes) = ( ?, ?, ?)";
 	}
 	
-	public String getAllCallsStament() {
+	public String getCallByIdStatement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public String getAllCallsStatement() {
 		return "SELECT * FROM CALLS";
 	}
+	
 	// Contact types statements
-	public String insertContactTypeStament() {
+	public String insertContactTypeStatement() {
 		return "INSERT INTO CONTACTSTYPES( \"ID\", \"CONTACT_TYPE\" ) VALUES ( ?, ?)";
 	}
 	
@@ -67,6 +73,11 @@ public class SingletonStatementGenerator {
 	
 	public String getAllContactsTypes() {
 		return "SELECT * FROM CONTACTSTYPES";
+	}
+
+	public String getContactTypeByIdStatement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

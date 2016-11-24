@@ -2,7 +2,6 @@ package persistence.database;
 
 import java.sql.SQLException;
 
-import model.Contact;
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 
@@ -12,15 +11,15 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 	public ContactType getContactTypeById(int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
-		ResultSetManager resultSetManager = null;
+		ABCResultSetManager<ContactType> resultSetManager = null;
 		ContactType contactType = null;
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			// TODO : Evaluate if result set manager and statement manager need multiple implementations one for each kind of object.
 			stmFiller.getFilledContactTypeByIdStatement(id);
-			resultSetManager = new ResultSetManager(stmFiller.executeQuery());
-			contactType = resultSetManager.getContactType();
+			resultSetManager = new ContactTypeResultSetManager(stmFiller.executeQuery());
+			contactType = resultSetManager.getNext();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
