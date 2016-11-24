@@ -24,7 +24,7 @@ public abstract class ABCResultSetManager<E> implements Iterator<E> {
 				rs.close();
 			rs = null;
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		}
 	}
 }

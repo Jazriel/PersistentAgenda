@@ -7,6 +7,13 @@ import persistence.IFacadeCallPersistence;
 
 public class FacadeCallDataBase implements IFacadeCallPersistence {
 
+
+	@Override
+	public int getMaxCallId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	@Override
 	public Call getCallById(int id) {
 		SingletonConnection connection = null;
@@ -20,11 +27,14 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
 			call = resultSetManager.next();
 		}catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		}finally {
-			resultSetManager.close();
-			stmFiller.close();
-			connection.close();
+			if(resultSetManager!=null){
+			resultSetManager.close();}
+			if(stmFiller!=null){
+			stmFiller.close();}
+			if(connection!=null){
+			connection.close();}
 		}
 		return call;
 	}
@@ -41,8 +51,10 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
-			stmFiller.close();
-			connection.close();
+			if(stmFiller!=null){
+			stmFiller.close();}
+			if(connection!=null){
+			connection.close();}
 		}
 	}
 
@@ -58,9 +70,12 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
-			stmFiller.close();
-			connection.close();
+			if(stmFiller!=null){
+			stmFiller.close();}
+			if(connection!=null){
+			connection.close();}
 		}
 	}
+
 
 }

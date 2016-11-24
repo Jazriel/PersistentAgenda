@@ -14,14 +14,15 @@ public class StatementManager {
 	private PreparedStatement preparedStatement;
 
 	private Connection conn;
-	
+
 	public StatementManager() throws SQLException {
 		// Open connection
-		this.conn =  SingletonConnection.getInstance().getConnection();
+		this.conn = SingletonConnection.getInstance().getConnection();
 	}
 
 	public ResultSet executeQuery() throws SQLException {
 		return preparedStatement.executeQuery();
+
 	}
 
 	public void close() {
@@ -30,11 +31,11 @@ public class StatementManager {
 				preparedStatement.close();
 			preparedStatement = null;
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		}
 	}
-	
-	// Contacts 
+
+	// Contacts
 	public void getFilledContactByIdStatement(int id) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getContactByIdStatement();
@@ -53,7 +54,7 @@ public class StatementManager {
 		// Prepare statement
 		// TODO
 		this.preparedStatement = preparedStatement;
-		
+
 	}
 
 	public void getFilledSaveContactStatement(Contact contact) throws SQLException {
@@ -64,7 +65,7 @@ public class StatementManager {
 		// Prepare statement
 		// TODO
 		this.preparedStatement = preparedStatement;
-		
+
 	}
 
 	// Calls
@@ -78,7 +79,7 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
-	public void getFilledUpdateCallStatement(Call call) throws SQLException {		
+	public void getFilledUpdateCallStatement(Call call) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().updateCallStatement();
 		// Create PreparedStatement
@@ -86,7 +87,7 @@ public class StatementManager {
 		// Prepare statement
 		// TODO
 		this.preparedStatement = preparedStatement;
-		
+
 	}
 
 	public void getFilledSaveCallStatement(Call call) throws SQLException {
@@ -97,9 +98,9 @@ public class StatementManager {
 		// Prepare statement
 		// TODO
 		this.preparedStatement = preparedStatement;
-		
+
 	}
-	
+
 	// Contact Types
 	public void getFilledContactTypeByIdStatement(int id) throws SQLException {
 		// Get text statement
@@ -118,7 +119,7 @@ public class StatementManager {
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
 		// TODO
-		this.preparedStatement = preparedStatement;		
+		this.preparedStatement = preparedStatement;
 	}
 
 	public void getFilledUpdateContactTypeStatement(ContactType contactType) throws SQLException {
@@ -128,8 +129,28 @@ public class StatementManager {
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
 		// TODO
-		this.preparedStatement = preparedStatement;	
+		this.preparedStatement = preparedStatement;
 	}
 
+	//
+	private void getFilledMaxIdStatement(String table) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getLastIdStatement(table);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledMaxIdContacts() throws SQLException {
+		getFilledMaxIdStatement("CONTACTS");
+	}
+
+	public void getFilledMaxIdCalls() throws SQLException {
+		getFilledMaxIdStatement("CALLS");
+	}
+
+	public void getFilledMaxIdContactType() throws SQLException {
+		getFilledMaxIdStatement("CONTACTSTYPES");
+	}
 
 }
