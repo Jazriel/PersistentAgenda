@@ -34,7 +34,7 @@ public class CUI {
 			System.out.println("** 2) Sistema de persistencia mediante ficheros binarios");
 			bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido <Base datos SQL>");
@@ -51,7 +51,7 @@ public class CUI {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
-		} while (option != 1 || option != 2);
+		} while (option != 1 && option != 2);
 
 		// Initialize the persistences
 		contactPersitence = persistence.createContactPersistence();
@@ -67,7 +67,7 @@ public class CUI {
 			System.out.println("* 3) Consultar: ");
 			System.out.println("* 0) Salir: ");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 0:
 					System.out.println("Saliendo...");
@@ -101,7 +101,7 @@ public class CUI {
 			System.out.println("** 2) Nueva llamada");
 			System.out.println("** 3) Nuevo tipo de contacto");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido crear un nuevo contacto");
@@ -142,7 +142,7 @@ public class CUI {
 			System.out.println("** 2) Actualizar llamada");
 			System.out.println("** 3) Actualizar tipo de contacto");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido actualizar un contacto");
@@ -192,7 +192,7 @@ public class CUI {
 			System.out.println("** 2) Las llamadas");
 			System.out.println("** 3) Los tipos de contactos");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido los contactos");
@@ -226,7 +226,7 @@ public class CUI {
 			System.out.println("** 3) Filtrar por nombre");
 			System.out.println("** 4) Filtrar por apellido");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido ordenar por nombre");
@@ -264,7 +264,7 @@ public class CUI {
 			System.out.println("** 1) Filtrar por contacto");
 			System.out.println("** 2) Filtrar por fecha de realización");
 			try {
-				option = bufferedReader.read();
+				option =new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido filtrar por contacto");
