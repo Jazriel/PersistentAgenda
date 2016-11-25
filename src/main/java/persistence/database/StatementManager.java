@@ -22,7 +22,10 @@ public class StatementManager {
 
 	public ResultSet executeQuery() throws SQLException {
 		return preparedStatement.executeQuery();
-
+	}
+	
+	public void executeUpdate() throws SQLException {
+		preparedStatement.executeUpdate();
 	}
 
 	public void close() {
@@ -52,7 +55,32 @@ public class StatementManager {
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
-		// TODO
+		preparedStatement.setString(1, contact.getName());
+		preparedStatement.setString(2, contact.getSurname());
+		preparedStatement.setString(3, contact.getTitle());
+		preparedStatement.setString(4, contact.getAddress());
+		preparedStatement.setString(5, contact.getCity());
+		preparedStatement.setString(6, contact.getProvince());
+		preparedStatement.setString(7, contact.getPostalCode());
+		preparedStatement.setString(8, contact.getRegion());
+		preparedStatement.setString(9, contact.getCountry());
+		preparedStatement.setString(10, contact.getCompanyName());
+		preparedStatement.setString(11, contact.getWorkstation());
+		preparedStatement.setString(12, contact.getWorkPhone());
+		preparedStatement.setString(13, contact.getWorkExtension());
+		preparedStatement.setString(14, contact.getMobilePhone());
+		preparedStatement.setString(15, contact.getFaxNumber());
+		preparedStatement.setString(16, contact.getEmail());
+		int i = -1;
+		if (contact != null) {
+			ContactType ct = contact.getContactType();
+			if (ct != null) {
+				i = ct.getId();
+			}
+		}
+		preparedStatement.setInt(17, i);
+		preparedStatement.setString(18, contact.getNotes());
+		preparedStatement.setInt(19, contact.getId());
 		this.preparedStatement = preparedStatement;
 
 	}
@@ -63,7 +91,32 @@ public class StatementManager {
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
-		// TODO
+		preparedStatement.setInt(1, contact.getId());
+		preparedStatement.setString(2, contact.getName());
+		preparedStatement.setString(3, contact.getSurname());
+		preparedStatement.setString(4, contact.getTitle());
+		preparedStatement.setString(5, contact.getAddress());
+		preparedStatement.setString(6, contact.getCity());
+		preparedStatement.setString(7, contact.getProvince());
+		preparedStatement.setString(8, contact.getPostalCode());
+		preparedStatement.setString(9, contact.getRegion());
+		preparedStatement.setString(10, contact.getCountry());
+		preparedStatement.setString(11, contact.getCompanyName());
+		preparedStatement.setString(12, contact.getWorkstation());
+		preparedStatement.setString(13, contact.getWorkPhone());
+		preparedStatement.setString(14, contact.getWorkExtension());
+		preparedStatement.setString(15, contact.getMobilePhone());
+		preparedStatement.setString(16, contact.getFaxNumber());
+		preparedStatement.setString(17, contact.getEmail());
+		int i = -1;
+		if (contact != null) {
+			ContactType ct = contact.getContactType();
+			if (ct != null) {
+				i = ct.getId();
+			}
+		}
+		preparedStatement.setInt(18, i);
+		preparedStatement.setString(19, contact.getNotes());
 		this.preparedStatement = preparedStatement;
 
 	}

@@ -1,5 +1,7 @@
 package persistence.bin;
 
+import java.sql.Timestamp;
+
 import model.Call;
 import persistence.IFacadeCallPersistence;
 
@@ -27,6 +29,18 @@ public class FacadeCallBinFile implements IFacadeCallPersistence{
 	public int getMaxCallId() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void getCalls(String discriminator, String field, Timestamp timeStamp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getCalls(String discriminator, String field, int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

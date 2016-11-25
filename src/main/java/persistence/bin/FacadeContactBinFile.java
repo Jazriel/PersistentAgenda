@@ -30,4 +30,10 @@ public class FacadeContactBinFile implements IFacadeContactPersistence{
 		return 0;
 	}
 
+	@Override
+	public void getContacts(String disciminator, String field, String fieldValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

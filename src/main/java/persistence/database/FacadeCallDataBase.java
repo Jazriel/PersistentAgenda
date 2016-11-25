@@ -1,6 +1,7 @@
 package persistence.database;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import model.Call;
 import persistence.IFacadeCallPersistence;
@@ -47,7 +48,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			stmFiller.getFilledUpdateCallStatement(call);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
@@ -66,7 +67,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			stmFiller.getFilledSaveCallStatement(call);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		}catch (SQLException e) {
 			System.err.println(e.getStackTrace());
 		}finally {
@@ -75,6 +76,18 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			if(connection!=null){
 			connection.close();}
 		}
+	}
+
+	@Override
+	public void getCalls(String discriminator, String field, Timestamp timeStamp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getCalls(String discriminator, String field, int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -14,43 +14,57 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 
 	public ContactResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);
-		thisId = -1;
-		if (rs.last()){
-			lastId = rs.getInt(0);
-		} else {
-			lastId = -1;
+		try{
+			rs.next();
+			next = getContactFromResultSet(rs);
+			hasNext = true;
+		}catch (Exception e) {
+			hasNext = false;
 		}
-		rs.beforeFirst();
 	}
 	
-	private int lastId;
-	private int thisId;
+	private Contact next;
+	private boolean hasNext;
 	
 	@Override
 	public Contact next() {
-		Contact contact = null;
+		if (!hasNext){
+			throw new NoSuchElementException("No more");
+		}
+		Contact thisContact = next;
 		try {
 			rs.next();
+			next = getContactFromResultSet(rs);
+		}catch (Exception e) {
+			hasNext = false;
+		}
+		
+		return thisContact;
+	}
+	
+	private Contact getContactFromResultSet(ResultSet rs){
+		Contact contact = null;
+		try {
 			ResultSetMetaData rsMD = rs.getMetaData();
-			String lastColumnName = rsMD.getColumnTypeName(rsMD.getColumnCount() - 2);
+			String beforeLastColumnName = rsMD.getColumnName(rsMD.getColumnCount()-1);
 			List<String> attribs = new LinkedList<>();
-			int id = rs.getInt(0);
-			thisId = id;
-			for (int i = 1; lastColumnName != rsMD.getColumnTypeName(i); ++i) {
+			int id = rs.getInt(1);
+			for (int i = 2; beforeLastColumnName != rsMD.getColumnName(i); ++i) {
 				attribs.add(rs.getString(i));
 			}
-			ContactType ct = new ContactType(rs.getInt(rsMD.getColumnCount() - 2),
-					rs.getString(rsMD.getColumnCount() - 1));
+			ContactType ct = new ContactType(rs.getInt(rsMD.getColumnCount() - 1), null); // TODO
+			attribs.add(rs.getString(rsMD.getColumnCount()));
 			contact = new Contact(id, attribs, ct);
 		} catch (SQLException e) {
 			throw new NoSuchElementException(e.getMessage());
 		}
 		return contact;
 	}
+	
 
 	@Override
 	public boolean hasNext() {
-		return thisId!=lastId;
+		return hasNext;
 	}
 
 }

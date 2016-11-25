@@ -30,5 +30,11 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 		
 	}
 
+	@Override
+	public void getAllContactTypes() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

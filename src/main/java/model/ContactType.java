@@ -22,6 +22,9 @@ public class ContactType implements Serializable{
 		this.contactTypeName = name;
 	}
 
+	public int getId(){
+		return id;
+	}
 
 	@Override
 	public String toString() {

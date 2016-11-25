@@ -22,8 +22,6 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need
-			// multiple implementations one for each kind of object.
 			stmFiller.getFilledContactTypeByIdStatement(id);
 			resultSetManager = new ContactTypeResultSetManager(stmFiller.executeQuery());
 			contactType = resultSetManager.next();
@@ -50,10 +48,8 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need
-			// multiple implementations one for each kind of object.
 			stmFiller.getFilledSaveContactTypeStatement(contactType);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -73,10 +69,8 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			// TODO : Evaluate if result set manager and statement manager need
-			// multiple implementations one for each kind of object.
 			stmFiller.getFilledUpdateContactTypeStatement(contactType);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -88,6 +82,12 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 			}
 		}
 
+	}
+
+	@Override
+	public void getAllContactTypes() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

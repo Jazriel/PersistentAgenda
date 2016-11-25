@@ -1,6 +1,7 @@
 package persistence.database;
 
 import java.sql.SQLException;
+
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
@@ -17,7 +18,9 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			stmFiller = new StatementManager();
 			stmFiller.getFilledMaxIdContacts();
 			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
-			contact = resultSetManager.next();
+			if (resultSetManager.hasNext()) {
+				contact = resultSetManager.next();
+			}
 		} catch (SQLException e) {
 			System.err.println("getMaxContactId Error: " + e.getMessage());
 		} finally {
@@ -34,7 +37,7 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 		if (contact != null) {
 			return contact.getId();
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 
@@ -49,7 +52,9 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			stmFiller = new StatementManager();
 			stmFiller.getFilledContactByIdStatement(id);
 			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
-			contact = resultSetManager.next();
+			if (resultSetManager.hasNext()) {
+				contact = resultSetManager.next();
+			}
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -74,7 +79,7 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			stmFiller.getFilledSaveContactStatement(contact);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -95,7 +100,7 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
 			stmFiller.getFilledUpdateContactStatement(contact);
-			stmFiller.executeQuery();
+			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -106,6 +111,12 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 				connection.close();
 			}
 		}
+	}
+
+	@Override
+	public void getContacts(String disciminator, String field, String fieldValue) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

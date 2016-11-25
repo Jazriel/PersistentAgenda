@@ -32,7 +32,7 @@ public class SingletonStatementGenerator {
 		return "UPDATE CONTACTS SET (name,  surname,  title,  address,  city,  "
 				+ "province,  postal_Code,  region, country ,  company_Name,  "
 				+ "workstation,  work_Phone,  work_Extension,  mobile_Phone,  "
-				+ "fax_Number, email, notes) = (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)  " + "WHERE id=?";
+				+ "fax_Number, email, contact_type_id, notes) = (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)  " + "WHERE id=?";
 
 	}
 
@@ -40,8 +40,8 @@ public class SingletonStatementGenerator {
 		return "SELECT CONTACTS.ID, NAME ,  SURNAME ,  TITLE ,  ADDRESS ,  CITY ,  "
 				+ "PROVINCE ,  POSTAL_CODE ,  REGION , COUNTRY ,  COMPANY_NAME ,  "
 				+ "WORKSTATION,  WORK_PHONE ,  WORK_EXTENSION ,  MOBILE_PHONE ,  "
-				+ "FAX_NUMBER , EMAIL, NOTES, CONTACTSTYPES.ID, CONTACT_TYPE "
-				+ "FROM CONTACTS JOIN CONTACTSTYPES ON CONTACTSTYPES.ID = CONTACTS.ID " + "WHERE CONTACTS.ID=?;";
+				+ "FAX_NUMBER , EMAIL, NOTES, CONTACT_TYPE_ID, CONTACT_TYPE "
+				+ "FROM CONTACTS LEFT JOIN CONTACTSTYPES ON CONTACTSTYPES.ID = CONTACTS.CONTACT_TYPE_ID " + "WHERE CONTACTS.ID=?;";
 	}
 
 	public String getAllContacts() {
