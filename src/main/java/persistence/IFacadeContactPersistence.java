@@ -1,5 +1,7 @@
 package persistence;
 
+import java.util.List;
+
 import model.Contact;
 
 public interface IFacadeContactPersistence {
@@ -8,6 +10,6 @@ public interface IFacadeContactPersistence {
 	void updateContact(Contact contact);
 	void saveContact(Contact contact);
 	int getMaxContactId();
-	void getContacts(String disciminator, String field, String fieldValue);
+	List<Contact> getContacts(String disciminator, String field, String fieldValue);
 
 }

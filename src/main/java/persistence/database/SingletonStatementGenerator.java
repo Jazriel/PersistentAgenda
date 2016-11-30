@@ -1,5 +1,7 @@
 package persistence.database;
 
+import java.sql.SQLException;
+
 public class SingletonStatementGenerator {
 
 	private static SingletonStatementGenerator statementGeneratorInstance;
@@ -41,7 +43,8 @@ public class SingletonStatementGenerator {
 				+ "PROVINCE ,  POSTAL_CODE ,  REGION , COUNTRY ,  COMPANY_NAME ,  "
 				+ "WORKSTATION,  WORK_PHONE ,  WORK_EXTENSION ,  MOBILE_PHONE ,  "
 				+ "FAX_NUMBER , EMAIL, NOTES, CONTACT_TYPE_ID, CONTACT_TYPE "
-				+ "FROM CONTACTS LEFT JOIN CONTACTSTYPES ON CONTACTSTYPES.ID = CONTACTS.CONTACT_TYPE_ID " + "WHERE CONTACTS.ID=?;";
+				+ "FROM CONTACTS LEFT JOIN CONTACTSTYPES ON CONTACTSTYPES.ID = CONTACTS.CONTACT_TYPE_ID "
+				+ "WHERE CONTACTS.ID=?;";
 	}
 
 	public String getAllContacts() {
@@ -83,6 +86,25 @@ public class SingletonStatementGenerator {
 	public String getContactTypeByIdStatement() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getContactsStatement(String discriminator, String field) {
+		if (discriminator.equals("order by"))
+			return "SELECT * FROM CONTACTS ORDER BY " + field;
+		else if (discriminator.equals("where"))
+			return "SELECT * FROM CONTACTS WHERE " + field + "=?";
+		else
+			throw new IllegalArgumentException();
+
+	}
+
+	public String getCallsStatement(String discriminator, String field) {
+		if (discriminator.equals("order by"))
+			return "SELECT * FROM CALLS ORDER BY " + field;
+		else if (discriminator.equals("where"))
+			return "SELECT * FROM CALLS WHERE " + field + "=?";
+		else
+			throw new IllegalArgumentException();
 	}
 
 }

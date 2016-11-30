@@ -4,13 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Call;
 import model.Contact;
 import model.ContactType;
-import persistence.FactoryPersistence;
+import persistence.IFactoryPersistence;
 import persistence.IFacadeCallPersistence;
 import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
@@ -19,7 +23,7 @@ import persistence.database.FactoryDataBase;
 
 public class CUI {
 	private static BufferedReader bufferedReader = null;
-	private static FactoryPersistence persistence = null;
+	private static IFactoryPersistence persistence = null;
 	private static IFacadeContactPersistence contactPersitence = null;
 	private static IFacadeCallPersistence callPersitence = null;
 	private static IFacadeContactTypePersistence contactTypePersitence = null;
@@ -33,7 +37,7 @@ public class CUI {
 			System.out.println("** 2) Sistema de persistencia mediante ficheros binarios");
 			bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido <Base datos SQL>");
@@ -66,7 +70,7 @@ public class CUI {
 			System.out.println("* 3) Consultar: ");
 			System.out.println("* 0) Salir: ");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 0:
 					System.out.println("Saliendo...");
@@ -100,7 +104,7 @@ public class CUI {
 			System.out.println("** 2) Nueva llamada");
 			System.out.println("** 3) Nuevo tipo de contacto");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido crear un nuevo contacto");
@@ -141,7 +145,7 @@ public class CUI {
 			System.out.println("** 2) Actualizar llamada");
 			System.out.println("** 3) Actualizar tipo de contacto");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido actualizar un contacto");
@@ -191,7 +195,7 @@ public class CUI {
 			System.out.println("** 2) Las llamadas");
 			System.out.println("** 3) Los tipos de contactos");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido los contactos");
@@ -225,12 +229,12 @@ public class CUI {
 			System.out.println("** 3) Filtrar por nombre");
 			System.out.println("** 4) Filtrar por apellido");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido ordenar por nombre");
 					name = bufferedReader.readLine();
-					contactPersitence.getContacts("order by","name", name);
+					contactPersitence.getContacts("order by", "name", name);
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido ordenar por apellido");
@@ -256,14 +260,14 @@ public class CUI {
 			}
 		} while (option != 1 || option != 2 || option != 3 || option != 4);
 	}
-	
+
 	private static void filterOrOrderCallsMenu() {
 		int option = 0;
 		do {
 			System.out.println("** 1) Filtrar por contacto");
 			System.out.println("** 2) Filtrar por fecha de realización");
 			try {
-				option =new Integer(bufferedReader.readLine());
+				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido filtrar por contacto");
@@ -278,8 +282,11 @@ public class CUI {
 					int day = bufferedReader.read();
 					int month = bufferedReader.read();
 					int year = bufferedReader.read();
-					//TODO Repasar con apuntes APBD
-					Timestamp timeStamp = new Timestamp(year, month, day, 0, 0, 0, 0);
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					Date date = dateFormat
+							.parse(String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year));
+					long time = date.getTime();
+					Timestamp timeStamp = new Timestamp(time);
 					callPersitence.getCalls("where", "call_date", timeStamp);
 					break;
 				default:
@@ -287,6 +294,8 @@ public class CUI {
 					break;
 				}
 			} catch (IOException e) {
+				System.err.println(e.getMessage());
+			} catch (ParseException e) {
 				System.err.println(e.getMessage());
 			}
 		} while (option != 1 && option != 2);

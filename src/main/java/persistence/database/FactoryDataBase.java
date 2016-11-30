@@ -2,10 +2,10 @@ package persistence.database;
 
 import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
-import persistence.FactoryPersistence;
+import persistence.IFactoryPersistence;
 import persistence.IFacadeCallPersistence;
 
-public class FactoryDataBase implements FactoryPersistence{
+public class FactoryDataBase implements IFactoryPersistence{
 	
 	@Override
 	public IFacadeContactPersistence createContactPersistence() {

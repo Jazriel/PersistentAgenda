@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import model.Call;
 import model.Contact;
@@ -23,7 +24,7 @@ public class StatementManager {
 	public ResultSet executeQuery() throws SQLException {
 		return preparedStatement.executeQuery();
 	}
-	
+
 	public void executeUpdate() throws SQLException {
 		preparedStatement.executeUpdate();
 	}
@@ -204,6 +205,36 @@ public class StatementManager {
 
 	public void getFilledMaxIdContactType() throws SQLException {
 		getFilledMaxIdStatement("CONTACTSTYPES");
+	}
+
+	public void getFilledContactsStatement(String disciminator, String field, String fieldValue) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getContactsStatement(disciminator, field);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		preparedStatement.setString(1, fieldValue);
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledCallsStatement(String discriminator, String field, Timestamp timeStamp) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getCallsStatement(discriminator, field);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		preparedStatement.setTimestamp(1, timeStamp);
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledCallsStatement(String discriminator, String field, int id) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getCallsStatement(discriminator, field);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		preparedStatement.setInt(1, id);
+		this.preparedStatement = preparedStatement;
 	}
 
 }

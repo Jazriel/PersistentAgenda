@@ -2,27 +2,24 @@ package persistence.bin;
 
 import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
-import persistence.FactoryPersistence;
+import persistence.IFactoryPersistence;
 import persistence.IFacadeCallPersistence;
 
-public class FactoryBinFile implements FactoryPersistence{
+public class FactoryBinFile implements IFactoryPersistence {
 
 	@Override
 	public IFacadeContactPersistence createContactPersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeContactBinFile();
 	}
 
 	@Override
 	public IFacadeCallPersistence createCallPersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeCallBinFile();
 	}
 
 	@Override
 	public IFacadeContactTypePersistence createContactTypePersistence() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FacadeContactTypeBinFile();
 	}
 
 }

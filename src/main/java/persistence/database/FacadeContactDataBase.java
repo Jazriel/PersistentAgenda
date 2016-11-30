@@ -1,6 +1,8 @@
 package persistence.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Contact;
 import persistence.IFacadeContactPersistence;
@@ -114,9 +116,34 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 	}
 
 	@Override
-	public void getContacts(String disciminator, String field, String fieldValue) {
-		// TODO Auto-generated method stub
-
+	public List<Contact> getContacts(String discriminator, String field, String fieldValue) {
+		SingletonConnection connection = null;
+		StatementManager stmFiller = null;
+		ABCResultSetManager<Contact> resultSetManager = null;
+		List<Contact> contacts = null;
+		try {
+			connection = SingletonConnection.getInstance();
+			stmFiller = new StatementManager();
+			stmFiller.getFilledContactsStatement(discriminator, field, fieldValue);
+			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
+			contacts = new ArrayList<>();
+			while(resultSetManager.hasNext()) {
+				contacts.add(resultSetManager.next());
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			if (resultSetManager != null) {
+				resultSetManager.close();
+			}
+			if (stmFiller != null) {
+				stmFiller.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		return contacts;
 	}
 
 }

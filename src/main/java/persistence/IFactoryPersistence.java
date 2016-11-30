@@ -1,6 +1,6 @@
 package persistence;
 
-public interface FactoryPersistence {
+public interface IFactoryPersistence {
 
 	public IFacadeContactPersistence createContactPersistence();
 	public IFacadeCallPersistence createCallPersistence();
