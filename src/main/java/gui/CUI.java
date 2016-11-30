@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.Call;
@@ -131,7 +130,7 @@ public class CUI {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
-		} while (option != 1 || option != 2 || option != 3);
+		} while (option != 1 && option != 2 && option != 3);
 	}
 
 	private static void updateMenu() {
@@ -182,7 +181,7 @@ public class CUI {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
-		} while (option != 1 || option != 2 || option != 3);
+		} while (option != 1 && option != 2 && option != 3);
 	}
 
 	private static void getMenu() {
@@ -213,7 +212,7 @@ public class CUI {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
-		} while (option != 1 || option != 2 || option != 3);
+		} while (option != 1 && option != 2 && option != 3);
 	}
 
 	private static void filterOrOrderContactsMenu() {
@@ -290,7 +289,7 @@ public class CUI {
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
-		} while (option != 1 || option != 2);
+		} while (option != 1 && option != 2);
 	}
 
 	private static Contact chooseContact() {
