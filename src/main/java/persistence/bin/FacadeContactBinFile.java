@@ -1,5 +1,7 @@
 package persistence.bin;
 
+import java.util.List;
+
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
@@ -31,8 +33,8 @@ public class FacadeContactBinFile implements IFacadeContactPersistence{
 	}
 
 	@Override
-	public void getContacts(String disciminator, String field, String fieldValue) {
-		// TODO Auto-generated method stub
+	public List<Contact> getContacts(String disciminator, String field, String fieldValue) {
+		return null;
 		
 	}
 

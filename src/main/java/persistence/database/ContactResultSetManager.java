@@ -17,14 +17,10 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 		try{
 			rs.next();
 			next = getContactFromResultSet(rs);
-			hasNext = true;
 		}catch (Exception e) {
 			hasNext = false;
 		}
 	}
-	
-	private Contact next;
-	private boolean hasNext;
 	
 	@Override
 	public Contact next() {

@@ -25,6 +25,10 @@ public class ContactType implements Serializable{
 	public int getId(){
 		return id;
 	}
+	
+	public String getContactTypeName() {
+		return contactTypeName;
+	}
 
 	@Override
 	public String toString() {

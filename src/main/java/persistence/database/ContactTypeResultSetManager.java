@@ -10,33 +10,42 @@ public class ContactTypeResultSetManager extends ABCResultSetManager<ContactType
 
 	public ContactTypeResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);
-		thisId = -1;
-		if (rs.last()){
-			lastId = rs.getInt(0);
-		} else {
-			lastId = -1;
+		try{
+			rs.next();
+			next = getContactTypesFromResultSet(rs);
+		}catch (Exception e) {
+			hasNext = false;
 		}
-		rs.beforeFirst();
 	}
 	
-	private int lastId;
-	private int thisId;
-
 	@Override
 	public ContactType next() {
-		ContactType contactType = null;
+		if (!hasNext){
+			throw new NoSuchElementException("No more");
+		}
+		ContactType thisContactType = next;
 		try {
 			rs.next();
-			thisId = rs.getInt(0);
-			contactType = new ContactType(thisId, rs.getString(1));
-		}catch (SQLException e) {
+			next = getContactTypesFromResultSet(rs);
+		}catch (Exception e) {
+			hasNext = false;
+		}
+		
+		return thisContactType;
+	}
+	
+	private ContactType getContactTypesFromResultSet(ResultSet rs) {
+		ContactType contactType = null;
+		try {
+			contactType = new ContactType(rs.getInt(1), rs.getString(2));
+		} catch (SQLException e) {
 			throw new NoSuchElementException(e.getMessage());
 		}
 		return contactType;
 	}
-
+	
 	@Override
 	public boolean hasNext() {
-		return lastId!=thisId;
+		return hasNext;
 	}
 }

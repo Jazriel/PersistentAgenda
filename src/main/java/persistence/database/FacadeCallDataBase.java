@@ -128,6 +128,38 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			stmFiller = new StatementManager();
 			stmFiller.getFilledCallsStatement(discriminator, field, id);
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
+			calls = new ArrayList<>();
+			while(resultSetManager.hasNext()){
+				calls.add(resultSetManager.next());
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			if (resultSetManager != null) {
+				resultSetManager.close();
+			}
+			if (stmFiller != null) {
+				stmFiller.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		return calls;
+	}
+
+	@Override
+	public List<Call> getAllCalls() {
+		SingletonConnection connection = null;
+		StatementManager stmFiller = null;
+		ABCResultSetManager<Call> resultSetManager = null;
+		List<Call> calls = null;
+		try {
+			connection = SingletonConnection.getInstance();
+			stmFiller = new StatementManager();
+			stmFiller.getAllCallsStatement();
+			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
+			calls = new ArrayList<>();
 			while(resultSetManager.hasNext()){
 				calls.add(resultSetManager.next());
 			}

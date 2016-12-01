@@ -19,4 +19,6 @@ public interface IFacadeCallPersistence {
 
 	List<Call> getCalls(String discriminator, String field, int id);
 
+	List<Call> getAllCalls();
+
 }

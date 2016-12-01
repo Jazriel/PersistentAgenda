@@ -6,10 +6,14 @@ import java.util.Iterator;
 
 public abstract class ABCResultSetManager<E> implements Iterator<E> {
 
+	
+	protected E next;
+	protected boolean hasNext;
 	protected ResultSet rs;
 	
 	public ABCResultSetManager(ResultSet rs) {
 		this.rs = rs;
+		hasNext = true;
 	}
 	
 	@Override

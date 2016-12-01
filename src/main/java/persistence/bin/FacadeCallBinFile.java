@@ -1,6 +1,7 @@
 package persistence.bin;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import model.Call;
 import persistence.IFacadeCallPersistence;
@@ -32,14 +33,14 @@ public class FacadeCallBinFile implements IFacadeCallPersistence{
 	}
 
 	@Override
-	public void getCalls(String discriminator, String field, Timestamp timeStamp) {
-		// TODO Auto-generated method stub
+	public List<Call> getCalls(String discriminator, String field, Timestamp timeStamp) {
+		return null;
 		
 	}
 
 	@Override
-	public void getCalls(String discriminator, String field, int id) {
-		// TODO Auto-generated method stub
+	public List<Call> getCalls(String discriminator, String field, int id) {
+		return null;
 		
 	}
 

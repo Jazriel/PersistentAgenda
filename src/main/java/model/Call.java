@@ -23,7 +23,6 @@ public class Call implements Serializable{
 	}
 	
 	public Call(Contact contact, String subject, String notes) {
-		// TODO Auto-generated constructor stub
 		this.contact = contact;
 		this.callDate =  new Timestamp(System.currentTimeMillis()).toString();
 		this.subject = subject;

@@ -1,7 +1,5 @@
 package persistence.database;
 
-import java.sql.SQLException;
-
 public class SingletonStatementGenerator {
 
 	private static SingletonStatementGenerator statementGeneratorInstance;
@@ -62,8 +60,7 @@ public class SingletonStatementGenerator {
 	}
 
 	public String getCallByIdStatement() {
-		// TODO Auto-generated method stub
-		return null;
+		return "SELECT * FROM CALLS WHERE ID = ? ";
 	}
 
 	public String getAllCallsStatement() {
@@ -72,7 +69,7 @@ public class SingletonStatementGenerator {
 
 	// Contact types statements
 	public String insertContactTypeStatement() {
-		return "INSERT INTO CONTACTSTYPES( \"ID\", \"CONTACT_TYPE\" ) VALUES ( ?, ?)";
+		return "INSERT INTO CONTACTSTYPES(\"CONTACT_TYPE\") VALUES (?)";
 	}
 
 	public String updateContactTypeStatement() {
@@ -84,8 +81,7 @@ public class SingletonStatementGenerator {
 	}
 
 	public String getContactTypeByIdStatement() {
-		// TODO Auto-generated method stub
-		return null;
+		return "SELECT * FROM CONTACTSTYPES WHERE ID = ?";
 	}
 
 	public String getContactsStatement(String discriminator, String field) {

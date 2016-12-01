@@ -127,7 +127,38 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			stmFiller.getFilledContactsStatement(discriminator, field, fieldValue);
 			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
 			contacts = new ArrayList<>();
-			while(resultSetManager.hasNext()) {
+			while (resultSetManager.hasNext()) {
+				contacts.add(resultSetManager.next());
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			if (resultSetManager != null) {
+				resultSetManager.close();
+			}
+			if (stmFiller != null) {
+				stmFiller.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		return contacts;
+	}
+
+	@Override
+	public List<Contact> getAllContacts() {
+		SingletonConnection connection = null;
+		StatementManager stmFiller = null;
+		ABCResultSetManager<Contact> resultSetManager = null;
+		List<Contact> contacts = null;
+		try {
+			connection = SingletonConnection.getInstance();
+			stmFiller = new StatementManager();
+			stmFiller.getAllContactsStatement();
+			resultSetManager = new ContactResultSetManager(stmFiller.executeQuery());
+			contacts = new ArrayList<>();
+			while (resultSetManager.hasNext()) {
 				contacts.add(resultSetManager.next());
 			}
 		} catch (SQLException e) {

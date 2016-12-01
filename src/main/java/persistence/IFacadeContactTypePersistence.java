@@ -1,5 +1,7 @@
 package persistence;
 
+import java.util.List;
+
 import model.ContactType;
 
 public interface IFacadeContactTypePersistence {
@@ -8,6 +10,6 @@ public interface IFacadeContactTypePersistence {
 	void updateContactType(ContactType contact);
 	void saveContactType(ContactType contact);
 	int getMaxContactTypeId();
-	void getAllContactTypes();
+	List<ContactType> getAllContactTypes();
 
 }

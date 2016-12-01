@@ -1,6 +1,8 @@
 package persistence.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
@@ -69,7 +71,7 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledUpdateContactTypeStatement(contactType);
+			stmFiller.getFilledSaveContactTypeStatement(contactType);
 			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -85,9 +87,34 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 	}
 
 	@Override
-	public void getAllContactTypes() {
-		// TODO Auto-generated method stub
-		
+	public List<ContactType> getAllContactTypes() {
+		SingletonConnection connection = null;
+		StatementManager stmFiller = null;
+		ABCResultSetManager<ContactType> resultSetManager = null;
+		List<ContactType> contactTypes = null;
+		try {
+			connection = SingletonConnection.getInstance();
+			stmFiller = new StatementManager();
+			stmFiller.getAllContactTypesStatement();
+			resultSetManager = new ContactTypeResultSetManager(stmFiller.executeQuery());
+			contactTypes = new ArrayList<>();
+			while (resultSetManager.hasNext()) {
+				contactTypes.add(resultSetManager.next());
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			if (resultSetManager != null) {
+				resultSetManager.close();
+			}
+			if (stmFiller != null) {
+				stmFiller.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		return contactTypes;
 	}
 
 }

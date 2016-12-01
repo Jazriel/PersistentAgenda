@@ -5,46 +5,53 @@ import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
 import model.Call;
+import model.Contact;
 
 public class CallResultSetManager extends ABCResultSetManager<Call> {
 
 	public CallResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);
-		thisId = -1;
-		if (rs.last()){
-			lastId = rs.getInt(0);
-		} else {
-			lastId = -1;
+		try{
+			rs.next();
+			next = getCallFromResultSet(rs);
+			hasNext = true;
+		}catch (Exception e) {
+			hasNext = false;
 		}
-		rs.beforeFirst();
 	}
 
-	private int lastId;
-	private int thisId;
-	
 	@Override
 	public Call next() {
-		Call call = null;
+		if (!hasNext){
+			throw new NoSuchElementException("No more");
+		}
+		Call thisCall = next;
 		try {
 			rs.next();
-			int id = rs.getInt(0);
-			thisId = id;
-			// TODO
-			int contact = rs.getInt(1);
-			String callDate = rs.getString(2);
-			String subject = rs.getString(3);
-			String notes = rs.getString(4);
-			FacadeContactDataBase fcdb = new FacadeContactDataBase();
-			call = new Call(id, fcdb.getContactById(contact), callDate, subject, notes);
-		} catch (SQLException e) {
-			throw new NoSuchElementException(e.getMessage());
+			next = getCallFromResultSet(rs);
+		}catch (Exception e) {
+			hasNext = false;
 		}
-		return call;
+		
+		return thisCall;
 	}
 	
 	@Override
 	public boolean hasNext() {
-		return thisId!=lastId;
+		return hasNext;
+	}
+	
+	private Call getCallFromResultSet(ResultSet rs) {
+		Call call = null;
+		try {
+			Contact contact = new FactoryDataBase().
+					createContactPersistence().getContactById(rs.getInt(2));
+			call = new Call(rs.getInt(1), contact, rs.getDate(3).toString(),
+					rs.getString(4), rs.getString(5));
+		} catch (SQLException e) {
+			throw new NoSuchElementException(e.getMessage());
+		}
+		return call;
 	}
 
 }

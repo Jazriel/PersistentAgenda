@@ -3,23 +3,25 @@ package gui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import model.Call;
 import model.Contact;
 import model.ContactType;
-import persistence.IFactoryPersistence;
+import persistence.AbstractPersistenceFactory;
+import persistence.IAbstractPersistenceFactory;
 import persistence.IFacadeCallPersistence;
 import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
-import persistence.bin.FactoryBinFile;
-import persistence.database.FactoryDataBase;
+import persistence.IFactoryPersistence;
 
 public class CUI {
 	private static BufferedReader bufferedReader = null;
@@ -31,6 +33,7 @@ public class CUI {
 	public static void main(String[] args) {
 		// Choose the persistence system
 		int option = -1;
+		IAbstractPersistenceFactory abstractPersistenceFactory = new AbstractPersistenceFactory();
 		do {
 			System.out.println("* Elija el sistema de persistencia: ");
 			System.out.println("** 1) Base datos SQL");
@@ -41,11 +44,11 @@ public class CUI {
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido <Base datos SQL>");
-					persistence = new FactoryDataBase();
+					persistence = abstractPersistenceFactory.getDBPersistence();
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido <Ficheros binarios>");
-					persistence = new FactoryBinFile();
+					persistence = abstractPersistenceFactory.getBinPersistence();
 					break;
 				default:
 					System.out.println("Opción incorrecta. Vuelva a intentarlo!");
@@ -99,6 +102,7 @@ public class CUI {
 
 	private static void insertMenu() {
 		int option = 0;
+		int pos;
 		do {
 			System.out.println("** 1) Nuevo contacto");
 			System.out.println("** 2) Nueva llamada");
@@ -108,18 +112,35 @@ public class CUI {
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido crear un nuevo contacto");
+					// Obtenemos los campos del contacto
 					List<String> attribs = insertContactFields();
-					ContactType contactType = chooseContactType();
-					contactPersitence.saveContact(new Contact(attribs, contactType));
+					// Obtenemos los tipos de contacto
+					List<ContactType> contactTypes = contactTypePersitence.getAllContactTypes();
+					// Mostramos los tipos de contacto
+					showContactTypes(contactTypes);
+					// Obtenemos el tipo de contacto que se desea
+					pos = new Integer(bufferedReader.readLine()) - 1;
+					// Guardamos el contacto
+					contactPersitence.saveContact(new Contact(attribs, contactTypes.get(pos)));
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido crear una nueva llamada");
-					Contact contact = chooseContact();
+					// Obtenemos los contactos
+					List<Contact> contacts = contactPersitence.getAllContacts();
+					// Mostramos los contactos
+					showContacts(contacts);
+					// Obtenemos el contacto que se desea
+					pos = new Integer(bufferedReader.readLine()) - 1;
+
 					System.out.println("Introduzca el tema de conversación:");
 					String subject = bufferedReader.readLine();
+
 					System.out.println("Introduzca alguna anotación sobre la llamada:");
 					String notes = bufferedReader.readLine();
-					callPersitence.saveCall(new Call(contact, subject, notes));
+
+					// Guardamos la llamada
+					callPersitence.saveCall(
+							new Call(contacts.get(pos), subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido crear un nuevo tipo de contacto");
@@ -138,8 +159,7 @@ public class CUI {
 	}
 
 	private static void updateMenu() {
-		int option = 0;
-		int id = 0;
+		int option = 0, id, pos;
 		do {
 			System.out.println("** 1) Actualizar contacto");
 			System.out.println("** 2) Actualizar llamada");
@@ -149,34 +169,58 @@ public class CUI {
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido actualizar un contacto");
-					// TODO Mejorable, mostrando los contactos y eligiendo entre
-					// ellos
-					System.out.println("Introduzca el id del contacto:");
-					id = bufferedReader.read();
-					List<String> attribs = new ArrayList<>();
-					ContactType contactType = chooseContactType();
-					insertContactFields();
-					contactPersitence.updateContact(new Contact(id, attribs, contactType));
+
+					// Obtenemos los contactos
+					List<Contact> contacts = contactPersitence.getAllContacts();
+					// Mostramos los contactos
+					showContacts(contacts);
+					// Escogemos el contacto
+					pos = new Integer(bufferedReader.readLine()) - 1;
+					id = contacts.get(pos).getId();
+					// Mostramos los campos actuales del contacto
+					System.out.println(contacts.get(pos).toString());
+					// Insertamos los campos del contacto
+					List<String> attribs = insertContactFields();
+
+					// Mostramos los tipos de contactos
+					List<ContactType> contactTypes = contactTypePersitence.getAllContactTypes();
+					showContactTypes(contactTypes);
+					// Escogemos el tipo de contacto
+					pos = new Integer(bufferedReader.readLine()) - 1;
+
+					// Actualizamos
+					contactPersitence.updateContact(new Contact(id, attribs, contactTypes.get(pos)));
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido actualizar una llamada");
-					// TODO igual que el anterior
-					System.out.println("Introduzca el id de la llamada:");
-					id = bufferedReader.read();
+					List<Call> calls = callPersitence.getAllCalls();
+					showCalls(calls);
+					// Escogemos la llamada entre las mostradas
+					pos = new Integer(bufferedReader.readLine()) - 1;
+
+					// Introducimos nuevos valores
 					System.out.println("Introduzca el tema de conversación:");
 					String subject = bufferedReader.readLine();
+
 					System.out.println("Introduzca alguna anotación sobre la llamada:");
 					String notes = bufferedReader.readLine();
-					callPersitence.updateCall(new Call(id, subject, notes));
+
+					// Actualizamos
+					callPersitence.updateCall(new Call(calls.get(pos).getId(), subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido actualizar un tipo de contacto");
-					// TODO igual que el anterior
-					System.out.println("Introduzca el id del tipo de contacto:");
-					id = bufferedReader.read();
+					// Mostramos los tipos de contactos
+					List<ContactType> contactTypes2 = contactTypePersitence.getAllContactTypes();
+					showContactTypes(contactTypes2);
+					// Escogemos el tipo de contacto
+					pos = new Integer(bufferedReader.readLine()) - 1;
+
 					System.out.println("Introduzca el nombre del tipo de contacto:");
 					String name = bufferedReader.readLine();
-					contactTypePersitence.updateContactType(new ContactType(id, name));
+
+					// Actualizamos
+					contactTypePersitence.updateContactType(new ContactType(contactTypes2.get(pos).getId(), name));
 					break;
 				default:
 					System.out.println("Opción incorrecta en Menu actualizar. Vuelva a intentarlo!");
@@ -207,7 +251,7 @@ public class CUI {
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido todos los tipos de contacto");
-					contactTypePersitence.getAllContactTypes();
+					showContactTypes(contactTypePersitence.getAllContactTypes());
 					break;
 				default:
 					System.out.println("Opción incorrecta en Menu consultar. Vuelva a intentarlo!");
@@ -272,16 +316,16 @@ public class CUI {
 				case 1:
 					System.out.println("La opcion elegida ha sido filtrar por contacto");
 					System.out.println("Introduzca el id del contacto:");
-					int id = bufferedReader.read();
+					int id = new Integer(bufferedReader.readLine());
 					callPersitence.getCalls("where", "id", id);
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido filtrar por fecha de realización");
 					System.out.println("Introduzca la fecha de realización:");
 					System.out.print("Día:");
-					int day = bufferedReader.read();
-					int month = bufferedReader.read();
-					int year = bufferedReader.read();
+					int day = new Integer(bufferedReader.readLine());
+					int month = new Integer(bufferedReader.readLine());
+					int year = new Integer(bufferedReader.readLine());
 					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					Date date = dateFormat
 							.parse(String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year));
@@ -301,19 +345,40 @@ public class CUI {
 		} while (option != 1 && option != 2);
 	}
 
-	private static Contact chooseContact() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void showContacts(List<Contact> contacts) {
+		for (int i = 0; i < contacts.size(); i++) {
+			System.out.println(
+					i + 1 + ") Nombre: " + contacts.get(i).getName() + " , Apellidos: " + contacts.get(i).getSurname());
+		}
 	}
 
-	private static ContactType chooseContactType() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void showCalls(List<Call> calls) {
+		for (int i = 0; i < calls.size(); i++) {
+			System.out.println(i + 1 + ") " + calls.get(i).toString());
+		}
+	}
+
+	private static void showContactTypes(List<ContactType> contactTypes) {
+		for (int i = 0; i < contactTypes.size(); i++) {
+			System.out.println(i + 1 + ") " + contactTypes.get(i).getContactTypeName());
+		}
 	}
 
 	private static List<String> insertContactFields() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Field> contactFields = new ArrayList<>(Arrays.asList(Contact.class.getDeclaredFields()));
+		List<String> values = new ArrayList<>();
+		contactFields.remove(0);
+		contactFields.remove(0);
+		contactFields.remove(contactFields.size()-1);
+		for (Field field : contactFields) {
+			System.out.println("Introduzca el " + field.getName().toString());
+			try {
+				values.add(bufferedReader.readLine());
+			} catch (IOException e) {
+				System.err.println(e.getMessage());
+			}
+		}
+		return values;
 	}
 
 }
