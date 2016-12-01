@@ -50,7 +50,7 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledSaveContactTypeStatement(contactType);
+			stmFiller.getFilledUpdateContactTypeStatement(contactType);
 			stmFiller.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());

@@ -206,7 +206,7 @@ public class CUI {
 					String notes = bufferedReader.readLine();
 
 					// Actualizamos
-					callPersitence.updateCall(new Call(calls.get(pos).getId(), subject, notes));
+					callPersitence.updateCall(new Call(calls.get(pos).getId() ,subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido actualizar un tipo de contacto");
@@ -265,8 +265,7 @@ public class CUI {
 
 	private static void filterOrOrderContactsMenu() {
 		int option = 0;
-		String name;
-		String surname;
+		String filteredField;
 		do {
 			System.out.println("** 1) Ordenar por nombre");
 			System.out.println("** 2) Ordenar por apellido");
@@ -277,23 +276,23 @@ public class CUI {
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido ordenar por nombre");
-					name = bufferedReader.readLine();
-					contactPersitence.getContacts("order by", "name", name);
+					showContacts(contactPersitence.getOrderContacts("name"));
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido ordenar por apellido");
-					surname = bufferedReader.readLine();
-					contactPersitence.getContacts("order by", "surname", surname);
+					showContacts(contactPersitence.getOrderContacts("surname"));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido filtrar por nombre");
-					name = bufferedReader.readLine();
-					contactPersitence.getContacts("where", "name", name);
+					System.out.println("Escriba el nombre por el que desea filtrar:");
+					filteredField = bufferedReader.readLine();
+					showContacts(contactPersitence.getFilterContacts("name", filteredField));
 					break;
 				case 4:
 					System.out.println("La opcion elegida ha sido filtrar por apellido");
-					surname = bufferedReader.readLine();
-					contactPersitence.getContacts("where", "surname", surname);
+					System.out.println("Escriba el apellido por el que desea filtrar:");
+					filteredField = bufferedReader.readLine();
+					showContacts(contactPersitence.getFilterContacts("surname", filteredField));
 					break;
 				default:
 					System.out.println("Opción incorrecta en Menu ordenar/filtrar contactos. Vuelva a intentarlo!");

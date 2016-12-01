@@ -142,18 +142,19 @@ public class StatementManager {
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		try {
-			date = formatter.parse(call.getCallDate().substring(0, 10));
-		} catch (ParseException e) {
-			System.err.println(e.getMessage());
-		}
-		long time = date.getTime();
-		Timestamp timeStamp = new Timestamp(time);
-		preparedStatement.setTimestamp(1, timeStamp);
-		preparedStatement.setString(2, call.getSubject());
-		preparedStatement.setString(3, call.getNotes());
+		// SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		// Date date = null;
+		// try {
+		// date = formatter.parse(call.getCallDate().substring(0, 10));
+		// } catch (ParseException e) {
+		// System.err.println(e.getMessage());
+		// }
+		// long time = date.getTime();
+		// Timestamp timeStamp = new Timestamp(time);
+		// preparedStatement.setTimestamp(1, timeStamp);
+		preparedStatement.setString(1, call.getSubject());
+		preparedStatement.setString(2, call.getNotes());
+		preparedStatement.setInt(3, call.getId());
 		this.preparedStatement = preparedStatement;
 
 	}
@@ -210,6 +211,7 @@ public class StatementManager {
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
 		preparedStatement.setString(1, contactType.getContactTypeName());
+		preparedStatement.setInt(2, contactType.getId());
 		this.preparedStatement = preparedStatement;
 	}
 
@@ -234,33 +236,33 @@ public class StatementManager {
 		getFilledMaxIdStatement("CONTACTSTYPES");
 	}
 
-	public void getFilledContactsStatement(String disciminator, String field, String fieldValue) throws SQLException {
+	public void getOrderCallsStatement(String field) throws SQLException {
 		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getContactsStatement(disciminator, field);
+		String textStatement = SingletonStatementGenerator.getInstance().getOrderContactsStatement(field);
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
-		preparedStatement.setString(1, fieldValue);
 		this.preparedStatement = preparedStatement;
 	}
 
-	public void getFilledCallsStatement(String discriminator, String field, Timestamp timeStamp) throws SQLException {
+	private PreparedStatement getFilterCallsStamentGeneral(String field) throws SQLException {
 		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getCallsStatement(discriminator, field);
+		String textStatement = SingletonStatementGenerator.getInstance().getFilteredCallsStatement(field);
 		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		// Prepare statement
-		preparedStatement.setTimestamp(1, timeStamp);
-		this.preparedStatement = preparedStatement;
+		return conn.prepareStatement(textStatement);
 	}
 
-	public void getFilledCallsStatement(String discriminator, String field, int id) throws SQLException {
-		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getCallsStatement(discriminator, field);
-		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+	public void getFilterCallsStatement(String field, int id) throws SQLException {
+		PreparedStatement preparedStatement = getFilterCallsStamentGeneral(field);
 		// Prepare statement
 		preparedStatement.setInt(1, id);
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilledCallsStatement(String field, Timestamp timeStamp) throws SQLException {
+		PreparedStatement preparedStatement = getFilterCallsStamentGeneral(field);
+		// Prepare statement
+		preparedStatement.setTimestamp(1, timeStamp);
 		this.preparedStatement = preparedStatement;
 	}
 
@@ -288,6 +290,25 @@ public class StatementManager {
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getOrderContactsStatement(String field) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getOrderContactsStatement(field);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		this.preparedStatement = preparedStatement;
+	}
+
+	public void getFilterContactsStatement(String field, String filteredField) throws SQLException {
+		// Get text statement
+		String textStatement = SingletonStatementGenerator.getInstance().getFilteredContactsStatement(field);
+		// Create PreparedStatement
+		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
+		// Prepare statement
+		preparedStatement.setString(1, filteredField);
 		this.preparedStatement = preparedStatement;
 	}
 

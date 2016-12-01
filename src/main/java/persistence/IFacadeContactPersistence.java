@@ -10,7 +10,8 @@ public interface IFacadeContactPersistence {
 	void updateContact(Contact contact);
 	void saveContact(Contact contact);
 	int getMaxContactId();
-	List<Contact> getContacts(String disciminator, String field, String fieldValue);
 	List<Contact> getAllContacts();
+	List<Contact> getOrderContacts(String string);
+	List<Contact> getFilterContacts(String string, String filteredField);
 
 }

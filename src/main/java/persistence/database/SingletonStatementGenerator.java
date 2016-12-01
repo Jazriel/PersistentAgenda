@@ -56,7 +56,8 @@ public class SingletonStatementGenerator {
 	}
 
 	public String updateCallStatement() {
-		return "UPDATE CALLS SET (call_date, subject, notes) = ( ?, ?, ?)";
+		// return "UPDATE CALLS SET (call_date, subject, notes) = ( ?, ?, ?)";
+		return "UPDATE CALLS SET (subject, notes) = (?, ?) WHERE ID = ?";
 	}
 
 	public String getCallByIdStatement() {
@@ -84,23 +85,20 @@ public class SingletonStatementGenerator {
 		return "SELECT * FROM CONTACTSTYPES WHERE ID = ?";
 	}
 
-	public String getContactsStatement(String discriminator, String field) {
-		if (discriminator.equals("order by"))
-			return "SELECT * FROM CONTACTS ORDER BY " + field;
-		else if (discriminator.equals("where"))
-			return "SELECT * FROM CONTACTS WHERE " + field + "=?";
-		else
-			throw new IllegalArgumentException();
-
+	public String getOrderCallsStatement(String field) {
+		return "SELECT * FROM CALLS ORDER BY " + field;
 	}
 
-	public String getCallsStatement(String discriminator, String field) {
-		if (discriminator.equals("order by"))
-			return "SELECT * FROM CALLS ORDER BY " + field;
-		else if (discriminator.equals("where"))
-			return "SELECT * FROM CALLS WHERE " + field + "=?";
-		else
-			throw new IllegalArgumentException();
+	public String getFilteredCallsStatement(String field) {
+		return "SELECT * FROM CALLS WHERE " + field + "=?";
+	}
+
+	public String getOrderContactsStatement(String field) {
+		return "SELECT * FROM CONTACTS ORDER BY " + field;
+	}
+
+	public String getFilteredContactsStatement(String field) {
+		return "SELECT * FROM CONTACTS WHERE " + field + "= ?";
 	}
 
 }
