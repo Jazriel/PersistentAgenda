@@ -15,10 +15,12 @@ public interface IFacadeCallPersistence {
 
 	int getMaxCallId();
 
-	List<Call> getCalls(String discriminator, String field, Timestamp timeStamp);
-
-	List<Call> getCalls(String discriminator, String field, int id);
-
 	List<Call> getAllCalls();
+
+	List<Call> getFilterCalls(String field, Timestamp timeStamp);
+
+	List<Call> getFilterCalls(String field, int id);
+
+	List<Call> getOrderCalls(String string);
 
 }

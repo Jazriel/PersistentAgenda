@@ -60,8 +60,8 @@ public class SingletonStatementGenerator {
 		return "UPDATE CALLS SET (subject, notes) = (?, ?) WHERE ID = ?";
 	}
 
-	public String getCallByIdStatement() {
-		return "SELECT * FROM CALLS WHERE ID = ? ";
+	public String getCallsByIdStatement() {
+		return "SELECT * FROM CALLS WHERE CONTACT_ID = ? ";
 	}
 
 	public String getAllCallsStatement() {

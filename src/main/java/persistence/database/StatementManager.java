@@ -128,7 +128,7 @@ public class StatementManager {
 	// Calls
 	public void getFilledCallByIdStatement(int id) throws SQLException {
 		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getCallByIdStatement();
+		String textStatement = SingletonStatementGenerator.getInstance().getCallsByIdStatement();
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
@@ -141,17 +141,6 @@ public class StatementManager {
 		String textStatement = SingletonStatementGenerator.getInstance().updateCallStatement();
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		// Prepare statement
-		// SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		// Date date = null;
-		// try {
-		// date = formatter.parse(call.getCallDate().substring(0, 10));
-		// } catch (ParseException e) {
-		// System.err.println(e.getMessage());
-		// }
-		// long time = date.getTime();
-		// Timestamp timeStamp = new Timestamp(time);
-		// preparedStatement.setTimestamp(1, timeStamp);
 		preparedStatement.setString(1, call.getSubject());
 		preparedStatement.setString(2, call.getNotes());
 		preparedStatement.setInt(3, call.getId());
@@ -238,7 +227,7 @@ public class StatementManager {
 
 	public void getOrderCallsStatement(String field) throws SQLException {
 		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getOrderContactsStatement(field);
+		String textStatement = SingletonStatementGenerator.getInstance().getOrderCallsStatement(field);
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement
@@ -259,7 +248,7 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
-	public void getFilledCallsStatement(String field, Timestamp timeStamp) throws SQLException {
+	public void getFilterCallsStatement(String field, Timestamp timeStamp) throws SQLException {
 		PreparedStatement preparedStatement = getFilterCallsStamentGeneral(field);
 		// Prepare statement
 		preparedStatement.setTimestamp(1, timeStamp);

@@ -86,8 +86,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		}
 	}
 
-	@Override
-	public List<Call> getCalls(String discriminator, String field, Timestamp timeStamp) {
+	public List<Call> getFilterCalls(String field, Timestamp timeStamp) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
 		ABCResultSetManager<Call> resultSetManager = null;
@@ -95,7 +94,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledCallsStatement(discriminator, field, timeStamp);
+			stmFiller.getFilterCallsStatement(field, timeStamp);
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
 			calls = new ArrayList<>();
 			while (resultSetManager.hasNext()) {
@@ -117,8 +116,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		return calls;
 	}
 
-	@Override
-	public List<Call> getCalls(String discriminator, String field, int id) {
+	public List<Call> getFilterCalls(String field, int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
 		ABCResultSetManager<Call> resultSetManager = null;
@@ -126,10 +124,10 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledCallsStatement(discriminator, field, id);
+			stmFiller.getFilterCallsStatement(field, id);
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
 			calls = new ArrayList<>();
-			while(resultSetManager.hasNext()){
+			while (resultSetManager.hasNext()) {
 				calls.add(resultSetManager.next());
 			}
 		} catch (SQLException e) {
@@ -160,7 +158,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			stmFiller.getAllCallsStatement();
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
 			calls = new ArrayList<>();
-			while(resultSetManager.hasNext()){
+			while (resultSetManager.hasNext()) {
 				calls.add(resultSetManager.next());
 			}
 		} catch (SQLException e) {
@@ -179,4 +177,34 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 		return calls;
 	}
 
+	@Override
+	public List<Call> getOrderCalls(String field) {
+		SingletonConnection connection = null;
+		StatementManager stmFiller = null;
+		ABCResultSetManager<Call> resultSetManager = null;
+		List<Call> calls = null;
+		try {
+			connection = SingletonConnection.getInstance();
+			stmFiller = new StatementManager();
+			stmFiller.getOrderCallsStatement(field);
+			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
+			calls = new ArrayList<>();
+			while (resultSetManager.hasNext()) {
+				calls.add(resultSetManager.next());
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			if (resultSetManager != null) {
+				resultSetManager.close();
+			}
+			if (stmFiller != null) {
+				stmFiller.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+		}
+		return calls;
+	}
 }

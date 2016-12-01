@@ -76,7 +76,7 @@ public class CUI {
 				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 0:
-					System.out.println("Saliendo...");
+					System.out.print("Saliendo..");
 					break;
 				case 1:
 					System.out.println("La opcion elegida ha sido <Insertar>");
@@ -139,8 +139,7 @@ public class CUI {
 					String notes = bufferedReader.readLine();
 
 					// Guardamos la llamada
-					callPersitence.saveCall(
-							new Call(contacts.get(pos), subject, notes));
+					callPersitence.saveCall(new Call(contacts.get(pos), subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido crear un nuevo tipo de contacto");
@@ -206,7 +205,7 @@ public class CUI {
 					String notes = bufferedReader.readLine();
 
 					// Actualizamos
-					callPersitence.updateCall(new Call(calls.get(pos).getId() ,subject, notes));
+					callPersitence.updateCall(new Call(calls.get(pos).getId(), subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido actualizar un tipo de contacto");
@@ -305,32 +304,47 @@ public class CUI {
 	}
 
 	private static void filterOrOrderCallsMenu() {
-		int option = 0;
+		int option = 0, pos;
+		List<Contact> contacts;
 		do {
-			System.out.println("** 1) Filtrar por contacto");
-			System.out.println("** 2) Filtrar por fecha de realización");
+			System.out.println("** 1) Ordenar por contacto");
+			System.out.println("** 2) Ordenar por fecha de realización");
+			System.out.println("** 3) Filtrar por contacto");
+			System.out.println("** 4) Filtrar por fecha de realización");
 			try {
 				option = new Integer(bufferedReader.readLine());
 				switch (option) {
 				case 1:
-					System.out.println("La opcion elegida ha sido filtrar por contacto");
-					System.out.println("Introduzca el id del contacto:");
-					int id = new Integer(bufferedReader.readLine());
-					callPersitence.getCalls("where", "id", id);
+					System.out.println("La opcion elegida ha sido ordenar por contacto");
+					showCalls(callPersitence.getOrderCalls("contact_id"));
 					break;
 				case 2:
+					System.out.println("La opcion elegida ha sido ordenar por fecha de realizacion");
+					showCalls(callPersitence.getOrderCalls("call_Date"));
+					break;
+				case 3:
+					System.out.println("La opcion elegida ha sido filtrar por contacto");
+					contacts = contactPersitence.getAllContacts();
+					showContacts(contacts);
+					// Escogemos entre los contactos mostrados
+					pos = new Integer(bufferedReader.readLine()) - 1;
+					showCalls(callPersitence.getFilterCalls("contact_id", contacts.get(pos).getId()));
+					break;
+				case 4:
 					System.out.println("La opcion elegida ha sido filtrar por fecha de realización");
 					System.out.println("Introduzca la fecha de realización:");
-					System.out.print("Día:");
+					System.out.print("Dia:");
 					int day = new Integer(bufferedReader.readLine());
+					System.out.print("Mes:");
 					int month = new Integer(bufferedReader.readLine());
+					System.out.print("Año:");
 					int year = new Integer(bufferedReader.readLine());
 					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					Date date = dateFormat
 							.parse(String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year));
 					long time = date.getTime();
 					Timestamp timeStamp = new Timestamp(time);
-					callPersitence.getCalls("where", "call_date", timeStamp);
+					showCalls(callPersitence.getFilterCalls("call_Date", timeStamp));
 					break;
 				default:
 					System.out.println("Opción incorrecta en Menu llamadas. Vuelva a intentarlo!");
@@ -368,7 +382,7 @@ public class CUI {
 		List<String> values = new ArrayList<>();
 		contactFields.remove(0);
 		contactFields.remove(0);
-		contactFields.remove(contactFields.size()-1);
+		contactFields.remove(contactFields.size() - 1);
 		for (Field field : contactFields) {
 			System.out.println("Introduzca el " + field.getName().toString());
 			try {
