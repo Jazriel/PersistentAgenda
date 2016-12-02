@@ -1,5 +1,6 @@
 package persistence.bin;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +22,8 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 		FileInputStream fileIn = null;
 		ObjectInputStream entrada = null;
 		try {
-			fileIn = new FileInputStream("\\BinFiles\\ContactTypes.txt");
+			File fichero=new File("BinFiles\\ContactTypes.txt");
+			fileIn = new FileInputStream(fichero.getAbsolutePath());
 			entrada = new ObjectInputStream(fileIn);
 			contactTypes = (List<ContactType>)entrada.readObject();
 
@@ -33,7 +35,8 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 			System.err.println(e.getMessage());
 		} finally {
 			try {
-				entrada.close();
+				if(entrada!=null)
+					entrada.close();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
@@ -45,7 +48,8 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 		FileOutputStream fileOut = null;
 		ObjectOutputStream salida = null;
 		try {
-			fileOut = new FileOutputStream("\\BinFiles\\ContactTypes.txt");
+			File fichero=new File("BinFiles\\ContactTypes.txt");
+			fileOut = new FileOutputStream(fichero.getAbsolutePath());
 			salida = new ObjectOutputStream(fileOut);
 			salida.writeObject(contactTypes);
 		} catch (IOException e) {
@@ -61,8 +65,7 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 
 	@Override
 	public int getMaxContactTypeId(){
-		// TODO Auto-generated method stub
-		return -1;
+		return readContactType().size();
 	}
 	
 	@Override
@@ -92,7 +95,6 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 		List<ContactType> contactTypes = readContactType();
 		contactTypes.add(contact);
 		writeContacTypes(contactTypes);
-		
 	}
 
 	@Override
