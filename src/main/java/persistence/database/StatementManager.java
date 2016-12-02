@@ -204,26 +204,8 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
-	//
-	private void getFilledMaxIdStatement(String table) throws SQLException {
-		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getLastIdStatement(table);
-		// Create PreparedStatement
-		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
-		this.preparedStatement = preparedStatement;
-	}
 
-	public void getFilledMaxIdContacts() throws SQLException {
-		getFilledMaxIdStatement("CONTACTS");
-	}
 
-	public void getFilledMaxIdCalls() throws SQLException {
-		getFilledMaxIdStatement("CALLS");
-	}
-
-	public void getFilledMaxIdContactType() throws SQLException {
-		getFilledMaxIdStatement("CONTACTSTYPES");
-	}
 
 	public void getOrderCallsStatement(String field) throws SQLException {
 		// Get text statement

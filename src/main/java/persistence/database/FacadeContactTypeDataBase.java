@@ -10,12 +10,6 @@ import persistence.IFacadeContactTypePersistence;
 public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence {
 
 	@Override
-	public int getMaxContactTypeId() {
-		// TODO Auto-generated method stub
-		return -1;
-	}
-
-	@Override
 	public ContactType getContactTypeById(int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;

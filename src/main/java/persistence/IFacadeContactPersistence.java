@@ -9,9 +9,8 @@ public interface IFacadeContactPersistence {
 	Contact getContactById(int i);
 	void updateContact(Contact contact);
 	void saveContact(Contact contact);
-	int getMaxContactId();
 	List<Contact> getAllContacts();
-	List<Contact> getOrderContacts(String string);
-	List<Contact> getFilterContacts(String string, String filteredField);
+	List<Contact> getOrderContacts(String field);
+	List<Contact> getFilterContacts(String filter, String filteredField);
 
 }

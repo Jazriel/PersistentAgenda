@@ -88,16 +88,28 @@ public class FacadeContactBinFile implements IFacadeContactPersistence{
 		writeContacts(contacts);	
 	}
 
-	@Override
-	public int getMaxContactId() {
-		return readContacts().size();
-	}
 
 	@Override
-	public List<Contact> getContacts(String disciminator, String field, String fieldValue) {
-		return null;
+	public List<Contact> getAllContacts() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
+
+	@Override
+	public List<Contact> getOrderContacts(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Contact> getFilterContacts(String string, String filteredField) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 
 }

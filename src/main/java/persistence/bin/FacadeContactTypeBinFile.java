@@ -60,12 +60,6 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 	}
 
 	@Override
-	public int getMaxContactTypeId(){
-		// TODO Auto-generated method stub
-		return -1;
-	}
-	
-	@Override
 	public ContactType getContactTypeById(int i) {
 		List<ContactType> contactTypes = readContactType();
 		for (ContactType contactType : contactTypes) {

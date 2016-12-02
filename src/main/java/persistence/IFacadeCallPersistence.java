@@ -13,7 +13,6 @@ public interface IFacadeCallPersistence {
 
 	void saveCall(Call call);
 
-	int getMaxCallId();
 
 	List<Call> getAllCalls();
 

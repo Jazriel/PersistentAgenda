@@ -89,22 +89,31 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	}
 
 	@Override
-	public int getMaxCallId() {
-		return readCalls().size();
+	public List<Call> getAllCalls() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Call> getCalls(String discriminator, String field, Timestamp timeStamp) {
-		return null;
+	public List<Call> getFilterCalls(String field, Timestamp timeStamp) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	@Override
-	public List<Call> getCalls(String discriminator, String field, int id) {
-		return null;
+	public List<Call> getFilterCalls(String field, int id) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
+
+	@Override
+	public List<Call> getOrderCalls(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
 
 }

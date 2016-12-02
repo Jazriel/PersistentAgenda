@@ -10,11 +10,6 @@ import persistence.IFacadeCallPersistence;
 
 public class FacadeCallDataBase implements IFacadeCallPersistence {
 
-	@Override
-	public int getMaxCallId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public Call getCallById(int id) {
