@@ -258,7 +258,7 @@ public class IFacadeContactPersistenceTest {
 		return contact + 1;
 	}
 
-	/** 
+	/**
 	 * Only works if we can get the database in a reliable state
 	 * 
 	 */
@@ -274,9 +274,9 @@ public class IFacadeContactPersistenceTest {
 		}
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "name", "surname", "title", "address", "city", "province", "postal_Code", "region",
-					"country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone", "fax_Number",
-					"contact_type_id", "email", "notes" };
+			String[] fields = { "id", "name", "surname", "title", "address", "city", "province", "postal_Code",
+					"region", "country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
+					"fax_Number", "contact_type_id", "email", "notes" };
 			for (String field : fields) {
 				PrintAtDepth.print(3, field + " start");
 				IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
@@ -289,7 +289,7 @@ public class IFacadeContactPersistenceTest {
 				Statement stm = null;
 				try {
 					stm = connection.createStatement();
-					rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY " + field + " DESC");
+					rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY " + field + " ASC");
 					while (true) {
 						rs.next();
 						contactIdsOrdered.add(rs.getInt(1));
@@ -311,23 +311,16 @@ public class IFacadeContactPersistenceTest {
 				}
 				int i = 0;
 				List<Contact> contacts = facadeContactPersistence.getOrderContacts(field);
-				try {
-					for (i = 0; i < contactIdsOrdered.size(); i++) {
-						assertEquals(contacts.get(i).getId(), contactIdsOrdered.get(i).intValue());
-					}
-					for (i = 0; i < contacts.size(); i++) {
-						assertEquals(contacts.get(i).getId(), contactIdsOrdered.get(i).intValue());
-					}
-				} catch (AssertionError e) {
-					PrintAtDepth.err(3, e.getMessage() + " iteration: " + i);
-					if (i > 0) {
-						PrintAtDepth.err(3, "previous " + facadeContactPersistence.getContactById(i - 1).toString());
-					}
-					PrintAtDepth.err(3, "this " + facadeContactPersistence.getContactById(i).toString());
-					if (i < contactIdsOrdered.size()) {
-						PrintAtDepth.err(3, "next " + facadeContactPersistence.getContactById(i + 1).toString());
-					}
+				List<Integer> contIds = new ArrayList<>();
+				for (Contact contact : contacts) {
+					contIds.add(contact.getId());
 				}
+
+				int j = contactIdsOrdered.size() > contIds.size() ? contactIdsOrdered.size() : contIds.size();
+				for (i = 0; i < j; i++) {
+					assertEquals(contIds.get(i), contactIdsOrdered.get(i));
+				}
+
 				PrintAtDepth.print(3, field + " pass");
 			}
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
@@ -335,9 +328,8 @@ public class IFacadeContactPersistenceTest {
 		PrintAtDepth.print(1, "getOrderContacts pass");
 	}
 
-	// TODO List<Contact> getFilterContacts(String string, String
-	// filteredField);
-	/*@Test
+
+	@Test
 	public void testFilterContacts() {
 		PrintAtDepth.print(1, "getFilterContacts start");
 		Connection connection = null;
@@ -349,9 +341,9 @@ public class IFacadeContactPersistenceTest {
 		}
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "name", "surname", "title", "address", "city", "province", "postalCode", "region",
-					"country", "companyName", "workstation", "workPhone", "workExtension", "mobilePhone", "faxNumber",
-					"email", "notes" };
+			String[] fields = { "name", "surname", "title", "address", "city", "province", "postal_Code", "region",
+					"country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
+					"fax_Number", "email", "notes" };
 			for (String field : fields) {
 				PrintAtDepth.print(3, field + " start");
 				IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
@@ -359,17 +351,24 @@ public class IFacadeContactPersistenceTest {
 				for (int i = 0; i < 20; i++) {
 					attribs.add(null);
 				}
-				List<Integer> contactIdsOrdered = new LinkedList<>();
+				List<Integer> contactIdsFiltered = new LinkedList<>();
 				ResultSet rs = null;
 				Statement stm = null;
+				String str = null;
 				try {
 					stm = connection.createStatement();
-					rs = stm.executeQuery();// TODO filter by something
+					rs = stm.executeQuery("SELECT * FROM contacts WHERE "+field+" IS NOT NULL ORDER BY " + field + " ASC");
+					rs.next();
+					str = rs.getString(field);
+					stm = connection.createStatement();
+					rs = stm.executeQuery("SELECT * FROM contacts WHERE " + field + " = '" + str + "'");
 					while (true) {
 						rs.next();
-						contactIdsOrdered.add(rs.getInt(1));
+						contactIdsFiltered.add(rs.getInt(1));
 					}
-				} catch (SQLException e) {
+				}
+
+				catch (SQLException e) {
 					// This is the iterator stop
 					try {
 						if (rs != null && !rs.isClosed()) {
@@ -385,19 +384,25 @@ public class IFacadeContactPersistenceTest {
 					}
 				}
 				int i = 0;
-				List<Contact> contacts = facadeContactPersistence.getFilterContacts(filter, filteredField);// TODO filter by same
-
-				for (i = 0; i < contactIdsOrdered.size(); i++) {
-					assertEquals(contacts.get(i).getId(), contactIdsOrdered.get(i).intValue());
+				
+				List<Contact> contacts = facadeContactPersistence.getFilterContacts( field, str);
+				
+				List<Integer> contIds = new ArrayList<>();
+				
+				for (Contact contact : contacts) {
+					contIds.add(contact.getId());
 				}
-				for (i = 0; i < contacts.size(); i++) {
-					assertEquals(contacts.get(i).getId(), contactIdsOrdered.get(i).intValue());
+				
+				int j = contactIdsFiltered.size() > contIds.size() ? contactIdsFiltered.size() : contIds.size();
+				for (i = 0; i < j; i++) {
+					assertEquals(contIds.get(i), contactIdsFiltered.get(i));
 				}
-
+				
 				PrintAtDepth.print(3, field + " pass");
 			}
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getFilterContacts pass");
-	}*/
+	}
+
 }
