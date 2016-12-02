@@ -95,12 +95,6 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 
 	@Override
 	public List<Call> getAllCalls() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Call> getAllCalls() {
 		return readCalls();
 	}
 

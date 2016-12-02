@@ -3,9 +3,9 @@ apply plugin: 'application'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-version = '0.1'
+version = '0.5'
 
-mainClassName = 'main.java.gui.Main'
+mainClassName = 'gui.CUI'
 
 repositories {
 	maven { url "https://mvnrepository.com" }
@@ -23,4 +23,18 @@ dependencies {
     runtime 'org.hsqldb:hsqldb:2.3.4',
             'org.hsqldb:sqltool:2.3.4'
 }
+
+
+
+run {	
+	standardInput = System.in
+}
+
+
+task release(dependsOn: ['test', 'run']) {
+}
+
+run.shouldRunAfter test
+
+// run.dependsOn test
 

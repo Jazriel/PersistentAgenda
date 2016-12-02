@@ -95,13 +95,6 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 
 	@Override
 	public List<Contact> getAllContacts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<Contact> getAllContacts() {
 		return readContacts();
 	}
 
