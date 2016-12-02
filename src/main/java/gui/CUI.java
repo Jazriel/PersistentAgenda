@@ -116,6 +116,7 @@ public class CUI {
 					List<String> attribs = insertContactFields();
 					// Obtenemos los tipos de contacto
 					List<ContactType> contactTypes = contactTypePersitence.getAllContactTypes();
+					System.out.println("Introduzca el tipo de contacto:");
 					// Mostramos los tipos de contacto
 					showContactTypes(contactTypes);
 					// Obtenemos el tipo de contacto que se desea
@@ -127,6 +128,7 @@ public class CUI {
 					System.out.println("La opcion elegida ha sido crear una nueva llamada");
 					// Obtenemos los contactos
 					List<Contact> contacts = contactPersitence.getAllContacts();
+					System.out.println("Introduzca el contacto al que desea asignar la llamada:");
 					// Mostramos los contactos
 					showContacts(contacts);
 					// Obtenemos el contacto que se desea
@@ -171,6 +173,7 @@ public class CUI {
 
 					// Obtenemos los contactos
 					List<Contact> contacts = contactPersitence.getAllContacts();
+					System.out.println("Elija el contacto:");
 					// Mostramos los contactos
 					showContacts(contacts);
 					// Escogemos el contacto
@@ -183,6 +186,7 @@ public class CUI {
 
 					// Mostramos los tipos de contactos
 					List<ContactType> contactTypes = contactTypePersitence.getAllContactTypes();
+					System.out.println("Elija el tipo de contacto:");
 					showContactTypes(contactTypes);
 					// Escogemos el tipo de contacto
 					pos = new Integer(bufferedReader.readLine()) - 1;
@@ -211,6 +215,7 @@ public class CUI {
 					System.out.println("La opcion elegida ha sido actualizar un tipo de contacto");
 					// Mostramos los tipos de contactos
 					List<ContactType> contactTypes2 = contactTypePersitence.getAllContactTypes();
+					System.out.println("Elija el tipo de contacto que quiera actualizar:");
 					showContactTypes(contactTypes2);
 					// Escogemos el tipo de contacto
 					pos = new Integer(bufferedReader.readLine()) - 1;
@@ -250,6 +255,7 @@ public class CUI {
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido todos los tipos de contacto");
+					System.out.println("Elija el tipo de contacto:");
 					showContactTypes(contactTypePersitence.getAllContactTypes());
 					break;
 				default:
@@ -275,10 +281,12 @@ public class CUI {
 				switch (option) {
 				case 1:
 					System.out.println("La opcion elegida ha sido ordenar por nombre");
+					System.out.println("Elija el nombre del contacto por el que desea ordenar:");
 					showContacts(contactPersitence.getOrderContacts("name"));
 					break;
 				case 2:
 					System.out.println("La opcion elegida ha sido ordenar por apellido");
+					System.out.println("Elija el apellido del contacto por el que desea ordenar:");
 					showContacts(contactPersitence.getOrderContacts("surname"));
 					break;
 				case 3:
@@ -324,6 +332,7 @@ public class CUI {
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido filtrar por contacto");
+					System.out.println("Elija el contacto:");
 					contacts = contactPersitence.getAllContacts();
 					showContacts(contacts);
 					// Escogemos entre los contactos mostrados

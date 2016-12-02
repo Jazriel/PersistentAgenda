@@ -7,22 +7,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
 public class FacadeContactBinFile implements IFacadeContactPersistence {
+	
+	@SuppressWarnings("unchecked")
 	public List<Contact> readContacts() {
 		List<Contact> contacts = new ArrayList<>();
 		FileInputStream fileIn = null;
 		ObjectInputStream entrada = null;
 		try {
-			File fichero=new File("BinFiles\\Contacts.txt");
+			File fichero = new File("BinFiles\\Contacts.dat");
 			fileIn = new FileInputStream(fichero.getAbsolutePath());
 			entrada = new ObjectInputStream(fileIn);
 			contacts = (List<Contact>) entrada.readObject();
@@ -35,7 +35,8 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 			System.err.println(e.getMessage());
 		} finally {
 			try {
-				entrada.close();
+				if (entrada != null)
+					entrada.close();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
@@ -47,7 +48,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		FileOutputStream fileOut = null;
 		ObjectOutputStream salida = null;
 		try {
-			File fichero=new File("BinFiles\\Contacts.txt");
+			File fichero = new File("BinFiles\\Contacts.dat");
 			fileOut = new FileOutputStream(fichero.getAbsolutePath());
 			salida = new ObjectOutputStream(fileOut);
 			salida.writeObject(contacts);
@@ -102,29 +103,46 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	}
 
 	@Override
-	public List<Contact> getOrderContacts(String string) {
+	public List<Contact> getOrderContacts(String field) {
 		List<Contact> contacts = readContacts();
-		Class<?> contactClass;
-		Field contactField;
-		try {
-			contactClass = Class.forName("model.Contact");
-			contactField = contactClass.getField(string);
-		} catch (NoSuchFieldException e) {
-			System.err.println(e.getMessage());
-		} catch (SecurityException e) {
-			System.err.println(e.getMessage());
-		} catch (ClassNotFoundException e) {
-			System.err.println(e.getMessage());
+		if (field.equals("name")) {
+			Collections.sort(contacts, Contact.getOrderByName());
+		} else if (field.equals("surname")) {
+			Collections.sort(contacts, Contact.getOrderBySurname());
 		}
-		return null;
+
+		return contacts;
 	}
 
 	@Override
-	public List<Contact> getFilterContacts(String string, String filteredField) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Contact> getFilterContacts(String field, String filteredField) {
+		List<Contact> contacts = null;
+		if (field.equals("name")) {
+			contacts = getFilterByName(filteredField);
+		} else if (field.equals("surname")) {
+			contacts = getFilterBySurname(filteredField);
+		}
+		return contacts;
 	}
-	
 
-		
+	private List<Contact> getFilterByName(String filteredField) {
+		List<Contact> contacts = readContacts();
+		for (Contact contact : contacts) {
+			if (!contact.getName().equals(filteredField)) {
+				contacts.remove(contact);
+			}
+		}
+		return contacts;
+	}
+
+	private List<Contact> getFilterBySurname(String filteredField) {
+		List<Contact> contacts = readContacts();
+		for (Contact contact : contacts) {
+			if (!contact.getSurname().equals(filteredField)) {
+				contacts.remove(contact);
+			}
+		}
+		return contacts;
+	}
+
 }

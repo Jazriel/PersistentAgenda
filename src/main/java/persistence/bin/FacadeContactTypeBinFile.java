@@ -10,19 +10,18 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Call;
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
-import persistence.database.ContactTypeResultSetManager;
 
 public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 	
+	@SuppressWarnings("unchecked")
 	public List<ContactType> readContactType() {
 		List<ContactType> contactTypes = new ArrayList<>();
 		FileInputStream fileIn = null;
 		ObjectInputStream entrada = null;
 		try {
-			File fichero=new File("BinFiles\\ContactTypes.txt");
+			File fichero=new File("BinFiles\\ContactTypes.dat");
 			fileIn = new FileInputStream(fichero.getAbsolutePath());
 			entrada = new ObjectInputStream(fileIn);
 			contactTypes = (List<ContactType>)entrada.readObject();
@@ -48,7 +47,7 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 		FileOutputStream fileOut = null;
 		ObjectOutputStream salida = null;
 		try {
-			File fichero=new File("BinFiles\\ContactTypes.txt");
+			File fichero=new File("BinFiles\\ContactTypes.dat");
 			fileOut = new FileOutputStream(fichero.getAbsolutePath());
 			salida = new ObjectOutputStream(fileOut);
 			salida.writeObject(contactTypes);

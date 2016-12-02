@@ -1,5 +1,6 @@
 package persistence.bin;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,22 +9,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import model.Call;
 import persistence.IFacadeCallPersistence;
 
 public class FacadeCallBinFile implements IFacadeCallPersistence {
-	// TODO Implementarlo mediante diccionarios(HashMap) deberia hacerlo
-	// sencillo
+
+	@SuppressWarnings("unchecked")
 	public List<Call> readCalls() {
 		List<Call> calls = new ArrayList<>();
 		FileInputStream fileIn = null;
 		ObjectInputStream entrada = null;
 		try {
-			fileIn = new FileInputStream("D:\\GitRepositorio\\DisManSof\\PR1\\BinFiles\\Calls.txt");
+			File fichero = new File("BinFiles\\Calls.dat");
+			fileIn = new FileInputStream(fichero.getAbsolutePath());
 			entrada = new ObjectInputStream(fileIn);
-			calls = (List<Call>)entrada.readObject();
+			calls = (List<Call>) entrada.readObject();
 
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getMessage());
@@ -33,7 +36,8 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 			System.err.println(e.getMessage());
 		} finally {
 			try {
-				entrada.close();
+				if(entrada!=null)
+					entrada.close();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}
@@ -45,7 +49,8 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 		FileOutputStream fileOut = null;
 		ObjectOutputStream salida = null;
 		try {
-			fileOut = new FileOutputStream("D:\\GitRepositorio\\DisManSof\\PR1\\BinFiles\\Calls.txt");
+			File fichero = new File("BinFiles\\Calls.dat");
+			fileOut = new FileOutputStream(fichero.getAbsolutePath());
 			salida = new ObjectOutputStream(fileOut);
 			salida.writeObject(calls);
 		} catch (IOException e) {
@@ -95,26 +100,56 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 
 	@Override
 	public List<Call> getAllCalls() {
-		// TODO Auto-generated method stub
-		return null;
+		return readCalls();
 	}
 
 	@Override
 	public List<Call> getFilterCalls(String field, Timestamp timeStamp) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Call> calls = null;
+		if (field.equals("call_date")) {
+			calls = getFilterByDate(timeStamp);
+		}
+		return calls;
+	}
+
+	private List<Call> getFilterByDate(Timestamp timeStamp) {
+		List<Call> calls = readCalls();
+		for (Call call : calls) {
+			if (!call.getCallDate().equals(timeStamp)) {
+				calls.remove(call);
+			}
+		}
+		return calls;
 	}
 
 	@Override
 	public List<Call> getFilterCalls(String field, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Call> calls = null;
+		if (field.equals("id")) {
+			calls = getFilterById(id);
+		}
+		return calls;
+	}
+
+	private List<Call> getFilterById(int id) {
+		List<Call> calls = readCalls();
+		for (Call call : calls) {
+			if (call.getId() != id) {
+				calls.remove(call);
+			}
+		}
+		return calls;
 	}
 
 	@Override
-	public List<Call> getOrderCalls(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Call> getOrderCalls(String field) {
+		List<Call> calls = readCalls();
+		if (field.equals("id")) {
+			Collections.sort(calls, Call.getOrderById());
+		} else if (field.equals("call_date")) {
+			Collections.sort(calls, Call.getOrderByDate());
+		}
+		return calls;
 	}
 
 }

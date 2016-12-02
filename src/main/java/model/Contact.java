@@ -1,20 +1,20 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Iterator;
 
-public class Contact implements Serializable{
+public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 
-	private String  name ,  surname ,  title ,  address ,  city ,  province ,  postalCode ,  region ,
-	country ,  companyName ,  workstation,  workPhone ,  workExtension ,  mobilePhone ,  faxNumber ,
-	email, notes;
-	
+	private String name, surname, title, address, city, province, postalCode, region, country, companyName, workstation,
+			workPhone, workExtension, mobilePhone, faxNumber, email, notes;
+
 	private ContactType contactType;
-	
+
 	public Contact(int id, Iterable<String> attribs, ContactType contactType) {
 		super();
 		this.id = id;
@@ -38,13 +38,11 @@ public class Contact implements Serializable{
 		this.notes = its.next();
 		this.contactType = contactType;
 	}
-	
-	public Contact(int id, String name, String surname,
-			String title, String address, String city, String province,
-			String postalCode, String region, String country,
-			String companyName, String workstation, String workPhone,
-			String workExtension, String mobilePhone, String faxNumber,
-			String email, String notes, ContactType contactType) {
+
+	public Contact(int id, String name, String surname, String title, String address, String city, String province,
+			String postalCode, String region, String country, String companyName, String workstation, String workPhone,
+			String workExtension, String mobilePhone, String faxNumber, String email, String notes,
+			ContactType contactType) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,7 +64,7 @@ public class Contact implements Serializable{
 		this.notes = notes;
 		this.contactType = contactType;
 	}
-	
+
 	public Contact(Iterable<String> attribs, ContactType contactType) {
 		// TODO Auto-generated constructor stub
 		Iterator<String> its = attribs.iterator();
@@ -91,22 +89,19 @@ public class Contact implements Serializable{
 
 	}
 
-	public String basicInfo(){
-		return "Contacto [id = " + id + "nombre = " + name + ", apellidos = " + surname +"]";
+	public String basicInfo() {
+		return "Contacto [id = " + id + "nombre = " + name + ", apellidos = " + surname + "]";
 	}
 
 	@Override
 	public String toString() {
-		return "Contacto [id Contacto = " + id + ", nombre = " + name
-				+ ", apellidos = " + surname + ", estimado = " + title
-				+ ", direccion = " + address + ", ciudad = " + city + ", provincia = "
-				+ province + ", codigo postal = " + postalCode + ", region =  " + region
-				+ ", pais = " + country + ", nombre compania = " + companyName
-				+ ", cargo = " + workstation + ", telefono trabajo = " + workPhone
-				+ ", extension trabajo = " + workExtension + ", telefono movil = "
-				+ mobilePhone + ", numero fax = " + faxNumber
-				+ ", correo electronico = " + email + ", notas = "
-				+ notes + ", tipo contacto = " + contactType + "]";
+		return "Contacto [id Contacto = " + id + ", nombre = " + name + ", apellidos = " + surname + ", estimado = "
+				+ title + ", direccion = " + address + ", ciudad = " + city + ", provincia = " + province
+				+ ", codigo postal = " + postalCode + ", region =  " + region + ", pais = " + country
+				+ ", nombre compania = " + companyName + ", cargo = " + workstation + ", telefono trabajo = "
+				+ workPhone + ", extension trabajo = " + workExtension + ", telefono movil = " + mobilePhone
+				+ ", numero fax = " + faxNumber + ", correo electronico = " + email + ", notas = " + notes
+				+ ", tipo contacto = " + contactType + "]";
 	}
 
 	public int getId() {
@@ -259,6 +254,30 @@ public class Contact implements Serializable{
 
 	public void setContactType(ContactType contactType) {
 		this.contactType = contactType;
+	}
+
+	public static Comparator<Contact> getOrderByName() {
+		return new Comparator<Contact>() {
+
+			@Override
+			public int compare(Contact contact1, Contact contact2) {
+				return contact1.getName().compareTo(contact2.getName());
+			}
+
+		};
+
+	}
+
+	public static Comparator<Contact> getOrderBySurname() {
+		return new Comparator<Contact>() {
+
+			@Override
+			public int compare(Contact contact1, Contact contact2) {
+				return contact1.getSurname().compareTo(contact2.getSurname());
+			}
+
+		};
+
 	}
 
 }

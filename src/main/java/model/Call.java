@@ -2,18 +2,18 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Comparator;
 
-public class Call implements Serializable{
-	
+public class Call implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 	private Contact contact;
-	private String callDate ;
+	private String callDate;
 	private String subject, notes;
 
-	public Call(int id, Contact contact, String callDate,
-			String subject, String notes) {
+	public Call(int id, Contact contact, String callDate, String subject, String notes) {
 		super();
 		this.id = id;
 		this.contact = contact;
@@ -27,20 +27,18 @@ public class Call implements Serializable{
 		this.subject = subject;
 		this.notes = notes;
 	}
-	
+
 	public Call(Contact contact, String subject, String notes) {
 		this.contact = contact;
-		this.callDate =  new Timestamp(System.currentTimeMillis()).toString();
+		this.callDate = new Timestamp(System.currentTimeMillis()).toString();
 		this.subject = subject;
 		this.notes = notes;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Llamada [id llamada = " + id + ", contacto = " + contact.basicInfo()
-				+ ", fecha llamada = " + callDate + ", asunto = " + subject
-				+ ", notas = " + notes + "]";
+		return "Llamada [id llamada = " + id + ", contacto = " + contact.basicInfo() + ", fecha llamada = " + callDate
+				+ ", asunto = " + subject + ", notas = " + notes + "]";
 	}
 
 	public int getId() {
@@ -82,5 +80,32 @@ public class Call implements Serializable{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+
+	public static Comparator<Call> getOrderById() {
+		return new Comparator<Call>() {
+
+			@Override
+			public int compare(Call call1, Call call2) {
+				if (call1.getId() < call2.getId()) {
+					return -1;
+				} else if (call1.getId() > call2.getId()) {
+
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		};
+	}
+
+	public static Comparator<Call> getOrderByDate() {
+		return new Comparator<Call>() {
+
+			@Override
+			public int compare(Call call1, Call call2) {
+				return call1.getCallDate().compareTo(call2.getCallDate());
+			}
+		};
+	}
+
 }
