@@ -9,7 +9,6 @@ public interface IFacadeContactTypePersistence {
 	ContactType getContactTypeById(int i);
 	void updateContactType(ContactType contact);
 	void saveContactType(ContactType contact);
-	int getMaxContactTypeId();
 	List<ContactType> getAllContactTypes();
 
 }

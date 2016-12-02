@@ -94,8 +94,9 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	}
 
 	@Override
-	public int getMaxCallId() {
-		return readCalls().size();
+	public List<Call> getAllCalls() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -151,5 +152,9 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 		}
 		return calls;
 	}
+
+	
+
+	
 
 }

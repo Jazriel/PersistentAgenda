@@ -92,10 +92,13 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		writeContacts(contacts);
 	}
 
+
 	@Override
-	public int getMaxContactId() {
-		return readContacts().size();
+	public List<Contact> getAllContacts() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 	@Override
 	public List<Contact> getAllContacts() {
@@ -144,5 +147,8 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		}
 		return contacts;
 	}
+
+
+	
 
 }

@@ -63,11 +63,6 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 	}
 
 	@Override
-	public int getMaxContactTypeId(){
-		return readContactType().size();
-	}
-	
-	@Override
 	public ContactType getContactTypeById(int i) {
 		List<ContactType> contactTypes = readContactType();
 		for (ContactType contactType : contactTypes) {

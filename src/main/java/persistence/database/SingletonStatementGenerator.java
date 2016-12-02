@@ -13,10 +13,6 @@ public class SingletonStatementGenerator {
 		return statementGeneratorInstance;
 	}
 
-	//
-	public String getLastIdStatement(String table) {
-		return "SELECT * FROM " + table + " order by id desc";
-	}
 
 	// Contact Statements
 	public String insertContactStatement() {
