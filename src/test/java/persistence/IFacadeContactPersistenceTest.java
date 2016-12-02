@@ -16,10 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Contact;
-import persistence.database.ABCResultSetManager;
-import persistence.database.ContactResultSetManager;
-import persistence.database.SingletonConnection;
-import persistence.database.StatementManager;
 import persistence.util.PrintAtDepth;
 
 public class IFacadeContactPersistenceTest {
@@ -45,7 +41,7 @@ public class IFacadeContactPersistenceTest {
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
-			int id = getIncMaxContactId();
+			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
 			Connection connection = null;
 			Statement stm = null;
@@ -98,7 +94,7 @@ public class IFacadeContactPersistenceTest {
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
-			int id = getIncMaxContactId();
+			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
 			Contact contact = facadeContactPersistence.getContactById(id);
 			assertTrue(contact != null);
@@ -121,7 +117,7 @@ public class IFacadeContactPersistenceTest {
 				attribs.add(null);
 			}
 			String name = "Pepitico";
-			int id = getIncMaxContactId();
+			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
 			Contact contact = facadeContactPersistence.getContactById(id);
 			assertTrue(contact != null);
@@ -149,7 +145,7 @@ public class IFacadeContactPersistenceTest {
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
-			int id = getIncMaxContactId();
+			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
 			try {
 				Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
@@ -227,7 +223,27 @@ public class IFacadeContactPersistenceTest {
 		PrintAtDepth.print(1, "getAllContacts pass");
 	}
 
-	private int getIncMaxContactId() {
+	private int getIncMaxContactId(IFacadeContactPersistence persistence) {
+		if (persistence instanceof persistence.database.FacadeContactDataBase) {
+			return getIncMaxContactIdDB();
+		} else if (persistence instanceof persistence.bin.FacadeContactBinFile) {
+			return getIncMaxContactIdBinFile(persistence);
+		} else {
+			throw new UnsupportedOperationException();
+		}
+	}
+
+	private int getIncMaxContactIdBinFile(IFacadeContactPersistence persistence) {
+		int ret;
+		try{
+			ret = persistence.getOrderContacts("id").get(0).getId();
+		}catch (NullPointerException e) {
+			return 1;
+		}
+		return ret;
+	}
+
+	private int getIncMaxContactIdDB() {
 		Connection connection = null;
 		Statement stm = null;
 		ResultSet rs = null;
@@ -235,7 +251,7 @@ public class IFacadeContactPersistenceTest {
 		try {
 			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
 			stm = connection.createStatement();
-			rs = stm.executeQuery("SELECT MAX(id) FROM contacts");
+			rs = stm.executeQuery("SELECT COALESCE(MAX(id), 0) FROM contacts");
 			rs.next();
 			contact = rs.getInt(1);
 		} catch (SQLException e) {
@@ -258,10 +274,6 @@ public class IFacadeContactPersistenceTest {
 		return contact + 1;
 	}
 
-	/**
-	 * Only works if we can get the database in a reliable state
-	 * 
-	 */
 	@Test
 	public void testGetOrderContacts() {
 		PrintAtDepth.print(1, "getOrderContacts start");
@@ -328,7 +340,6 @@ public class IFacadeContactPersistenceTest {
 		PrintAtDepth.print(1, "getOrderContacts pass");
 	}
 
-
 	@Test
 	public void testFilterContacts() {
 		PrintAtDepth.print(1, "getFilterContacts start");
@@ -357,7 +368,8 @@ public class IFacadeContactPersistenceTest {
 				String str = null;
 				try {
 					stm = connection.createStatement();
-					rs = stm.executeQuery("SELECT * FROM contacts WHERE "+field+" IS NOT NULL ORDER BY " + field + " ASC");
+					rs = stm.executeQuery(
+							"SELECT * FROM contacts WHERE " + field + " IS NOT NULL ORDER BY " + field + " ASC");
 					rs.next();
 					str = rs.getString(field);
 					stm = connection.createStatement();
@@ -384,20 +396,20 @@ public class IFacadeContactPersistenceTest {
 					}
 				}
 				int i = 0;
-				
-				List<Contact> contacts = facadeContactPersistence.getFilterContacts( field, str);
-				
+
+				List<Contact> contacts = facadeContactPersistence.getFilterContacts(field, str);
+
 				List<Integer> contIds = new ArrayList<>();
-				
+
 				for (Contact contact : contacts) {
 					contIds.add(contact.getId());
 				}
-				
+
 				int j = contactIdsFiltered.size() > contIds.size() ? contactIdsFiltered.size() : contIds.size();
 				for (i = 0; i < j; i++) {
 					assertEquals(contIds.get(i), contactIdsFiltered.get(i));
 				}
-				
+
 				PrintAtDepth.print(3, field + " pass");
 			}
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
