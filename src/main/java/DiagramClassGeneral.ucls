@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.13" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="persistence.database.FacadeContactDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeContactDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="243" x="838" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="persistence.database.FacadeContactTypeDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeContactTypeDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="219" x="579" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="persistence.IFacadeContactPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeContactPersistence.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="243" x="2069" y="2032"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="persistence.database.FacadeCallDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeCallDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="226" x="1522" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="persistence.IFactoryPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFactoryPersistence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="340" x="1142" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="persistence.database.SingletonStatementGenerator" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/SingletonStatementGenerator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="234" x="1024" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="gui.CUI" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/CUI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="240" x="202" y="90"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="model.ContactType" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/ContactType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="167" x="616" y="3768"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="persistence.database.FactoryDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FactoryDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="340" x="1444" y="566"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="persistence.bin.FacadeContactTypeBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeContactTypeBinFile.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="234" x="284" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="persistence.IFacadeContactTypePersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeContactTypePersistence.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="219" x="179" y="1060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="model.Contact" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/Contact.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1215" width="672" x="1829" y="2513"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="persistence.bin.FacadeCallBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeCallBinFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="226" x="1893" y="741"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="persistence.database.CallResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/CallResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="202" x="1549" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="persistence.database.ABCResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ABCResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="190" x="689" y="1060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="model.Call" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/Call.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="441" width="200" x="1829" y="2032"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="17" language="java" name="model" project="PersistentAgenda" file="/PersistentAgenda/src/main/java/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="2243" y="741"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="18" language="java" name="persistence.database.StatementManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/StatementManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="495" width="298" x="963" y="1060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="19" language="java" name="persistence.bin" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="112" x="2431" y="90"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="20" language="java" name="persistence.database.ContactResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ContactResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="242" x="616" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="persistence.bin.FacadeContactBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeContactBinFile.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="261" width="243" x="2193" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="persistence.database.ContactTypeResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ContactTypeResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="294" x="282" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="23" language="java" name="persistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="2309" y="409"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="24" language="java" name="persistence.IAbstractPersistenceFactory" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IAbstractPersistenceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="220" x="901" y="566"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="25" language="java" name="gui" project="PersistentAgenda" file="/PersistentAgenda/src/main/java/gui" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="2206" y="90"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="26" language="java" name="persistence.bin.FactoryBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FactoryBinFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="340" x="1845" y="566"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="27" language="java" name="persistence.database" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="148" x="2372" y="566"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="28" language="java" name="persistence.IFacadeCallPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeCallPersistence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="226" x="1822" y="1060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="29" language="java" name="persistence.AbstractPersistenceFactory" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/AbstractPersistenceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="220" x="1142" y="409"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="persistence.database.SingletonConnection" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/SingletonConnection.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="191" x="1308" y="1595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="31">    
+    <bendpoint x="2466" y="741"/>    
+    <bendpoint x="2466" y="1060"/>    
+    <bendpoint x="2487" y="1595"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="33">    
+    <bendpoint x="2236" y="409"/>    
+    <bendpoint x="2257" y="566"/>    
+    <bendpoint x="2416" y="741"/>    
+    <bendpoint x="2441" y="1060"/>    
+    <bendpoint x="2466" y="1595"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="34">    
+    <bendpoint x="2212" y="741"/>    
+    <bendpoint x="2212" y="1060"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="35">    
+    <bendpoint x="253" y="741"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <realization id="37">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="39">    
+    <bendpoint x="1844" y="1595"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="27"/>  
+  </dependency>  
+  <realization id="42">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <dependency id="43">    
+    <bendpoint x="2571" y="409"/>    
+    <bendpoint x="2613" y="566"/>    
+    <bendpoint x="2613" y="741"/>    
+    <bendpoint x="2613" y="1060"/>    
+    <bendpoint x="2592" y="1595"/>    
+    <bendpoint x="2550" y="2032"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <association id="45">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="46" name="connectionInstance"/>      
+      <multiplicity id="47" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="49">    
+    <bendpoint x="470" y="1060"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="50">    
+    <bendpoint x="2215" y="409"/>    
+    <bendpoint x="2215" y="566"/>    
+    <bendpoint x="2191" y="741"/>    
+    <bendpoint x="2124" y="1060"/>    
+    <bendpoint x="2057" y="1595"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="51">    
+    <bendpoint x="1749" y="1060"/>    
+    <bendpoint x="1823" y="1595"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="52">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="53" name="contact"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="55">    
+    <bendpoint x="2437" y="741"/>    
+    <bendpoint x="2289" y="1060"/>    
+    <bendpoint x="2141" y="1595"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <realization id="56">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <dependency id="57">    
+    <bendpoint x="2299" y="566"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="58">    
+    <bendpoint x="1424" y="1060"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="59">    
+    <bendpoint x="1728" y="1060"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="60">    
+    <bendpoint x="1791" y="1060"/>    
+    <bendpoint x="1802" y="1595"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="63">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <dependency id="64">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="65">    
+    <bendpoint x="232" y="741"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="66">    
+    <bendpoint x="637" y="1060"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="67">    
+    <bendpoint x="909" y="1060"/>    
+    <bendpoint x="909" y="1595"/>    
+    <bendpoint x="909" y="2032"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="68">    
+    <bendpoint x="805" y="409"/>    
+    <bendpoint x="805" y="566"/>    
+    <bendpoint x="1111" y="741"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="69" name="callPersitence"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="71">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="72">    
+    <bendpoint x="2634" y="409"/>    
+    <bendpoint x="2634" y="566"/>    
+    <bendpoint x="2592" y="741"/>    
+    <bendpoint x="2571" y="1060"/>    
+    <bendpoint x="2529" y="1595"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="73">    
+    <bendpoint x="1698" y="2032"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="74">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <realization id="75">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="26"/>  
+  </dependency>  
+  <dependency id="77">    
+    <bendpoint x="232" y="409"/>    
+    <bendpoint x="190" y="566"/>    
+    <bendpoint x="169" y="741"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="78">    
+    <bendpoint x="2571" y="566"/>    
+    <bendpoint x="2571" y="741"/>    
+    <bendpoint x="2592" y="1060"/>    
+    <bendpoint x="2613" y="1595"/>    
+    <bendpoint x="2613" y="2032"/>    
+    <bendpoint x="2613" y="2513"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="80">    
+    <bendpoint x="188" y="1595"/>    
+    <bendpoint x="188" y="2032"/>    
+    <bendpoint x="188" y="2513"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="81">    
+    <bendpoint x="2278" y="409"/>    
+    <bendpoint x="2278" y="566"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="82">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="83">    
+    <bendpoint x="888" y="2032"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <realization id="84">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <generalization id="85">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <dependency id="86">    
+    <bendpoint x="1151" y="566"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="87">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="88">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="89">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="90" name="statementGeneratorInstance"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="92">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="93">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="94">    
+    <bendpoint x="428" y="1060"/>    
+    <bendpoint x="230" y="1595"/>    
+    <bendpoint x="230" y="2032"/>    
+    <bendpoint x="230" y="2513"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="95">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="96">    
+    <bendpoint x="272" y="2032"/>    
+    <bendpoint x="272" y="2513"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="97">    
+    <bendpoint x="1291" y="1060"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="98">    
+    <bendpoint x="658" y="1060"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="100">    
+    <bendpoint x="625" y="2032"/>    
+    <bendpoint x="625" y="2513"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="101">    
+    <bendpoint x="1799" y="741"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="102">    
+    <bendpoint x="1820" y="741"/>    
+    <bendpoint x="2078" y="1060"/>    
+    <bendpoint x="2078" y="1595"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="103">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="104">    
+    <bendpoint x="993" y="1595"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <realization id="105">    
+    <bendpoint x="1707" y="1060"/>    
+    <bendpoint x="1781" y="1595"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="107">    
+    <bendpoint x="2170" y="741"/>    
+    <bendpoint x="2145" y="1060"/>    
+    <bendpoint x="2120" y="1595"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="108">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <dependency id="109">    
+    <bendpoint x="2508" y="741"/>    
+    <bendpoint x="2529" y="1060"/>    
+    <bendpoint x="2571" y="1595"/>    
+    <bendpoint x="2571" y="2032"/>    
+    <bendpoint x="2571" y="2513"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="110">    
+    <bendpoint x="1814" y="409"/>    
+    <bendpoint x="1814" y="566"/>    
+    <bendpoint x="1841" y="741"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="111">    
+    <bendpoint x="2099" y="1060"/>    
+    <bendpoint x="2036" y="1595"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="112">    
+    <bendpoint x="2592" y="409"/>    
+    <bendpoint x="2592" y="566"/>    
+    <bendpoint x="2529" y="741"/>    
+    <bendpoint x="2487" y="1060"/>    
+    <bendpoint x="2162" y="1595"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="113">    
+    <bendpoint x="1413" y="409"/>    
+    <bendpoint x="1413" y="566"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="114">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <dependency id="115">    
+    <bendpoint x="972" y="1595"/>    
+    <bendpoint x="972" y="2032"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="116">    
+    <bendpoint x="2320" y="566"/>    
+    <bendpoint x="2395" y="741"/>    
+    <bendpoint x="2247" y="1060"/>    
+    <bendpoint x="2099" y="1595"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="117">    
+    <bendpoint x="826" y="409"/>    
+    <bendpoint x="826" y="566"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="118" name="persistence"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="120">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <dependency id="121">    
+    <bendpoint x="868" y="409"/>    
+    <bendpoint x="529" y="566"/>    
+    <bendpoint x="190" y="741"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="122">    
+    <bendpoint x="106" y="409"/>    
+    <bendpoint x="106" y="566"/>    
+    <bendpoint x="106" y="741"/>    
+    <bendpoint x="127" y="1060"/>    
+    <bendpoint x="209" y="1595"/>    
+    <bendpoint x="293" y="2032"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="123">    
+    <bendpoint x="2487" y="741"/>    
+    <bendpoint x="2508" y="1060"/>    
+    <bendpoint x="2508" y="1595"/>    
+    <bendpoint x="2508" y="2032"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="124">    
+    <bendpoint x="2440" y="409"/>    
+    <bendpoint x="2341" y="566"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="125">    
+    <bendpoint x="449" y="1060"/>    
+    <bendpoint x="251" y="1595"/>    
+    <bendpoint x="251" y="2032"/>    
+    <bendpoint x="251" y="2513"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="126">    
+    <bendpoint x="1862" y="741"/>    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="127">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="128">    
+    <bendpoint x="2697" y="409"/>    
+    <bendpoint x="2697" y="566"/>    
+    <bendpoint x="2697" y="741"/>    
+    <bendpoint x="2697" y="1060"/>    
+    <bendpoint x="2697" y="1595"/>    
+    <bendpoint x="2697" y="2032"/>    
+    <bendpoint x="2697" y="2513"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="129">    
+    <bendpoint x="211" y="409"/>    
+    <bendpoint x="211" y="566"/>    
+    <bendpoint x="211" y="741"/>    
+    <bendpoint x="570" y="1060"/>    
+    <bendpoint x="930" y="1595"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="130" name="contactPersitence"/>      
+      <multiplicity id="131" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="132">    
+    <bendpoint x="2257" y="409"/>    
+    <bendpoint x="2236" y="566"/>    
+    <bendpoint x="2149" y="741"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="133">    
+    <bendpoint x="2374" y="741"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="134">    
+    <bendpoint x="85" y="409"/>    
+    <bendpoint x="85" y="566"/>    
+    <bendpoint x="85" y="741"/>    
+    <bendpoint x="85" y="1060"/>    
+    <bendpoint x="85" y="1595"/>    
+    <bendpoint x="85" y="2032"/>    
+    <bendpoint x="85" y="2513"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="135">    
+    <bendpoint x="127" y="409"/>    
+    <bendpoint x="127" y="566"/>    
+    <bendpoint x="127" y="741"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="136" name="contactTypePersitence"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="138">    
+    <bendpoint x="548" y="741"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="139">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="140">    
+    <bendpoint x="2613" y="409"/>    
+    <bendpoint x="2655" y="566"/>    
+    <bendpoint x="2655" y="741"/>    
+    <bendpoint x="2655" y="1060"/>    
+    <bendpoint x="2655" y="1595"/>    
+    <bendpoint x="2655" y="2032"/>    
+    <bendpoint x="2655" y="2513"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="141">    
+    <bendpoint x="951" y="1595"/>    
+    <bendpoint x="951" y="2032"/>    
+    <bendpoint x="951" y="2513"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="142">    
+    <bendpoint x="1111" y="409"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="143">    
+    <bendpoint x="1392" y="409"/>    
+    <bendpoint x="1392" y="566"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="144">    
+    <bendpoint x="2550" y="566"/>    
+    <bendpoint x="2550" y="741"/>    
+    <bendpoint x="2550" y="1060"/>    
+    <bendpoint x="2550" y="1595"/>    
+    <bendpoint x="2529" y="2032"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="145">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="146">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <dependency id="147">    
+    <bendpoint x="2342" y="2032"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="148">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="149">    
+    <bendpoint x="1770" y="1060"/>    
+    <bendpoint x="1778" y="741"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="150">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="151">    
+    <bendpoint x="847" y="409"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <association id="152">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="153" name="contactType"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="155">    
+    <bendpoint x="148" y="409"/>    
+    <bendpoint x="148" y="566"/>    
+    <bendpoint x="148" y="741"/>    
+    <bendpoint x="148" y="1060"/>    
+    <bendpoint x="888" y="1595"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="156">    
+    <bendpoint x="2676" y="409"/>    
+    <bendpoint x="2676" y="566"/>    
+    <bendpoint x="2676" y="741"/>    
+    <bendpoint x="2676" y="1060"/>    
+    <bendpoint x="2634" y="1595"/>    
+    <bendpoint x="2592" y="2032"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="157">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="158">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
