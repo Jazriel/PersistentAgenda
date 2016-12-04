@@ -196,13 +196,7 @@ public class IFacadeContactPersistenceTest {
 	@Test
 	public void testFilterContacts() {
 		PrintAtDepth.print(1, "getFilterContacts start");
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-		} catch (SQLException e) {
-			PrintAtDepth.err(2, e.getMessage());
-			assertTrue(false);
-		}
+		
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
 			String[] fields = { "name", "surname", "title", "address", "city", "province", "postal_Code", "region",
