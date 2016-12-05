@@ -7,6 +7,7 @@ import java.util.Iterator;
 public class Contact implements Serializable {
 	/**
 	 * Auto generado por eclipse.
+	 * @author Javier Martinez, Daniel Puente, Jaime Sagüillo, Jorge Zamora y Oscar Fernandez
 	 */
 	private static final long serialVersionUID = 1L;
 /**

@@ -3,7 +3,11 @@ package persistence;
 import java.util.List;
 
 import model.Contact;
-
+/**
+ * Interface IFacadeContactPersistence
+ * @author Javier Martinez, Daniel Puente, Jaime Sagüillo, Jorge Zamora y Oscar Fernandez
+ *
+ */
 public interface IFacadeContactPersistence {
 
 	Contact getContactById(int i);
