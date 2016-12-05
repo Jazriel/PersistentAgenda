@@ -5,9 +5,20 @@ import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
 import model.ContactType;
-
+/**
+ * Clase ContactTypeResultSetManager
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
+ */
 public class ContactTypeResultSetManager extends ABCResultSetManager<ContactType> {
-
+	/**
+	 * ContactTypeResultSetManager(ResultSet rs).Constructor de clase.
+	 * @param rs, registros de las tablas
+	 * @throws SQLException, excepción de SQL
+	 */
 	public ContactTypeResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);
 		try{
@@ -17,7 +28,10 @@ public class ContactTypeResultSetManager extends ABCResultSetManager<ContactType
 			hasNext = false;
 		}
 	}
-	
+	/**
+	 * next(). Metodo que devuelve el siguiente elemento.
+	 * @return thisContactType
+	 */
 	@Override
 	public ContactType next() {
 		if (!hasNext){
@@ -33,7 +47,11 @@ public class ContactTypeResultSetManager extends ABCResultSetManager<ContactType
 		
 		return thisContactType;
 	}
-	
+	/**
+	 * getContactTypesFromResultSet(ResultSet rs). Metodo que nos devuelve un tipo decontacto.
+	 * @param rs, lista de la tabla.
+	 * @return contactType
+	 */
 	private ContactType getContactTypesFromResultSet(ResultSet rs) {
 		ContactType contactType = null;
 		try {
@@ -43,7 +61,10 @@ public class ContactTypeResultSetManager extends ABCResultSetManager<ContactType
 		}
 		return contactType;
 	}
-	
+	/**
+	 * hasNext(). Metodo que nos dice si hay siguiente.
+	 * @return hasNext
+	 */
 	@Override
 	public boolean hasNext() {
 		return hasNext;
