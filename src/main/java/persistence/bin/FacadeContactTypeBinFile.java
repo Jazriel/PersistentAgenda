@@ -29,7 +29,7 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence {
 	 * Método readContactsType. Método que se encarga de leer los contactos del
 	 * archivo ContactTypes.
 	 * 
-	 * @return List<ContactType> Lista de las contactos que se encuentran dentro
+	 * @return ContactType, Lista de las contactos que se encuentran dentro
 	 *         del archivo de ContactTypes.
 	 */
 	@SuppressWarnings("unchecked")
@@ -109,7 +109,7 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence {
 	 * Método updateContactType. Método que se encarga de actualizar un tipo de
 	 * contacto, por el id del tipo de contacto.
 	 * 
-	 * @param contact
+	 * @param contactType
 	 *            Tipo de contacto que queremos actualizar.
 	 */
 	@Override
@@ -145,7 +145,7 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence {
 	 * Método getAllContactTypes. Método que se encarga de obtener todos los
 	 * tipos de contacto.
 	 * 
-	 * @return List<TypeContact> Lista de todos los tipos de contacto.
+	 * @return TypeContact, Lista de todos los tipos de contacto.
 	 */
 	@Override
 	public List<ContactType> getAllContactTypes() {

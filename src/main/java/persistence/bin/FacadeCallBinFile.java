@@ -31,7 +31,7 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	 * Método readCalls. Método que se encarga de leer las llamadas del archivo
 	 * Calls.
 	 * 
-	 * @return List<Calls> Lista de las llamadas que se encuentran dentro del
+	 * @return lista, Lista de las llamadas que se encuentran dentro del
 	 *         archivo de Calls.
 	 */
 	@SuppressWarnings("unchecked")
@@ -146,7 +146,7 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	/**
 	 * Método getAllCalls. Método que se encarga de obtener todas las llamadas.
 	 * 
-	 * @return List<Call> Lista de todas las llamadas.
+	 * @return lista, Lista de todas las llamadas.
 	 */
 	@Override
 	public List<Call> getAllCalls() {
@@ -160,7 +160,7 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	 *            campo a filtrar.
 	 * @param timeStamp
 	 *            fecha a filtrar.
-	 * @return calls List<Call> Lista de las llamadas filtradas.
+	 * @return calls.
 	 */
 	@Override
 	public List<Call> getFilterCalls(String field, Timestamp timeStamp) {
@@ -175,7 +175,7 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	 * Método getFilterCalls. Filtra las llamadas por fecha.
 	 * 
 	 * @param timeStamp.
-	 * @return filter_calls List<Call> Lista de las llamadas filtradas.
+	 * @return Call, List<Call> Lista de las llamadas filtradas.
 	 */
 	private List<Call> getFilterByDate(Timestamp timeStamp) {
 		List<Call> calls = readCalls();

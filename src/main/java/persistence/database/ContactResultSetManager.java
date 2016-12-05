@@ -21,7 +21,7 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 /**
  * ContactResultSetManager(ResultSet rs).Constructor de clase.
  * @param rs, registros de las tablas
- * @throws SQLException, excepción de SQL
+ * @throws SQLException, excepción de SQL.
  */
 	public ContactResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);

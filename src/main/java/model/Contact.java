@@ -31,7 +31,7 @@ public class Contact implements Serializable {
  */
 	private ContactType contactType;
 /**
- * Contact(int id, Iterable<String> attribs, ContactType contactType). Contructor de clase.
+ * Contact. Contructor de clase.
  * @param id, id de contactos.
  * @param attribs, diferentes atributos de contacto
  * @param contactType, tipo de contacto.
@@ -107,7 +107,7 @@ public class Contact implements Serializable {
 		this.contactType = contactType;
 	}
 	/**
-	 * Contact(Iterable<String> attribs, ContactType contactType). Contructor de clase.
+	 * Contact. Contructor de clase.
 	 * @param attribs, diferentes atributos de contacto
 	 * @param contactType, tipo de contacto.
 	 */
@@ -423,7 +423,7 @@ public class Contact implements Serializable {
 	}
 	/**
 	 * getOrderByName(). Metodo comparador para poder ordenar por nombre.
-	 * @return new Comparator<Call>()
+	 * @return contact1
 	 */
 	public static Comparator<Contact> getOrderByName() {
 		return new Comparator<Contact>() {
@@ -443,7 +443,7 @@ public class Contact implements Serializable {
 	}
 	/**
 	 * getOrderBySurname(). Metodo comparador para poder ordenar por nombre.
-	 * @return new Comparator<Call>()
+	 * @return contact1
 	 */
 	public static Comparator<Contact> getOrderBySurname() {
 		return new Comparator<Contact>() {

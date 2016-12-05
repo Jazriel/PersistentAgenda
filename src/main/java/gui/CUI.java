@@ -422,7 +422,7 @@ public class CUI {
 		} while (option != 0);
 	}
 /**
- * showContacts(List<Contact> contacts). Metodo para mostrar los contactos
+ * showContacts. Metodo para mostrar los contactos.
  * @param contacts, contacto ha mostrar.
  */
 	private static void showContacts(List<Contact> contacts) {
@@ -432,7 +432,7 @@ public class CUI {
 		}
 	}
 /**
- * showCalls(List<Call> calls). Metodo para mostrar las llamadas
+ * showCalls. Metodo para mostrar las llamadas.
  * @param calls, llamadas
  */
 	private static void showCalls(List<Call> calls) {
@@ -441,8 +441,8 @@ public class CUI {
 		}
 	}
 /**
- * showContactTypes(List<ContactType> contactTypes). Metodo para mostrar los tipos de contactos
- * @param contactTypes
+ * showContactTypes. Metodo para mostrar los tipos de contactos.
+ * @param contactTypes, tipo contacto.
  */
 	private static void showContactTypes(List<ContactType> contactTypes) {
 		for (int i = 0; i < contactTypes.size(); i++) {
@@ -451,7 +451,7 @@ public class CUI {
 	}
 /**
  * insertContactFields(). Metodo que nos inserta un usuario.
- * @return
+ * @return values.
  */
 	private static List<String> insertContactFields() {
 		List<Field> contactFields = new ArrayList<>(Arrays.asList(Contact.class.getDeclaredFields()));

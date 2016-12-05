@@ -26,7 +26,7 @@ public class SingletonStatementGenerator {
 
 /**
  * insertContactStatement(). Metodo para insertar un contacto
- * @return 
+ * @return consulta.
  */
 	// Contact Statements
 	public String insertContactStatement() {
@@ -39,7 +39,7 @@ public class SingletonStatementGenerator {
 	}
 /**
  * updateContactStatement(). Metodo que actualiza un contacto
- * @return
+ * @return consulta.
  */
 	public String updateContactStatement() {
 		return "UPDATE CONTACTS SET (name,  surname,  title,  address,  city,  "
@@ -50,7 +50,7 @@ public class SingletonStatementGenerator {
 	}
 /**
  * getContactByIdStatement(). Metodo para coger un contacto.
- * @return
+ * @return consulta.
  */
 	public String getContactByIdStatement() {
 		return "SELECT CONTACTS.ID, NAME ,  SURNAME ,  TITLE ,  ADDRESS ,  CITY ,  "
@@ -62,14 +62,14 @@ public class SingletonStatementGenerator {
 	}
 /**
  * getAllContacts(). Metodo para coger los contactos.
- * @return
+ * @return consulta.
  */
 	public String getAllContacts() {
 		return "SELECT * FROM CONTACTS";
 	}
 /**
  * insertCallStatement(). Metodo que inserta una llamada
- * @return
+ * @return consulta.
  */
 	// Call Statements
 	public String insertCallStatement() {
@@ -78,7 +78,7 @@ public class SingletonStatementGenerator {
 	}
 /**
  * updateCallStatement(). Metodo que actualiza una llamada.
- * @return
+ * @return consulta.
  */
 	public String updateCallStatement() {
 		// return "UPDATE CALLS SET (call_date, subject, notes) = ( ?, ?, ?)";
@@ -86,21 +86,21 @@ public class SingletonStatementGenerator {
 	}
 /**
  * getCallsByIdStatement(). Metodo que busca una llamada concreta
- * @return
+ * @return consulta.
  */
 	public String getCallsByIdStatement() {
 		return "SELECT * FROM CALLS WHERE CONTACT_ID = ? ";
 	}
 /**
  * getAllCallsStatement(). Metodo que coge todas las llamadas.
- * @return
+ * @return consulta.
  */
 	public String getAllCallsStatement() {
 		return "SELECT * FROM CALLS";
 	}
 /**
  * insertContactTypeStatement(). Metodo que inserta un tipo de contacto
- * @return
+ * @return consulta.
  */
 	// Contact types statements
 	public String insertContactTypeStatement() {
@@ -108,21 +108,21 @@ public class SingletonStatementGenerator {
 	}
 /**
  * updateContactTypeStatement(). Metodo que actualiza un tipo de contacto.
- * @return
+ * @return consulta.
  */
 	public String updateContactTypeStatement() {
 		return "UPDATE CONTACTSTYPES SET (CONTACT_TYPE) = ? WHERE ID = ?";
 	}
 /**
  * getAllContactsTypes(). Metodo que coge todos los tipos de contacto
- * @return
+ * @return consulta.
  */
 	public String getAllContactsTypes() {
 		return "SELECT * FROM CONTACTSTYPES";
 	}
 /**
  * getContactTypeByIdStatement(). Metodo que coge un tipo de contacto por el id.
- * @return
+ * @return consulta.
  */
 	public String getContactTypeByIdStatement() {
 		return "SELECT * FROM CONTACTSTYPES WHERE ID = ?";
@@ -130,7 +130,7 @@ public class SingletonStatementGenerator {
 /**
  * getOrderCallsStatement(String field). Metodo que ordena llamadas por un campo
  * @param field, campo por el que ordenar
- * @return
+ * @return consulta.
  */
 	public String getOrderCallsStatement(String field) {
 		return "SELECT * FROM CALLS ORDER BY " + field;
@@ -138,7 +138,7 @@ public class SingletonStatementGenerator {
 	/**
 	 * getFilteredCallsStatement(String field). Metodo que filtra llamadas por id
 	 * @param field, campo por el que ordenar
-	 * @return
+	 * @return consulta.
 	 */
 	public String getFilteredCallsStatement(String field) {
 		return "SELECT * FROM CALLS WHERE " + field + "=?";
@@ -146,7 +146,7 @@ public class SingletonStatementGenerator {
 /**
  * getOrderContactsStatement(String field). Metodo que ordena contactor por un campo.
  * @param field, campo por el que ordenar.
- * @return
+ * @return consulta.
  */
 	public String getOrderContactsStatement(String field) {
 		return "SELECT * FROM CONTACTS ORDER BY " + field;
@@ -154,7 +154,7 @@ public class SingletonStatementGenerator {
 /**
  * getFilteredContactsStatement(String field). Metodo que filtra contactor por campo
  * @param field, campo por el que se filtrara
- * @return
+ * @return consulta.
  */
 	public String getFilteredContactsStatement(String field) {
 		return "SELECT * FROM CONTACTS WHERE " + field + "= ?";

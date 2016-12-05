@@ -49,7 +49,7 @@ public class FacadeContactTypeDataBase implements IFacadeContactTypePersistence 
 	}
 	/**
 	 * updateContactType(ContactType contactType). Metodo que actualiza un tipo de contacto con nuevos datos.
-	 * @param contact, un tipo de contacto.
+	 * @param contactType, un tipo de contacto.
 	 */
 	@Override
 	public void updateContactType(ContactType contactType) {

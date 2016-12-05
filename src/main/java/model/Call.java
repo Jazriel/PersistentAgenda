@@ -141,7 +141,7 @@ public class Call implements Serializable {
 	}
 /**
  * getOrderById(). Metodo comparador para poder ordenar por id.
- * @return new Comparator<Call>()
+ * @return comparador.
  */
 	public static Comparator<Call> getOrderById() {
 		return new Comparator<Call>() {

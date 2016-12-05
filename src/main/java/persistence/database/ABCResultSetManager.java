@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 /**
- * Clase abstracta ABCResultSetManager<E>
+ * Clase abstracta ABCResultSetManager.
  * @author Javier Martinez
  * @author Daniel Puente
  * @author Jaime Sagüillo
@@ -28,7 +28,7 @@ public abstract class ABCResultSetManager<E> implements Iterator<E> {
 	protected ResultSet rs;
 	/**
 	 * ABCResultSetManager(ResultSet rs). Metodo que nos dice si hay un siguiente
-	 * @param rs
+	 * @param rs, tablas de BD
 	 */
 	public ABCResultSetManager(ResultSet rs) {
 		this.rs = rs;
