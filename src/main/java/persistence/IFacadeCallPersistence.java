@@ -4,7 +4,14 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import model.Call;
-
+/**
+ * Interface IFacadeCallPersistence
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
+ */
 public interface IFacadeCallPersistence {
 
 	Call getCallById(int i);

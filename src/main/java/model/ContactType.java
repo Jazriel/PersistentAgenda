@@ -3,7 +3,11 @@ package model;
 import java.io.Serializable;
 /**
  *Clase ContactType, para los tipos de contacto.
- */
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez */
 public class ContactType implements Serializable{
 	/**
 	 * Auto generado por eclipse.

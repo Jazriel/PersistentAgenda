@@ -9,9 +9,20 @@ import java.util.NoSuchElementException;
 
 import model.Contact;
 import model.ContactType;
-
+/**
+ * Clase ContactResultSetManager
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
+ */
 public class ContactResultSetManager extends ABCResultSetManager<Contact> {
-
+/**
+ * ContactResultSetManager(ResultSet rs).Constructor de clase.
+ * @param rs, registros de las tablas
+ * @throws SQLException, excepción de SQL
+ */
 	public ContactResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);
 		try{
@@ -21,7 +32,10 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 			hasNext = false;
 		}
 	}
-	
+	/**
+	 * next(). Metodo que devuelve el siguiente elemento.
+	 * @return thisContact
+	 */
 	@Override
 	public Contact next() {
 		if (!hasNext){
@@ -37,7 +51,11 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 		
 		return thisContact;
 	}
-	
+	/**
+	 * getContactFromResultSet(ResultSet rs). Metodo que nos devuelve un contacto.
+	 * @param rs, lista de la tabla.
+	 * @return contact
+	 */
 	private Contact getContactFromResultSet(ResultSet rs){
 		Contact contact = null;
 		try {
@@ -57,7 +75,10 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 		return contact;
 	}
 	
-
+	/**
+	 * hasNext(). Metodo que nos dice si hay siguiente.
+	 * @return hasNext
+	 */
 	@Override
 	public boolean hasNext() {
 		return hasNext;

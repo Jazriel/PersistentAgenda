@@ -5,8 +5,11 @@ import java.sql.Timestamp;
 import java.util.Comparator;
 /**
  * Clase Call. Son las llamadas de los contactos.
- *
- */
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez */
 public class Call implements Serializable {
 	/**
 	 * Auto generado por eclipse.
