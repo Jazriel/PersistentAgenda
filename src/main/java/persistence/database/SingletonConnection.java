@@ -22,7 +22,7 @@ public class SingletonConnection {
 	private Connection connection;
 /**
  * SingletonConnection().COnstructor de clase.
- * @throws SQLException, excepción SQL
+ * @throws SQLException.
  */
 	private SingletonConnection() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
@@ -30,7 +30,7 @@ public class SingletonConnection {
 /**
  * getInstance(). MEtodo para coger la instancia de nuestra BD.
  * @return connectionInstance.
- * @throws SQLException,excepción SQL.
+ * @throws SQLException excepción.
  */
 	public static SingletonConnection getInstance() throws SQLException {
 		if (connectionInstance == null)

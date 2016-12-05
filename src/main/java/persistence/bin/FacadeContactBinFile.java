@@ -31,7 +31,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * Método readContacts. Método que se encarga de leer los contactos del
 	 * archivo Contacts.
 	 * 
-	 * @return List<Contact> Lista de las contactos que se encuentran dentro del
+	 * @return lista, Lista de las contactos que se encuentran dentro del
 	 *         archivo de Contacts.
 	 */
 	@SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * Método getAllContacts. Método que se encarga de obtener todos los
 	 * contactos.
 	 * 
-	 * @return List<Contacts> Lista de todos los contactos.
+	 * @return lista.
 	 */
 	@Override
 	public List<Contact> getAllContacts() {
@@ -159,7 +159,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * 
 	 * @param field
 	 *            Campo por el que ordenar.
-	 * @return contacts List<Contacts> Lista de contactos filtrados.
+	 * @return contactos.
 	 */
 	@Override
 	public List<Contact> getOrderContacts(String field) {
@@ -180,7 +180,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 *            campo a filtrar.
 	 * @param filteredField
 	 *            Filtro a aplicar.
-	 * @return calls List<Contacts> Lista de los contactos filtrados.
+	 * @return contact, List<Contacts> Lista de los contactos filtrados.
 	 */
 	@Override
 	public List<Contact> getFilterContacts(String field, String filteredField) {
@@ -198,7 +198,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * 
 	 * @param filteredField
 	 *            Campo a filtrar.
-	 * @return filter_contacts List<Contact> Lista de los contactos filtrados.
+	 * @return Contact, List<Contact> Lista de los contactos filtrados.
 	 */
 	private List<Contact> getFilterByName(String filteredField) {
 		List<Contact> contacts = readContacts();
@@ -216,7 +216,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * 
 	 * @param filteredField
 	 *            Filtro a aplicar.
-	 * @return filter_contacts List<Contacts> Lista de contactos filtrados.
+	 * @return Contact, List<Contacts> Lista de contactos filtrados.
 	 */
 	private List<Contact> getFilterBySurname(String filteredField) {
 		List<Contact> contacts = readContacts();
