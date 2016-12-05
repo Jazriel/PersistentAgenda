@@ -76,9 +76,13 @@ public class FacadeContactTypeBinFile implements IFacadeContactTypePersistence{
 	@Override
 	public void updateContactType(ContactType contact) {
 		List<ContactType> contactTypes = readContactType();
+		int index = -1;
 		for (ContactType c : contactTypes) {
+			++index;
 			if (c.getId() == contact.getId()) {
-				c = contact;
+				contactTypes.remove(index);
+				contactTypes.add(index, contact);
+				break;
 			}
 		}
 		writeContacTypes(contactTypes);
