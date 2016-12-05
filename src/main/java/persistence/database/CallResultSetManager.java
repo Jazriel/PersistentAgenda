@@ -17,8 +17,9 @@ import model.Contact;
 public class CallResultSetManager extends ABCResultSetManager<Call> {
 /**
  * CallResultSetManager(). Constructor de clase.
+ * @throws SQLException, excepcion.
  * @param rs, filas de la tabla.
- * @throws SQLException, excepcion para errores SQL.
+ 
  */
 	public CallResultSetManager(ResultSet rs) throws SQLException {
 		super(rs);

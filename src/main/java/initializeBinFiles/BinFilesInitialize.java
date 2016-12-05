@@ -27,7 +27,7 @@ public class BinFilesInitialize {
 	/**
 	 * Clase principal que se encarga de introducir los valores.
 	 * 
-	 * @param args
+	 * @param args, args.
 	 */
 	public static void main(String[] args) {
 		// Insertamos los tipos de contacto
