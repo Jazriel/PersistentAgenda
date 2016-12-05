@@ -261,6 +261,8 @@ public class Contact implements Serializable {
 
 			@Override
 			public int compare(Contact contact1, Contact contact2) {
+				if(contact1.getName() == null || contact2.getName() == null)
+					return 0;
 				return contact1.getName().compareTo(contact2.getName());
 			}
 
@@ -273,6 +275,8 @@ public class Contact implements Serializable {
 
 			@Override
 			public int compare(Contact contact1, Contact contact2) {
+				if(contact1.getSurname() == null || contact2.getSurname() == null)
+					return 0;
 				return contact1.getSurname().compareTo(contact2.getSurname());
 			}
 
