@@ -3,13 +3,7 @@ package persistence;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Before;
@@ -43,42 +37,13 @@ public class IFacadeContactPersistenceTest {
 			}
 			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
-			Connection connection = null;
-			Statement stm = null;
-			ResultSet rs = null;
-			try {
-				connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-				stm = connection.createStatement();
-				rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY id DESC");
-				rs.next();
-				while (id != rs.getInt(1)) {
-					rs.next();
-				}
-				PrintAtDepth.print(3, "Id introduced was: " + id);
-				assertTrue(true);
-			} catch (SQLException e) {
-				PrintAtDepth.err(3, e.getMessage());
-				assertTrue(false);
-			} finally {
-				try {
-					if (rs != null && !rs.isClosed()) {
-						rs.close();
-					}
-				} catch (SQLException e) {
-				}
-				try {
-					if (stm != null && !stm.isClosed()) {
-						stm.close();
-					}
-				} catch (SQLException e) {
-				}
-				try {
-					if (connection != null && !connection.isClosed()) {
-						connection.close();
-					}
-				} catch (SQLException e) {
+			boolean b = false;
+			for (Contact contact : facadeContactPersistence.getAllContacts()) {
+				if (contact.getId() == id) {
+					b = true;
 				}
 			}
+			assertTrue(b);
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "saveContact pass");
@@ -136,205 +101,69 @@ public class IFacadeContactPersistenceTest {
 	}
 
 	@Test
-	public void testGetContacts() {
-		PrintAtDepth.print(1, "getContacts start");
+	public void testGetAllContacts() {
+		PrintAtDepth.print(1, "getAllContacts start");
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
 			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
+
+			List<Contact> contactsBefore = facadeContactPersistence.getAllContacts();
 			List<String> attribs = new ArrayList<>();
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
 			int id = getIncMaxContactId(facadeContactPersistence);
 			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
-			try {
-				Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-				Statement stm = connection.createStatement();
-				ResultSet rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY id DESC");
-				rs.next();
-				while (id != rs.getInt(1)) {
-					rs.next();
-				}
-				PrintAtDepth.print(3, "Id introduced was: " + id);
-				assertTrue(true);
-			} catch (SQLException e) {
-				PrintAtDepth.err(3, e.getMessage());
-				assertTrue(false);
+			List<Contact> contactsAfter = facadeContactPersistence.getAllContacts();
+			List<Integer> contactIds = new ArrayList<Integer>();
+			for (Contact contact : contactsAfter) {
+				contactIds.add(contact.getId());
 			}
-			PrintAtDepth.print(2, persistence.getClass() + " pass");
-		}
-		PrintAtDepth.print(1, "getContacts pass");
-	}
-
-	@Test
-	public void testGetAllContacts() {
-		PrintAtDepth.print(1, "getAllContacts start");
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-		} catch (SQLException e) {
-			PrintAtDepth.err(2, e.getMessage());
-			assertTrue(false);
-		}
-		for (IFactoryPersistence persistence : persistences) {
-			PrintAtDepth.print(2, persistence.getClass() + " start");
-			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
-			List<String> attribs = new ArrayList<>();
-			for (int i = 0; i < 20; i++) {
-				attribs.add(null);
-			}
-			List<Integer> contactIds = new LinkedList<>();
-			ResultSet rs = null;
-			Statement stm = null;
-			try {
-				stm = connection.createStatement();
-				rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY id DESC");
-				while (true) {
-					rs.next();
-					contactIds.add(rs.getInt(0));
-				}
-			} catch (SQLException e) {
-				// This is the iterator stop
-				try {
-					if (rs != null && !rs.isClosed()) {
-						rs.close();
-					}
-				} catch (SQLException e1) {
-				}
-				try {
-					if (stm != null && !stm.isClosed()) {
-						stm.close();
-					}
-				} catch (SQLException e1) {
-				}
-			}
-
-			List<Contact> contacts = facadeContactPersistence.getAllContacts();
-			for (Contact contact : contacts) {
+			for (Contact contact : contactsBefore) {
 				if (contactIds.contains(contact.getId())) {
 					contactIds.remove(contact.getId());
 				} else {
 					assertTrue(false);
 				}
 			}
-
+			assertTrue(id == contactIds.remove(id));
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getAllContacts pass");
 	}
 
 	private int getIncMaxContactId(IFacadeContactPersistence persistence) {
-		if (persistence instanceof persistence.database.FacadeContactDataBase) {
-			return getIncMaxContactIdDB();
-		} else if (persistence instanceof persistence.bin.FacadeContactBinFile) {
-			return getIncMaxContactIdBinFile(persistence);
-		} else {
-			throw new UnsupportedOperationException();
-		}
-	}
-
-	private int getIncMaxContactIdBinFile(IFacadeContactPersistence persistence) {
-		int ret;
-		try{
-			ret = persistence.getOrderContacts("id").get(0).getId();
-		}catch (NullPointerException e) {
-			return 1;
-		}
-		return ret;
-	}
-
-	private int getIncMaxContactIdDB() {
-		Connection connection = null;
-		Statement stm = null;
-		ResultSet rs = null;
-		int contact = 0;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-			stm = connection.createStatement();
-			rs = stm.executeQuery("SELECT COALESCE(MAX(id), 0) FROM contacts");
-			rs.next();
-			contact = rs.getInt(1);
-		} catch (SQLException e) {
-			PrintAtDepth.err(0, "getMaxContactId Error: " + e.getMessage());
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stm != null) {
-					stm.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (Exception e) {
-				PrintAtDepth.err(0, e.getMessage());
+		int ret = 0;
+		List<Contact> contacts = persistence.getAllContacts();
+		for (Contact contact : contacts) {
+			if (contact.getId() > ret) {
+				ret = contact.getId();
 			}
 		}
-		return contact + 1;
+
+		return ret+1;
 	}
 
 	@Test
 	public void testGetOrderContacts() {
 		PrintAtDepth.print(1, "getOrderContacts start");
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-		} catch (SQLException e) {
-			PrintAtDepth.err(2, e.getMessage());
-			assertTrue(false);
-		}
+
 		for (IFactoryPersistence persistence : persistences) {
+			String field = "id";
 			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "id", "name", "surname", "title", "address", "city", "province", "postal_Code",
-					"region", "country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
-					"fax_Number", "contact_type_id", "email", "notes" };
-			for (String field : fields) {
-				PrintAtDepth.print(3, field + " start");
-				IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
-				List<String> attribs = new ArrayList<>();
-				for (int i = 0; i < 20; i++) {
-					attribs.add(null);
-				}
-				List<Integer> contactIdsOrdered = new LinkedList<>();
-				ResultSet rs = null;
-				Statement stm = null;
-				try {
-					stm = connection.createStatement();
-					rs = stm.executeQuery("SELECT * FROM CONTACTS ORDER BY " + field + " ASC");
-					while (true) {
-						rs.next();
-						contactIdsOrdered.add(rs.getInt(1));
-					}
-				} catch (SQLException e) {
-					// This is the iterator stop
-					try {
-						if (rs != null && !rs.isClosed()) {
-							rs.close();
-						}
-					} catch (SQLException e1) {
-					}
-					try {
-						if (stm != null && !stm.isClosed()) {
-							stm.close();
-						}
-					} catch (SQLException e1) {
-					}
-				}
-				int i = 0;
-				List<Contact> contacts = facadeContactPersistence.getOrderContacts(field);
-				List<Integer> contIds = new ArrayList<>();
-				for (Contact contact : contacts) {
-					contIds.add(contact.getId());
-				}
+			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
+			List<Contact> contacts = facadeContactPersistence.getOrderContacts(field);
+			List<Integer> contIds = new ArrayList<>();
 
-				int j = contactIdsOrdered.size() > contIds.size() ? contactIdsOrdered.size() : contIds.size();
-				for (i = 0; i < j; i++) {
-					assertEquals(contIds.get(i), contactIdsOrdered.get(i));
+			contIds.add(contacts.get(0).getId());
+			for (int i = 1; i < contacts.size(); i++) {
+				if (contacts.get(i - 1).getId() <= contacts.get(i).getId()) {
+					contIds.add(contacts.get(i).getId());
+				} else {
+					assertTrue(false);
 				}
-
-				PrintAtDepth.print(3, field + " pass");
 			}
+
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getOrderContacts pass");
@@ -343,75 +172,20 @@ public class IFacadeContactPersistenceTest {
 	@Test
 	public void testFilterContacts() {
 		PrintAtDepth.print(1, "getFilterContacts start");
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-		} catch (SQLException e) {
-			PrintAtDepth.err(2, e.getMessage());
-			assertTrue(false);
-		}
+
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "name", "surname", "title", "address", "city", "province", "postal_Code", "region",
-					"country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
-					"fax_Number", "email", "notes" };
-			for (String field : fields) {
-				PrintAtDepth.print(3, field + " start");
-				IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
-				List<String> attribs = new ArrayList<>();
-				for (int i = 0; i < 20; i++) {
-					attribs.add(null);
-				}
-				List<Integer> contactIdsFiltered = new LinkedList<>();
-				ResultSet rs = null;
-				Statement stm = null;
-				String str = null;
-				try {
-					stm = connection.createStatement();
-					rs = stm.executeQuery(
-							"SELECT * FROM contacts WHERE " + field + " IS NOT NULL ORDER BY " + field + " ASC");
-					rs.next();
-					str = rs.getString(field);
-					stm = connection.createStatement();
-					rs = stm.executeQuery("SELECT * FROM contacts WHERE " + field + " = '" + str + "'");
-					while (true) {
-						rs.next();
-						contactIdsFiltered.add(rs.getInt(1));
-					}
-				}
+			String field = "name";
+			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
 
-				catch (SQLException e) {
-					// This is the iterator stop
-					try {
-						if (rs != null && !rs.isClosed()) {
-							rs.close();
-						}
-					} catch (SQLException e1) {
-					}
-					try {
-						if (stm != null && !stm.isClosed()) {
-							stm.close();
-						}
-					} catch (SQLException e1) {
-					}
-				}
-				int i = 0;
+			String str = "Pepitico";
 
-				List<Contact> contacts = facadeContactPersistence.getFilterContacts(field, str);
+			List<Contact> contacts = facadeContactPersistence.getFilterContacts(field, str);
 
-				List<Integer> contIds = new ArrayList<>();
-
-				for (Contact contact : contacts) {
-					contIds.add(contact.getId());
-				}
-
-				int j = contactIdsFiltered.size() > contIds.size() ? contactIdsFiltered.size() : contIds.size();
-				for (i = 0; i < j; i++) {
-					assertEquals(contIds.get(i), contactIdsFiltered.get(i));
-				}
-
-				PrintAtDepth.print(3, field + " pass");
+			for (Contact contact : contacts) {
+				assertEquals(contact.getName(), str);
 			}
+
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getFilterContacts pass");

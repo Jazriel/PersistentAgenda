@@ -11,6 +11,6 @@ public interface IFacadeContactPersistence {
 	void saveContact(Contact contact);
 	List<Contact> getAllContacts();
 	List<Contact> getOrderContacts(String field);
-	List<Contact> getFilterContacts(String filter, String filteredField);
+	List<Contact> getFilterContacts(String field, String filteredField);
 
 }
