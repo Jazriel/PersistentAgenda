@@ -180,7 +180,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 *            campo a filtrar.
 	 * @param filteredField
 	 *            Filtro a aplicar.
-	 * @return contact, List<Contacts> Lista de los contactos filtrados.
+	 * @return Lista de los contactos filtrados.
 	 */
 	@Override
 	public List<Contact> getFilterContacts(String field, String filteredField) {
@@ -198,7 +198,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * 
 	 * @param filteredField
 	 *            Campo a filtrar.
-	 * @return Contact, List<Contact> Lista de los contactos filtrados.
+	 * @return Lista de los contactos filtrados.
 	 */
 	private List<Contact> getFilterByName(String filteredField) {
 		List<Contact> contacts = readContacts();
@@ -218,7 +218,7 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	 * 
 	 * @param filteredField
 	 *            Filtro a aplicar.
-	 * @return Contact, List<Contacts> Lista de contactos filtrados.
+	 * @return Lista de contactos filtrados.
 	 */
 	private List<Contact> getFilterBySurname(String filteredField) {
 		List<Contact> contacts = readContacts();

@@ -24,8 +24,8 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 	 * ContactResultSetManager(ResultSet rs).Constructor de clase.
 	 * 
 	 * @param rs,
-	 *            registros de las tablas
-	 * @throws SQLException,
+	 *            registros de las tablas.
+	 * @throws SQLException
 	 *             excepción de SQL.
 	 */
 	public ContactResultSetManager(ResultSet rs) throws SQLException {
@@ -41,7 +41,7 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 	/**
 	 * next(). Metodo que devuelve el siguiente elemento.
 	 * 
-	 * @return thisContact
+	 * @return thisContact.
 	 */
 	@Override
 	public Contact next() {
@@ -65,7 +65,7 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 	 * 
 	 * @param rs,
 	 *            lista de la tabla.
-	 * @return contact
+	 * @return contact.
 	 */
 	private Contact getContactFromResultSet(ResultSet rs) {
 		Contact contact = null;
@@ -89,7 +89,7 @@ public class ContactResultSetManager extends ABCResultSetManager<Contact> {
 	/**
 	 * hasNext(). Metodo que nos dice si hay siguiente.
 	 * 
-	 * @return hasNext
+	 * @return hasNext.
 	 */
 	@Override
 	public boolean hasNext() {

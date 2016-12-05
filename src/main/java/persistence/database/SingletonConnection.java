@@ -23,10 +23,9 @@ public class SingletonConnection {
 	 */
 	private Connection connection;
 
-	/**
-	 * SingletonConnection().COnstructor de clase.
-	 * 
-	 * @throws SQLException.
+	/**	
+	 * Constructor de conexion.
+	 * @throws SQLException Excepcion.
 	 */
 	private SingletonConnection() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");

@@ -31,11 +31,10 @@ run {
 }
 
 
-task release(dependsOn: ['test', 'run']) {
+task release(dependsOn: ['test', 'run', 'javadoc']) {
 }
 
+test.shouldRunAfter javadoc
+
 run.shouldRunAfter test
-
-
-// run.dependsOn test
 

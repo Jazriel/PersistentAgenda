@@ -176,7 +176,7 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	 * Método getFilterCalls. Filtra las llamadas por fecha.
 	 * 
 	 * @param timeStamp.
-	 * @return Call, List<Call> Lista de las llamadas filtradas.
+	 * @return Lista de las llamadas filtradas.
 	 */
 	private List<Call> getFilterByDate(Timestamp timeStamp) {
 		List<Call> calls = readCalls();
