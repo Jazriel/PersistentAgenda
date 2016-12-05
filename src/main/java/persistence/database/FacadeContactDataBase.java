@@ -7,9 +7,24 @@ import java.util.List;
 import model.Contact;
 import persistence.IFacadeContactPersistence;
 
+/**
+ * Clase FacadeContactDataBase
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ */
 public class FacadeContactDataBase implements IFacadeContactPersistence {
 
-
+	/**
+	 * getContactById(int id). Metodo que devuelve un contacto por un id
+	 * 
+	 * @param id,
+	 *            el id de la contacto.
+	 * @return contact
+	 */
 	@Override
 	public Contact getContactById(int id) {
 		SingletonConnection connection = null;
@@ -40,6 +55,12 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 		return contact;
 	}
 
+	/**
+	 * saveContact(Contact contact)). Metodo que guarda una contacto.
+	 * 
+	 * @param contact,
+	 *            el contacto que guardaremos.
+	 */
 	@Override
 	public void saveContact(Contact contact) {
 		SingletonConnection connection = null;
@@ -61,6 +82,13 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 		}
 	}
 
+	/**
+	 * updateContact(Contact contact). Metodo que actualiza un contacto con
+	 * nuevos datos.
+	 * 
+	 * @param contact,
+	 *            un contacto.
+	 */
 	@Override
 	public void updateContact(Contact contact) {
 		SingletonConnection connection = null;
@@ -81,7 +109,12 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			}
 		}
 	}
-	
+
+	/**
+	 * getAllContacts(). Metodo que coge todos los contactos
+	 * 
+	 * @return contacts
+	 */
 	@Override
 	public List<Contact> getAllContacts() {
 		SingletonConnection connection = null;
@@ -113,6 +146,14 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 		return contacts;
 	}
 
+	/**
+	 * getOrderContacts(String field). Metodo que coge los cotactos ordenados
+	 * por campo.
+	 * 
+	 * @param field,
+	 *            campo por el que ordenar
+	 * @return contacts
+	 */
 	@Override
 	public List<Contact> getOrderContacts(String field) {
 		SingletonConnection connection = null;
@@ -142,8 +183,18 @@ public class FacadeContactDataBase implements IFacadeContactPersistence {
 			}
 		}
 		return contacts;
-}
+	}
 
+	/**
+	 * getFilterContacts(String field, String filteredField). Metodo que filtra
+	 * los contactos.
+	 * 
+	 * @param field,
+	 *            campo por el que filtrar.
+	 * @param filteredField,valor
+	 *            por el que filtramos.
+	 * @return contacts
+	 */
 	@Override
 	public List<Contact> getFilterContacts(String field, String filteredField) {
 		SingletonConnection connection = null;

@@ -23,13 +23,31 @@ import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * CUI. Clase main de nuestra api.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class CUI {
+	/**
+	 * para leer
+	 */
 	private static BufferedReader bufferedReader = null;
 	private static IFactoryPersistence persistence = null;
 	private static IFacadeContactPersistence contactPersitence = null;
 	private static IFacadeCallPersistence callPersitence = null;
 	private static IFacadeContactTypePersistence contactTypePersitence = null;
 
+	/**
+	 * 
+	 * @param args,
+	 *            args
+	 */
 	public static void main(String[] args) {
 		// Choose the persistence system
 		int option = -1;
@@ -107,6 +125,9 @@ public class CUI {
 
 	}
 
+	/**
+	 * insertMenu(). Nos construlle un menu
+	 */
 	private static void insertMenu() {
 		int option = 0;
 		int pos;
@@ -169,6 +190,9 @@ public class CUI {
 		} while (option != 0);
 	}
 
+	/**
+	 * updateMenu(). Nos construye un menu para actualizar
+	 */
 	private static void updateMenu() {
 		int option = 0, id, pos;
 		do {
@@ -257,6 +281,9 @@ public class CUI {
 		} while (option != 0);
 	}
 
+	/**
+	 * getMenu(). NOs construye un menu para mostrar sus dados.
+	 */
 	private static void getMenu() {
 		int option = 0;
 		do {
@@ -292,6 +319,10 @@ public class CUI {
 		} while (option != 0);
 	}
 
+	/**
+	 * filterOrOrderContactsMenu() Nos construye un menu para poder filtrar los
+	 * diferentes datos.
+	 */
 	private static void filterOrOrderContactsMenu() {
 		int option = 0;
 		String filteredField;
@@ -338,6 +369,10 @@ public class CUI {
 		} while (option != 0);
 	}
 
+	/**
+	 * filterOrOrderCallsMenu(). Nos construye un menu para ordenar y filtrar
+	 * los diferentes datos.
+	 */
 	private static void filterOrOrderCallsMenu() {
 		int option = 0, pos;
 		List<Contact> contacts;
@@ -397,6 +432,12 @@ public class CUI {
 		} while (option != 0);
 	}
 
+	/**
+	 * showContacts. Metodo para mostrar los contactos.
+	 * 
+	 * @param contacts,
+	 *            contacto ha mostrar.
+	 */
 	private static void showContacts(List<Contact> contacts) {
 		for (int i = 0; i < contacts.size(); i++) {
 			System.out.println(
@@ -404,18 +445,35 @@ public class CUI {
 		}
 	}
 
+	/**
+	 * showCalls. Metodo para mostrar las llamadas.
+	 * 
+	 * @param calls,
+	 *            llamadas
+	 */
 	private static void showCalls(List<Call> calls) {
 		for (int i = 0; i < calls.size(); i++) {
 			System.out.println(i + 1 + ") " + calls.get(i).toString());
 		}
 	}
 
+	/**
+	 * showContactTypes. Metodo para mostrar los tipos de contactos.
+	 * 
+	 * @param contactTypes,
+	 *            tipo contacto.
+	 */
 	private static void showContactTypes(List<ContactType> contactTypes) {
 		for (int i = 0; i < contactTypes.size(); i++) {
 			System.out.println(i + 1 + ") " + contactTypes.get(i).getContactTypeName());
 		}
 	}
 
+	/**
+	 * insertContactFields(). Metodo que nos inserta un usuario.
+	 * 
+	 * @return values.
+	 */
 	private static List<String> insertContactFields() {
 		List<Field> contactFields = new ArrayList<>(Arrays.asList(Contact.class.getDeclaredFields()));
 		List<String> values = new ArrayList<>();
