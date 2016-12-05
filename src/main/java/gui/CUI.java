@@ -62,14 +62,15 @@ public class CUI {
 				System.err.println(e.getMessage());
 			}
 		} while (option != 1 && option != 2 && option != 0);
-
-		// Initialize the persistences
-		contactPersitence = persistence.createContactPersistence();
-		callPersitence = persistence.createCallPersistence();
-		contactTypePersitence = persistence.createContactTypePersistence();
-
-		// Choose the action
-		if (option != 0) {
+		
+		if (option < 0) {
+			// Initialize the persistences
+			contactPersitence = persistence.createContactPersistence();
+			callPersitence = persistence.createCallPersistence();
+			contactTypePersitence = persistence.createContactTypePersistence();
+	
+			// Choose the action
+		
 			option = -1;
 
 			do {
