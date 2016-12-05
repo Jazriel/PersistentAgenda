@@ -22,12 +22,6 @@ public class Call implements Serializable {
 		this.notes = notes;
 	}
 
-	public Call(int id, String subject, String notes) {
-		this.id = id;
-		this.subject = subject;
-		this.notes = notes;
-	}
-
 	public Call(Contact contact, String subject, String notes) {
 		this.contact = contact;
 		this.callDate = new Timestamp(System.currentTimeMillis()).toString();

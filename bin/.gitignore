@@ -1,3 +1,10 @@
-/gui/
+/DiagramClassGeneral.ucls
+/DiagramClassGui.ucls
+/DiagramClassModel.ucls
+/DiagramClassPersistence.ucls
+/DiagramClassPersistenceBin.ucls
+/DiagramClassPersistenceDB.ucls
 /persistence/
 /model/
+/gui/
+/initializeBinFiles/

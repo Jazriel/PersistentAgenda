@@ -84,9 +84,13 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 	@Override
 	public void updateContact(Contact contact) {
 		List<Contact> contacts = readContacts();
+		int index = -1;
 		for (Contact c : contacts) {
+			++index;
 			if (c.getId() == contact.getId()) {
-				c = contact;
+				contacts.remove(index);
+				contacts.add(index, contact);
+				break;
 			}
 		}
 		writeContacts(contacts);
@@ -123,22 +127,24 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 
 	private List<Contact> getFilterByName(String filteredField) {
 		List<Contact> contacts = readContacts();
+		List<Contact> filter_contacts = new ArrayList<>();
 		for (Contact contact : contacts) {
-			if (!contact.getName().equals(filteredField)) {
-				contacts.remove(contact);
+			if (contact.getName().equals(filteredField)) {
+				filter_contacts.add(contact);
 			}
 		}
-		return contacts;
+		return filter_contacts;
 	}
 
 	private List<Contact> getFilterBySurname(String filteredField) {
 		List<Contact> contacts = readContacts();
+		List<Contact> filter_contacts = new ArrayList<>();
 		for (Contact contact : contacts) {
-			if (!contact.getSurname().equals(filteredField)) {
-				contacts.remove(contact);
+			if (contact.getSurname().equals(filteredField)) {
+				filter_contacts.add(contact);
 			}
 		}
-		return contacts;
+		return filter_contacts;
 	}
 
 

@@ -221,9 +221,16 @@ public class CUI {
 
 					System.out.println("Introduzca alguna anotación sobre la llamada:");
 					String notes = bufferedReader.readLine();
-
+					System.out.println("Elija el contacto:");
+					
+					contacts = contactPersitence.getAllContacts();
+					// Mostramos los contactos
+					showContacts(contacts);
+					// Escogemos el contacto
+					pos = new Integer(bufferedReader.readLine()) - 1;
+					id = contacts.get(pos).getId();
 					// Actualizamos
-					callPersitence.updateCall(new Call(calls.get(pos).getId(), subject, notes));
+					callPersitence.updateCall(new Call(contacts.get(id), subject, notes));
 					break;
 				case 3:
 					System.out.println("La opcion elegida ha sido actualizar un tipo de contacto");

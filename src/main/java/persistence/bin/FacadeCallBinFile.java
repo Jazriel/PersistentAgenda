@@ -78,11 +78,16 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	@Override
 	public void updateCall(Call call) {
 		List<Call> calls = readCalls();
+		int index = -1;
 		for (Call c : calls) {
+			++index;
 			if (c.getId() == call.getId()) {
-				c = call;
+				calls.remove(index);
+				calls.add(index, call);
+				break;
 			}
 		}
+		
 		writeCalls(calls);
 	}
 
@@ -100,8 +105,8 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 
 	@Override
 	public List<Call> getFilterCalls(String field, Timestamp timeStamp) {
-		List<Call> calls = null;
-		if (field.equals("call_date")) {
+		List<Call> calls = new ArrayList<>();
+		if (field.equals("call_Date")) {
 			calls = getFilterByDate(timeStamp);
 		}
 		return calls;
@@ -109,18 +114,19 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 
 	private List<Call> getFilterByDate(Timestamp timeStamp) {
 		List<Call> calls = readCalls();
+		List<Call> filter_calls = new ArrayList<>();
 		for (Call call : calls) {
-			if (!call.getCallDate().equals(timeStamp)) {
-				calls.remove(call);
+			if (call.getCallDate().substring(0, 10).equals(timeStamp.toString().substring(0, 10))) {
+				filter_calls.add(call);
 			}
 		}
-		return calls;
+		return filter_calls;
 	}
 
 	@Override
 	public List<Call> getFilterCalls(String field, int id) {
-		List<Call> calls = null;
-		if (field.equals("id")) {
+		List<Call> calls = new ArrayList<>();
+		if (field.equals("contact_id")) {
 			calls = getFilterById(id);
 		}
 		return calls;
@@ -128,12 +134,13 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 
 	private List<Call> getFilterById(int id) {
 		List<Call> calls = readCalls();
+		List<Call> filter_calls = new ArrayList<>();
 		for (Call call : calls) {
-			if (call.getId() != id) {
-				calls.remove(call);
+			if (call.getContact().getId() == id) {
+				filter_calls.add(call);
 			}
 		}
-		return calls;
+		return filter_calls;
 	}
 
 	@Override
