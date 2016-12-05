@@ -13,25 +13,62 @@ import model.Call;
 import model.Contact;
 import model.ContactType;
 
+/**
+ * Clase StatementManager. Clase que se encarga de manejo de los statements.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ */
 public class StatementManager {
 
+	/**
+	 * Sentencia preparada a utilizar
+	 */
 	private PreparedStatement preparedStatement;
 
+	/**
+	 * Conexión a utilizar
+	 */
 	private Connection conn;
 
+	/**
+	 * Método StatementManager. Método que llama a la conexión a la base de datos.
+	 * 
+	 * @throws SQLException
+	 *             Excepción de sql
+	 */
 	public StatementManager() throws SQLException {
 		// Open connection
 		this.conn = SingletonConnection.getInstance().getConnection();
 	}
 
+	/**
+	 * Método executeQuery. Método que se encarga de ejecutar una consulta.
+	 * 
+	 * @return executeQuery Resultado del executeQuery();
+	 * @throws SQLException
+	 *             Excepción de sql
+	 */
 	public ResultSet executeQuery() throws SQLException {
 		return preparedStatement.executeQuery();
 	}
 
+	/**
+	 * Método executeUpdate. Método que se encarga de actualizar.
+	 * 
+	 * @throws SQLException
+	 *             Excepción de sql.
+	 */
 	public void executeUpdate() throws SQLException {
 		preparedStatement.executeUpdate();
 	}
 
+	/**
+	 * Método close. Método que se encarga de cerrar una preparedStetement.
+	 */
 	public void close() {
 		try {
 			if (preparedStatement != null && !preparedStatement.isClosed())
@@ -42,6 +79,15 @@ public class StatementManager {
 		}
 	}
 
+	/**
+	 * Método getFilleContacByIdStetements. Método que se encarga de generar el
+	 * preparedStetement para buscar por id un contacto.
+	 * 
+	 * @param id
+	 *            Id por el que filtrar.
+	 * @throws SQLException
+	 *             Escepción sql.
+	 */
 	// Contacts
 	public void getFilledContactByIdStatement(int id) throws SQLException {
 		// Get text statement
@@ -53,6 +99,15 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilledUpdateContacStetements. Método que se encarga de realizar
+	 * el preparedStatement para realizar la actualización de un contacto.
+	 * 
+	 * @param contact
+	 *            Contacto a actualizar
+	 * @throws SQLException
+	 *             Excepción sql
+	 */
 	public void getFilledUpdateContactStatement(Contact contact) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().updateContactStatement();
@@ -89,6 +144,15 @@ public class StatementManager {
 
 	}
 
+	/**
+	 * Método getFilledSaveContactSatement. Método que se encarga de generar el
+	 * preparedStatement para añadir un nuevo contacto.
+	 * 
+	 * @param contact
+	 *            Contacto para añadir.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilledSaveContactStatement(Contact contact) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().insertContactStatement();
@@ -125,6 +189,15 @@ public class StatementManager {
 
 	}
 
+	/**
+	 * Método getFilledCallByIdStetement. Método que se encarga de generar el
+	 * preparedStatement para obtener una llamada por Id.
+	 * 
+	 * @param id
+	 *            Id por el que buscar la llamada.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	// Calls
 	public void getFilledCallByIdStatement(int id) throws SQLException {
 		// Get text statement
@@ -136,6 +209,15 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilledUpdateCallStetement. Método que se encarga de generar el
+	 * preparedStatement para actualizar una llamada.
+	 * 
+	 * @param call
+	 *            LLamada a actualizar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilledUpdateCallStatement(Call call) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().updateCallStatement();
@@ -148,6 +230,15 @@ public class StatementManager {
 
 	}
 
+	/**
+	 * Método getFilledSaveCallStatement. Método que se encarga de generar la
+	 * preparedStatement para añadir una llamada.
+	 * 
+	 * @param call
+	 *            LLamada a introducir.
+	 * @throws SQLException
+	 *             Escepción sql.
+	 */
 	public void getFilledSaveCallStatement(Call call) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().insertCallStatement();
@@ -172,6 +263,15 @@ public class StatementManager {
 
 	}
 
+	/**
+	 * Método getFilledContactTypeByIdStatement. Método que se encarga de
+	 * generar la preparedStatement para buscar una llamada por id.
+	 * 
+	 * @param id
+	 *            Id de la llamada que queremos encontrar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	// Contact Types
 	public void getFilledContactTypeByIdStatement(int id) throws SQLException {
 		// Get text statement
@@ -183,6 +283,15 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilledSaveContacTypeStatement. Método que se encarga de generar
+	 * la preparedStatement para la inserción de un nuevo topo de contacto.
+	 * 
+	 * @param contactType
+	 *            Tipo de contacto a añadir.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilledSaveContactTypeStatement(ContactType contactType) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().insertContactTypeStatement();
@@ -193,6 +302,15 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilledUpdateContactTypeStatement. Método que se encarga de
+	 * generar la preparedStatement para la actualización de un contacto
+	 * 
+	 * @param contactType
+	 *            Tipo de contacto que queremos actualizar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilledUpdateContactTypeStatement(ContactType contactType) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().updateContactTypeStatement();
@@ -204,9 +322,15 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
-
-
-
+	/**
+	 * Método getOrderCallsSatement. Método que se encarga de generar la
+	 * preparedStatement para obtener las llamadas ordenadas por campo.
+	 * 
+	 * @param field
+	 *            Campo por el que ordenar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getOrderCallsStatement(String field) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getOrderCallsStatement(field);
@@ -216,6 +340,16 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilterCallsStatementGeneral. Método que se encarga de generar
+	 * la preparedStatement para el filtrado de llamadas.
+	 * 
+	 * @param field
+	 *            Campo que filtrar
+	 * @return prepareStatement prepareStatement generada.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	private PreparedStatement getFilterCallsStamentGeneral(String field) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getFilteredCallsStatement(field);
@@ -223,6 +357,17 @@ public class StatementManager {
 		return conn.prepareStatement(textStatement);
 	}
 
+	/**
+	 * Método getFilterCallsStatement. Método que se encarga de generar la
+	 * preparedStatement para filtrar llamadas.
+	 * 
+	 * @param field
+	 *            Campo por el que filtrar.
+	 * @param id
+	 *            Dato para filtrar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilterCallsStatement(String field, int id) throws SQLException {
 		PreparedStatement preparedStatement = getFilterCallsStamentGeneral(field);
 		// Prepare statement
@@ -230,6 +375,17 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilterCallsStatement. Método que se encarga de generar la
+	 * preparedStatement para filtrar llamadas por campo y tiempo.
+	 * 
+	 * @param field
+	 *            Campo a filtrar.
+	 * @param timeStamp
+	 *            Tiempo a filtrar.
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getFilterCallsStatement(String field, Timestamp timeStamp) throws SQLException {
 		PreparedStatement preparedStatement = getFilterCallsStamentGeneral(field);
 		// Prepare statement
@@ -237,6 +393,13 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getAllCallsStatement. Método que se encarga de generar la
+	 * preparedStatement para obtener todas las llamadas.
+	 * 
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getAllCallsStatement() throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getAllCallsStatement();
@@ -246,6 +409,13 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getAllContactsStatement. Método que se encarga de generar la
+	 * preparedStatement para obtener todos los contactos.
+	 * 
+	 * @throws SQLException
+	 *             Excepción sql.
+	 */
 	public void getAllContactsStatement() throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getAllContacts();
@@ -255,6 +425,12 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getAllContactsTypesStatement. Método que se encarga de generar la
+	 * preparedStatement para obtener todos los tipos de contactos.
+	 * 
+	 * @throws SQLException Excepción sql.
+	 */
 	public void getAllContactTypesStatement() throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getAllContactsTypes();
@@ -264,6 +440,11 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getOrderContactsStatement. Método que se encarga de generar la preparedStatement para la ordenacion de los contactos.
+	 * @param field Campo por el que ordenar.
+	 * @throws SQLException Excepción sql.
+	 */
 	public void getOrderContactsStatement(String field) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getOrderContactsStatement(field);
@@ -273,6 +454,12 @@ public class StatementManager {
 		this.preparedStatement = preparedStatement;
 	}
 
+	/**
+	 * Método getFilterContactsStatement. Método que se encarga de filtrar los contactos por campo.
+	 * @param field Campo por el que filtrar.
+	 * @param filteredField Valor por el  que filtrar.
+	 * @throws SQLException Excepción sql.
+	 */
 	public void getFilterContactsStatement(String field, String filteredField) throws SQLException {
 		// Get text statement
 		String textStatement = SingletonStatementGenerator.getInstance().getFilteredContactsStatement(field);
