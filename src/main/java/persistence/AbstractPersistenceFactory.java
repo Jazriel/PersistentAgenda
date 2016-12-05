@@ -4,8 +4,11 @@ import persistence.bin.FactoryBinFile;
 import persistence.database.FactoryDataBase;
 /**
  * Clase abstracta AbstractPersistenceFactory
- * @author Javier Martinez, Daniel Puente, Jaime Sagüillo, Jorge Zamora y Oscar Fernandez
- *
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
  */
 public class AbstractPersistenceFactory implements IAbstractPersistenceFactory {
 /**

@@ -3,12 +3,19 @@ package model;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
-
+/**
+ * Clase contacto.
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
+ */
 public class Contact implements Serializable {
 	/**
 	 * Auto generado por eclipse.
-	 * @author Javier Martinez, Daniel Puente, Jaime Sagüillo, Jorge Zamora y Oscar Fernandez
-	 */
+	 * 
+	 * */
 	private static final long serialVersionUID = 1L;
 /**
  * id de contacto.

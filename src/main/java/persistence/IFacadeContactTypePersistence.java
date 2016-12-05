@@ -5,8 +5,11 @@ import java.util.List;
 import model.ContactType;
 /**
  * Interface IFacadeContactTypePersistence
- * @author Javier Martinez, Daniel Puente, Jaime Sagüillo, Jorge Zamora y Oscar Fernandez
- *
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez 
  */
 public interface IFacadeContactTypePersistence {
 
