@@ -15,7 +15,7 @@ import model.Contact;
 import persistence.IFacadeContactPersistence;
 
 public class FacadeContactBinFile implements IFacadeContactPersistence {
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Contact> readContacts() {
 		List<Contact> contacts = new ArrayList<>();
@@ -96,7 +96,6 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		writeContacts(contacts);
 	}
 
-
 	@Override
 	public List<Contact> getAllContacts() {
 		return readContacts();
@@ -129,8 +128,10 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		List<Contact> contacts = readContacts();
 		List<Contact> filter_contacts = new ArrayList<>();
 		for (Contact contact : contacts) {
-			if (contact.getName().equals(filteredField)) {
-				filter_contacts.add(contact);
+			if (contact.getName() != null) {
+				if (contact.getName().equals(filteredField)) {
+					filter_contacts.add(contact);
+				}
 			}
 		}
 		return filter_contacts;
@@ -146,8 +147,5 @@ public class FacadeContactBinFile implements IFacadeContactPersistence {
 		}
 		return filter_contacts;
 	}
-
-
-	
 
 }

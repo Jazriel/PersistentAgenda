@@ -45,7 +45,7 @@ public class CUI {
 				switch (option) {
 				case 0:
 					System.out.println("Saliendo...");
-					break;
+					return;
 				case 1:
 					System.out.println("La opcion elegida ha sido <Base datos SQL>");
 					persistence = abstractPersistenceFactory.getDBPersistence();
@@ -62,50 +62,49 @@ public class CUI {
 				System.err.println(e.getMessage());
 			}
 		} while (option != 1 && option != 2 && option != 0);
-		
-		if (option < 0) {
-			// Initialize the persistences
-			contactPersitence = persistence.createContactPersistence();
-			callPersitence = persistence.createCallPersistence();
-			contactTypePersitence = persistence.createContactTypePersistence();
-	
-			// Choose the action
-		
-			option = -1;
 
-			do {
-				System.out.println("*****************Menu*****************");
-				System.out.println("* 1) Insertar: ");
-				System.out.println("* 2) Actualizar: ");
-				System.out.println("* 3) Consultar: ");
-				System.out.println("* 0) Salir: ");
-				try {
-					option = new Integer(bufferedReader.readLine());
-					switch (option) {
-					case 0:
-						System.out.print("Saliendo..");
-						break;
-					case 1:
-						System.out.println("La opcion elegida ha sido <Insertar>");
-						insertMenu();
-						break;
-					case 2:
-						System.out.println("La opcion elegida ha sido <Actualizar>");
-						updateMenu();
-						break;
-					case 3:
-						System.out.println("La opcion elegida ha sido <Consultar>");
-						getMenu();
-						break;
-					default:
-						System.out.println("Opción incorrecta en Menu. Vuelva a intentarlo!");
-						break;
-					}
-				} catch (IOException e) {
-					System.err.println(e.getMessage());
+		// Initialize the persistences
+		contactPersitence = persistence.createContactPersistence();
+		callPersitence = persistence.createCallPersistence();
+		contactTypePersitence = persistence.createContactTypePersistence();
+
+		// Choose the action
+
+		option = -1;
+
+		do {
+			System.out.println("*****************Menu*****************");
+			System.out.println("* 1) Insertar: ");
+			System.out.println("* 2) Actualizar: ");
+			System.out.println("* 3) Consultar: ");
+			System.out.println("* 0) Salir: ");
+			try {
+				option = new Integer(bufferedReader.readLine());
+				switch (option) {
+				case 0:
+					System.out.print("Saliendo..");
+					break;
+				case 1:
+					System.out.println("La opcion elegida ha sido <Insertar>");
+					insertMenu();
+					break;
+				case 2:
+					System.out.println("La opcion elegida ha sido <Actualizar>");
+					updateMenu();
+					break;
+				case 3:
+					System.out.println("La opcion elegida ha sido <Consultar>");
+					getMenu();
+					break;
+				default:
+					System.out.println("Opción incorrecta en Menu. Vuelva a intentarlo!");
+					break;
 				}
-			} while (option != 0);
-		}
+			} catch (IOException e) {
+				System.err.println(e.getMessage());
+			}
+		} while (option != 0);
+
 	}
 
 	private static void insertMenu() {
@@ -222,7 +221,7 @@ public class CUI {
 					System.out.println("Introduzca alguna anotación sobre la llamada:");
 					String notes = bufferedReader.readLine();
 					System.out.println("Elija el contacto:");
-					
+
 					contacts = contactPersitence.getAllContacts();
 					// Mostramos los contactos
 					showContacts(contacts);

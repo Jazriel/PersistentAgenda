@@ -17,6 +17,7 @@ import persistence.IFacadeCallPersistence;
 
 public class FacadeCallBinFile implements IFacadeCallPersistence {
 
+
 	@SuppressWarnings("unchecked")
 	public List<Call> readCalls() {
 		List<Call> calls = new ArrayList<>();
@@ -65,14 +66,15 @@ public class FacadeCallBinFile implements IFacadeCallPersistence {
 	}
 
 	@Override
-	public Call getCallById(int i) {
-		List<Call> calls = readCalls();
-		for (Call call : calls) {
-			if (call.getId() == i) {
-				return call;
+	public List<Call> getCallsByContactId(int i) {
+		List<Call> cs = readCalls();
+		List<Call> calls = new ArrayList<>();
+		for (Call call : cs) {
+			if (call.getContact().getId() == i) {
+				calls.add(call);
 			}
 		}
-		return null;
+		return calls;
 	}
 
 	@Override

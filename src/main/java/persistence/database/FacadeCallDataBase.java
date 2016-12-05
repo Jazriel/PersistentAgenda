@@ -10,19 +10,21 @@ import persistence.IFacadeCallPersistence;
 
 public class FacadeCallDataBase implements IFacadeCallPersistence {
 
-
 	@Override
-	public Call getCallById(int id) {
+	public List<Call> getCallsByContactId(int id) {
 		SingletonConnection connection = null;
 		StatementManager stmFiller = null;
 		ABCResultSetManager<Call> resultSetManager = null;
-		Call call = null;
+		List<Call> call = new ArrayList<>();
 		try {
 			connection = SingletonConnection.getInstance();
 			stmFiller = new StatementManager();
-			stmFiller.getFilledCallByIdStatement(id);
+			stmFiller.getFilledCallsByContactIdStatement(id);
 			resultSetManager = new CallResultSetManager(stmFiller.executeQuery());
-			call = resultSetManager.next();
+			while (resultSetManager.hasNext) {
+				call.add(resultSetManager.next());
+			}
+
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -49,7 +51,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			stmFiller.getFilledUpdateCallStatement(call);
 			stmFiller.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		} finally {
 			if (stmFiller != null) {
 				stmFiller.close();
@@ -70,7 +72,7 @@ public class FacadeCallDataBase implements IFacadeCallPersistence {
 			stmFiller.getFilledSaveCallStatement(call);
 			stmFiller.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 		} finally {
 			if (stmFiller != null) {
 				stmFiller.close();

@@ -121,12 +121,12 @@ public class IFacadeContactPersistenceTest {
 			}
 			for (Contact contact : contactsBefore) {
 				if (contactIds.contains(contact.getId())) {
-					contactIds.remove(contact.getId());
+					contactIds.remove(Integer.valueOf(contact.getId()));
 				} else {
 					assertTrue(false);
 				}
 			}
-			assertTrue(id == contactIds.remove(id));
+			assertTrue(contactIds.remove(Integer.valueOf(id)));
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getAllContacts pass");
@@ -141,7 +141,7 @@ public class IFacadeContactPersistenceTest {
 			}
 		}
 
-		return ret+1;
+		return ret + 1;
 	}
 
 	@Test
@@ -149,18 +149,15 @@ public class IFacadeContactPersistenceTest {
 		PrintAtDepth.print(1, "getOrderContacts start");
 
 		for (IFactoryPersistence persistence : persistences) {
-			String field = "id";
+			String field = "name";
 			PrintAtDepth.print(2, persistence.getClass() + " start");
 			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
 			List<Contact> contacts = facadeContactPersistence.getOrderContacts(field);
-			List<Integer> contIds = new ArrayList<>();
-
-			contIds.add(contacts.get(0).getId());
 			for (int i = 1; i < contacts.size(); i++) {
-				if (contacts.get(i - 1).getId() <= contacts.get(i).getId()) {
-					contIds.add(contacts.get(i).getId());
-				} else {
-					assertTrue(false);
+				if (contacts.get(i - 1).getName() != null && contacts.get(i).getName() != null) {
+					if (0 < contacts.get(i - 1).getName().compareTo(contacts.get(i).getName())) {
+						assertTrue(false);
+					}
 				}
 			}
 

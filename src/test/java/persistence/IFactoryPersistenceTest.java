@@ -32,6 +32,7 @@ public class IFactoryPersistenceTest {
 	@Test
 	public void createContactPersistenceTest(){
 		PrintAtDepth.print(1, "createContactPersistenceTest start");
+		@SuppressWarnings("rawtypes")
 		List<Class> classes = new ArrayList<>();
 		classes.add(persistence.database.FacadeContactDataBase.class);
 		classes.add(persistence.bin.FacadeContactBinFile.class);
@@ -50,6 +51,7 @@ public class IFactoryPersistenceTest {
 	@Test
 	public void createCallPersistenceTest(){
 		PrintAtDepth.print(1, "createCallPersistenceTest start");
+		@SuppressWarnings("rawtypes")
 		List<Class> classes = new ArrayList<>();
 		classes.add(persistence.database.FacadeCallDataBase.class);
 		classes.add(persistence.bin.FacadeCallBinFile.class);
@@ -68,6 +70,7 @@ public class IFactoryPersistenceTest {
 	@Test
 	public void createContactTypePersistenceTest(){
 		PrintAtDepth.print(1, "createContactTypePersistenceTest start");
+		@SuppressWarnings("rawtypes")
 		List<Class> classes = new ArrayList<>();
 		classes.add(persistence.database.FacadeContactTypeDataBase.class);
 		classes.add(persistence.bin.FacadeContactTypeBinFile.class);

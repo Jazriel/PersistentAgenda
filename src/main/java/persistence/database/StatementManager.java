@@ -126,9 +126,9 @@ public class StatementManager {
 	}
 
 	// Calls
-	public void getFilledCallByIdStatement(int id) throws SQLException {
+	public void getFilledCallsByContactIdStatement(int id) throws SQLException {
 		// Get text statement
-		String textStatement = SingletonStatementGenerator.getInstance().getCallsByIdStatement();
+		String textStatement = SingletonStatementGenerator.getInstance().getCallsByContactIdStatement();
 		// Create PreparedStatement
 		PreparedStatement preparedStatement = conn.prepareStatement(textStatement);
 		// Prepare statement

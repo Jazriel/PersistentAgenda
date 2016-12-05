@@ -3,19 +3,20 @@ package persistence;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import model.Call;
+import model.Contact;
 import persistence.util.PrintAtDepth;
 
 public class IFacadeCallPersistenceTest {
@@ -42,31 +43,36 @@ public class IFacadeCallPersistenceTest {
 				attribs.add(null);
 			}
 			int id = getIncMaxCallId(facadeCallPersistence);
-			facadeCallPersistence.saveCall(new Call(id, attribs, null));
-			Call call = facadeCallPersistence.getCallById(id);
-			assertEquals(id, call.getId());
+			facadeCallPersistence.saveCall(new Call(id, new Contact(1, attribs, null),
+					new Timestamp(System.currentTimeMillis()).toString(), "Subject", ""));
+			boolean b = false;
+			for (Call call : facadeCallPersistence.getAllCalls()) {
+				if (call.getId() == id) {
+					b = true;
+				}
+			}
+			assertTrue(b);
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "saveCall pass");
 	}
 
 	@Test
-	public void testGetCallById() {
+	public void testGetCallsByContactId() {
 		PrintAtDepth.print(1, "getCallById start");
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
 			IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
-			List<String> attribs = new ArrayList<>();
-			for (int i = 0; i < 20; i++) {
-				attribs.add(null);
+			int contactId = 1;
+			List<Call> calls = facadeCallPersistence.getCallsByContactId(contactId);
+			assertTrue(calls.stream().filter(c -> c.getContact().getId()==contactId).collect(Collectors.toList()).size()==calls.size());
+			for (Call call : calls) {
+				assertTrue(call.getContact().getId()==contactId);
 			}
-			int id = getIncMaxCallId(facadeCallPersistence);
-			facadeCallPersistence.saveCall(new Call(id, attribs, null));
-			Call call = facadeCallPersistence.getCallById(id);
-			assertTrue(call != null);
-			// PrintAtDepth.print(3, "Call was not null");
-			assertTrue(call.getId() == id);
-			// PrintAtDepth.print(3, "Id was correct.");
+
+			List<Call> allCalls = facadeCallPersistence.getAllCalls();
+			assertTrue(allCalls.stream().filter(c -> c.getContact().getId()== contactId).collect(Collectors.toList()).size()==calls.size());
+			
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getCallById pass");
@@ -82,19 +88,24 @@ public class IFacadeCallPersistenceTest {
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
-			String name = "Pepitico";
+			String subject = "Sujeto";
 			int id = getIncMaxCallId(facadeCallPersistence);
-			facadeCallPersistence.saveCall(new Call(id, attribs, null));
-			Call call = facadeCallPersistence.getCallById(id);
+			facadeCallPersistence.saveCall(new Call(id, new Contact(1, attribs, null),
+					new Timestamp(System.currentTimeMillis()).toString(), "SubjectFalso", ""));
+			Call call = facadeCallPersistence.getCallsByContactId(1).stream().filter(c -> c.getId() == id)
+					.collect(Collectors.toList()).get(0);
+			
 			assertTrue(call != null);
 			PrintAtDepth.print(3, "First check on call was not null");
-			call.setName(name);
+			call.setSubject(subject);
+
 			facadeCallPersistence.updateCall(call);
 			call = null;
-			call = facadeCallPersistence.getCallById(id);
+			call = facadeCallPersistence.getAllCalls().stream().filter(c -> c.getId() == id)
+					.collect(Collectors.toList()).get(0);
 			assertTrue(call != null);
 			PrintAtDepth.print(3, "Second check on call was not null");
-			assertTrue(call.getName().equals(name));
+			assertTrue(call.getSubject().equals(subject));
 			PrintAtDepth.print(3, "Id was correct.");
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
@@ -107,174 +118,118 @@ public class IFacadeCallPersistenceTest {
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
 			IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
+
 			List<Call> callsBefore = facadeCallPersistence.getAllCalls();
 			List<String> attribs = new ArrayList<>();
 			for (int i = 0; i < 20; i++) {
 				attribs.add(null);
 			}
 			int id = getIncMaxCallId(facadeCallPersistence);
-			facadeCallPersistence.saveCall(new Call(id, attribs, null));
+			facadeCallPersistence.saveCall(new Call(id, new Contact(1, attribs, null),
+					new Timestamp(System.currentTimeMillis()).toString(), "Subject", ""));
 			List<Call> callsAfter = facadeCallPersistence.getAllCalls();
-			for (Call call : callsBefore) {
-				assertTrue(callsAfter.remove(call));
+			List<Integer> callIds = new ArrayList<Integer>();
+			for (Call call : callsAfter) {
+				callIds.add(call.getId());
 			}
-			assertEquals(callsAfter.get(0).getId(), id);
-
+			for (Call call : callsBefore) {
+				if (callIds.contains(call.getId())) {
+					callIds.remove(Integer.valueOf(call.getId()));
+				} else {
+					assertTrue(false);
+				}
+			}
+			assertTrue(callIds.remove(Integer.valueOf(id)));
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getAllCalls pass");
 	}
 
+	private int getIncMaxCallId(IFacadeCallPersistence persistence) {
+		int ret = 0;
+		List<Call> calls = persistence.getAllCalls();
+		for (Call call : calls) {
+			if (call.getId() > ret) {
+				ret = call.getId();
+			}
+		}
+
+		return ret + 1;
+	}
+
 	@Test
 	public void testGetOrderCalls() {
 		PrintAtDepth.print(1, "getOrderCalls start");
-		// , "call_type_id"
-		for (IFactoryPersistence persistence : persistences) {
-			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "id", "name", "surname", "title", "address", "city", "province", "postal_Code",
-					"region", "country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
-					"fax_Number", "email", "notes" };
-			for (String fieldString : fields) {
-				PrintAtDepth.print(3, fieldString + " start");
-				IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
-				List<Call> calls = facadeCallPersistence.getOrderCalls(fieldString);
-				Field field = fieldString2field(fieldString);
-				int i = 0;
-				do {
-					String fieldVal = fieldValue(field, calls.get(i));
-					i++;
-					String fieldValAux = fieldValue(field, calls.get(i));
-					assertTrue(0 >= fieldVal.compareTo(fieldValAux));
-				} while (i < calls.size());
 
-				PrintAtDepth.print(3, fieldString + " pass");
+		for (IFactoryPersistence persistence : persistences) {
+			String field = "id";
+			PrintAtDepth.print(2, persistence.getClass() + " start");
+			IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
+			List<Call> calls = facadeCallPersistence.getOrderCalls(field);
+			List<Integer> contIds = new ArrayList<>();
+
+			contIds.add(calls.get(0).getId());
+			for (int i = 1; i < calls.size(); i++) {
+				if (calls.get(i - 1).getId() <= calls.get(i).getId()) {
+					contIds.add(calls.get(i).getId());
+				} else {
+					assertTrue(false);
+				}
 			}
+
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getOrderCalls pass");
 	}
 
-	private String fieldValue(Field field, Call call) {
-		try {
-			return (String) field.get(call);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private Field fieldString2field(String field) {
-		try {
-			switch (field) {
-			case "postal_Code":
-				return Call.class.getField("getPostalCode");
-			case "company_Name":
-				return Call.class.getField("getCompanyName");
-			case "work_Phone":
-				return Call.class.getField("getWorkPhone");
-			case "work_Extension":
-				return Call.class.getField("getWorkExtension");
-			case "mobile_Phone":
-				return Call.class.getField("getMobilePhone");
-			case "fax_Number":
-				return Call.class.getField("getFaxNumber");
-			case "call_type_id":
-				return Call.class.getField("getCallTypeId");
-			default:
-				return Call.class.getField(field);
-			}
-		} catch (Exception e) {
-			PrintAtDepth.err(0, "dbField2objectMethod FAILED");
-			return null;
-		}
-
-	}
-
 	@Test
-	public void testFilterCalls() {
+	public void testFilterCallsId() {
 		PrintAtDepth.print(1, "getFilterCalls start");
-		
+
 		for (IFactoryPersistence persistence : persistences) {
 			PrintAtDepth.print(2, persistence.getClass() + " start");
-			String[] fields = { "name", "surname", "title", "address", "city", "province", "postal_Code", "region",
-					"country", "company_Name", "workstation", "work_Phone", "work_Extension", "mobile_Phone",
-					"fax_Number", "email", "notes" };
-			for (String fieldString : fields) {
-				PrintAtDepth.print(3, fieldString + " start");
-				IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
-				Call callForField = facadeCallPersistence.getAllCalls().get(0);
-				Field field = fieldString2field(fieldString);
-				String filterString = fieldValue(field, callForField);
-				List<Call> callsFiltered = facadeCallPersistence.getFilterCalls(fieldString, filterString);
-				//  check all the list field == filterString
-				for (Call call : callsFiltered) {
-					assertEquals(filterString, fieldValue(field, call));
-				}
-				//  check all in getAllCalls with field == filterString -> in callsFiltered
-				List<Call> allCalls = facadeCallPersistence.getAllCalls();
-				for (Call call : allCalls) {
-					if(filterString==fieldValue(field, call)){
-						assertTrue(callsFiltered.remove(call));
-					}
-				}
-				PrintAtDepth.print(3, field + " pass");
+			IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
+			Call callForId = facadeCallPersistence.getAllCalls().get(0);
+
+			List<Call> calls = facadeCallPersistence.getFilterCalls("contact_id", callForId.getContact().getId());
+			for (Call call : calls) {
+				assertEquals(call.getContact().getId(), callForId.getContact().getId());
 			}
+
 			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
 		PrintAtDepth.print(1, "getFilterCalls pass");
 	}
 
-	private int getIncMaxCallId(IFacadeCallPersistence persistence) {
-		if (persistence instanceof persistence.database.FacadeCallDataBase) {
-			return getIncMaxCallIdDB();
-		} else if (persistence instanceof persistence.bin.FacadeCallBinFile) {
-			return getIncMaxCallIdBinFile(persistence);
-		} else {
-			throw new UnsupportedOperationException();
-		}
-	}
+	@Test
+	public void testFilterCallsTimestamp() {
+		PrintAtDepth.print(1, "getFilterCalls start");
 
-	private int getIncMaxCallIdBinFile(IFacadeCallPersistence persistence) {
-		int ret;
-		try {
-			ret = persistence.getOrderCalls("id").get(0).getId();
-		} catch (NullPointerException e) {
-			return 1;
-		}
-		return ret;
-	}
+		for (IFactoryPersistence persistence : persistences) {
+			PrintAtDepth.print(2, persistence.getClass() + " start");
+			IFacadeCallPersistence facadeCallPersistence = persistence.createCallPersistence();
 
-	private int getIncMaxCallIdDB() {
-		Connection connection = null;
-		Statement stm = null;
-		ResultSet rs = null;
-		int call = 0;
-		try {
-			connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/phonebook", "SA", "");
-			stm = connection.createStatement();
-			rs = stm.executeQuery("SELECT COALESCE(MAX(id), 0) FROM calls");
-			rs.next();
-			call = rs.getInt(1);
-		} catch (SQLException e) {
-			PrintAtDepth.err(0, "getMaxCallId Error: " + e.getMessage());
-		} finally {
+			Call callForDate = facadeCallPersistence.getAllCalls().get(0);
+
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+			String str = callForDate.getCallDate();
+			Date date = null;
 			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stm != null) {
-					stm.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (Exception e) {
-				PrintAtDepth.err(0, e.getMessage());
+				date = dateFormat.parse(str);
+			} catch (ParseException e) {
+				PrintAtDepth.err(0, "testFilterCallsTimestamp didnt parse.");
 			}
+			long time = date.getTime();
+			Timestamp timeStamp = new Timestamp(time);
+
+			List<Call> calls = facadeCallPersistence.getFilterCalls("call_Date", timeStamp);
+			for (Call call : calls) {
+				assertEquals(call.getCallDate(), str);
+			}
+
+			PrintAtDepth.print(2, persistence.getClass() + " pass");
 		}
-		return call + 1;
+		PrintAtDepth.print(1, "getFilterCalls pass");
 	}
 
 }
