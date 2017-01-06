@@ -21,12 +21,13 @@ public class SelectTab {
 	private final String[] filOrdStrings = new String[] { "Filtrar", "Ordenar" };
 	private DefaultComboBoxModel[] fieldComboModel = { new DefaultComboBoxModel(new String[] { "Apellido", "Nombre" }),
 			new DefaultComboBoxModel(new String[] { "Contacto", "Fecha" }) };
+	private JPanel selectPanel;
 
 	
 	public SelectTab(JTabbedPane tabbedPane) {
 
-		JPanel requestPanel = new JPanel();
-		tabbedPane.addTab("Consultar", null, requestPanel, null);
+		selectPanel = new JPanel();
+		tabbedPane.addTab("Consultar", null, selectPanel, null);
 		
 		DefaultComboBoxModel filOrdComboModel = new DefaultComboBoxModel(filOrdStrings);
 
@@ -34,20 +35,20 @@ public class SelectTab {
 
 		filterTextField = new JTextField();
 		filterTextField.setColumns(10);
-		requestPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		selectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		filOrdCombo = new JComboBox();
 		filOrdCombo.setModel(filOrdComboModel);
-		requestPanel.add(filOrdCombo);
-		requestPanel.add(lblPor);
+		selectPanel.add(filOrdCombo);
+		selectPanel.add(lblPor);
 
 		fieldCombo = new JComboBox();
 		fieldCombo.setModel(fieldComboModel[0]);
-		requestPanel.add(fieldCombo);
-		requestPanel.add(filterTextField);
+		selectPanel.add(fieldCombo);
+		selectPanel.add(filterTextField);
 
 		Button button = new Button("Ejecutar");
-		requestPanel.add(button);
+		selectPanel.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -63,6 +64,7 @@ public class SelectTab {
 				} else {
 					filterTextField.setVisible(false);
 				}
+				selectPanel.repaint();
 			}
 		});
 	}

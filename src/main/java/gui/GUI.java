@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,20 +11,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.JScrollPane;
 
 public class GUI extends JFrame {
 
@@ -38,6 +29,9 @@ public class GUI extends JFrame {
 	private static final String[] persistenceTypes = new String[] { "Base de datos", "Ficheros binario" };
 	private SelectTab selectTab;
 	private UpdateTab updateTab;
+	private InsertTab insertTab;
+
+	private JComboBox persistCombo;
 
 
 	/**
@@ -85,23 +79,36 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (typeCombo.getSelectedItem().toString() == types[0]) {
 					selectTab.setVisibility(true, 0);
+					updateTab.setView(0);
+					insertTab.setView(0);
 				} else if (typeCombo.getSelectedItem().toString() == types[1]) {
 					selectTab.setVisibility(true, 1);
+					updateTab.setView(1);
+					insertTab.setView(1);
 				} else {
 					selectTab.setVisibility(false);
+					updateTab.setView(2);
+					insertTab.setView(2);
 				}
+				contentPane.repaint();
 			}
 		});
 	}
 
+	private void persistenceComboListener() {
+		persistCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
 	
 	private void initializeTabBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
 
-
-		JPanel insertPanel = new JPanel();
-		tabbedPane.addTab("Insertar", null, insertPanel, null);
 		contentPane.setLayout(gl_contentPane);
 
+		insertTab = new InsertTab(tabbedPane);
+		
 		updateTab = new UpdateTab(tabbedPane); // :D
 		
 		selectTab = new SelectTab(tabbedPane);
@@ -124,7 +131,7 @@ public class GUI extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)));
 
-		JComboBox persistCombo = new JComboBox();
+		persistCombo = new JComboBox();
 		panel.add(persistCombo);
 		persistCombo.setModel(new DefaultComboBoxModel(persistenceTypes));
 
@@ -140,6 +147,9 @@ public class GUI extends JFrame {
 		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		
+		JScrollPane scroll = new JScrollPane(contentPane);
+		
+		setContentPane(scroll);
 	}
 }

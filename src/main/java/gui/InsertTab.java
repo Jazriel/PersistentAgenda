@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,40 +17,31 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class UpdateTab {
+public class InsertTab {
 
 	private JTextField textField;
 	private DefaultComboBoxModel comboBoxModel;
 	private String[] comboStrings;
 	private List<JTextField> contactTextFields;
-	private JPanel updatePanel;
+	private JPanel insertPanel;
 	private Map<Integer, JPanel> viewDict;
 
-	public UpdateTab(JTabbedPane tabbedPane) {
+	public InsertTab(JTabbedPane tabbedPane) {
 
-		updatePanel = new JPanel();
-		tabbedPane.addTab("Actualizar", null, updatePanel, null);
+		insertPanel = new JPanel();
+		tabbedPane.addTab("Insertar", null, insertPanel, null);
 		
 		viewDict = new HashMap<>();
 		viewDict.put(0, createContactPanel());
 		viewDict.put(1, createCallPanel());
 		viewDict.put(2, createContactTypePanel());
-		updatePanel.add(viewDict.get(0));
+		insertPanel.add(viewDict.get(0));
 	}
 
 	private JPanel createContactTypePanel() {
 		JPanel contactTypePanel = new JPanel();
 
 		contactTypePanel.setLayout(new GridLayout(3, 2, 2, 2));
-
-		JLabel lblTipoDeContacto = new JLabel("Tipo de contacto a modificar:");
-		contactTypePanel.add(lblTipoDeContacto);
-
-		JComboBox comboBox = new JComboBox();
-		comboStrings = new String[] { "a", "b" }; // TODO llamar persistencia.
-		comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
-		contactTypePanel.add(comboBox);
 
 		JLabel lblNombreDelTipo = new JLabel("Nombre del tipo de contacto:");
 		contactTypePanel.add(lblNombreDelTipo);
@@ -60,7 +53,7 @@ public class UpdateTab {
 		JLabel label = new JLabel("");
 		contactTypePanel.add(label);
 
-		JButton btnEjecutar = new JButton("Ejecutar");
+		JButton btnEjecutar = new JButton("Insertar");
 		contactTypePanel.add(btnEjecutar);
 	
 		return contactTypePanel;
@@ -71,21 +64,12 @@ public class UpdateTab {
 		JPanel contactPanel = new JPanel();
 		contactPanel.setLayout(new GridLayout(20, 2, 2, 2));
 
-		JLabel lblTipoDeContacto = new JLabel("Contacto a modificar:");
-		contactPanel.add(lblTipoDeContacto);
-
-		JComboBox comboBox = new JComboBox();
-		comboStrings = new String[] { "a", "b" }; // TODO llamar persistencia.
-		comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
-		contactPanel.add(comboBox);
-
 		createContactFields(contactPanel);
 
 		JLabel label = new JLabel("");
 		contactPanel.add(label);
 
-		JButton btnEjecutar = new JButton("Ejecutar");
+		JButton btnEjecutar = new JButton("Insertar");
 		contactPanel.add(btnEjecutar);
 		
 		return contactPanel;
@@ -110,23 +94,15 @@ public class UpdateTab {
 	
 	private JPanel createCallPanel() {
 		JPanel callPanel = new JPanel();
-		callPanel.setLayout(new GridLayout(10, 2, 2, 2));
-
-		JLabel lblTipoDeContacto = new JLabel("Llamada a modificar:");
-		callPanel.add(lblTipoDeContacto);
-
-		JComboBox comboBox = new JComboBox();
-		comboStrings = new String[] { "a", "b" }; // TODO llamar persistencia.
-		comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
-		callPanel.add(comboBox);
+		callPanel.setLayout(new GridLayout(5, 2, 2, 2));
 
 		createCallFields(callPanel);
 
 		JLabel label = new JLabel("");
 		callPanel.add(label);
 
-		JButton btnEjecutar = new JButton("Ejecutar");
+		JButton btnEjecutar = new JButton("Insertar");
+		
 		callPanel.add(btnEjecutar);
 		return callPanel;
 	}	
@@ -147,9 +123,8 @@ public class UpdateTab {
 	}
 
 	public void setView(int view) {
-		updatePanel.removeAll();
-		updatePanel.add(viewDict.get(view));
-		
+		insertPanel.removeAll();
+		insertPanel.add(viewDict.get(view));
 	}
 	
 	
