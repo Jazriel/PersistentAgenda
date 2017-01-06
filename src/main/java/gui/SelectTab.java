@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 public class SelectTab {
@@ -22,7 +23,11 @@ public class SelectTab {
 			new DefaultComboBoxModel(new String[] { "Contacto", "Fecha" }) };
 
 	
-	public SelectTab(JPanel requestPanel) {
+	public SelectTab(JTabbedPane tabbedPane) {
+
+		JPanel requestPanel = new JPanel();
+		tabbedPane.addTab("Consultar", null, requestPanel, null);
+		
 		DefaultComboBoxModel filOrdComboModel = new DefaultComboBoxModel(filOrdStrings);
 
 		lblPor = new JLabel("por");

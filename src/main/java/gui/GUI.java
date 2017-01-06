@@ -13,6 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JScrollPane;
 
 public class GUI extends JFrame {
 
@@ -26,6 +37,7 @@ public class GUI extends JFrame {
 	private static final String[] types = new String[] { "Contactos", "Llamadas", "Tipos de contacto" };
 	private static final String[] persistenceTypes = new String[] { "Base de datos", "Ficheros binario" };
 	private SelectTab selectTab;
+	private UpdateTab updateTab;
 
 
 	/**
@@ -84,17 +96,15 @@ public class GUI extends JFrame {
 
 	
 	private void initializeTabBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
-		JPanel updatePanel = new JPanel();
-		tabbedPane.addTab("Actualizar", null, updatePanel, null);
 
-		JPanel requestPanel = new JPanel();
-		tabbedPane.addTab("Consultar", null, requestPanel, null);
 
 		JPanel insertPanel = new JPanel();
 		tabbedPane.addTab("Insertar", null, insertPanel, null);
 		contentPane.setLayout(gl_contentPane);
 
-		selectTab = new SelectTab(requestPanel);
+		updateTab = new UpdateTab(tabbedPane); // :D
+		
+		selectTab = new SelectTab(tabbedPane);
 	}
 
 	private void initializeComboButsBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
