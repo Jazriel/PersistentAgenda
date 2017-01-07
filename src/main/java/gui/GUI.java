@@ -13,9 +13,9 @@ public class GUI {
 	
 	
 	private static IFactoryPersistence persistence;
-	private static IFacadeContactPersistence contactPersitence;
-	private static IFacadeCallPersistence callPersitence;
-	private static IFacadeContactTypePersistence contactTypePersitence;
+	protected static IFacadeContactPersistence contactPersitence;
+	protected static IFacadeCallPersistence callPersitence;
+	protected static IFacadeContactTypePersistence contactTypePersitence;
 	private static IAbstractPersistenceFactory abstractPersistenceFactory;
 	/**
 	 * Launch the application.

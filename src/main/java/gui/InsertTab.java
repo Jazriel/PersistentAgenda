@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import model.Call;
+import model.Contact;
+
 public class InsertTab {
 
 	private JTextField textField;
@@ -25,12 +28,13 @@ public class InsertTab {
 	private List<JTextField> contactTextFields;
 	private JPanel insertPanel;
 	private Map<Integer, JPanel> viewDict;
+	private ArrayList<JTextField> callTextFields;
 
 	public InsertTab(JTabbedPane tabbedPane) {
 
 		insertPanel = new JPanel();
 		tabbedPane.addTab("Insertar", null, insertPanel, null);
-		
+
 		viewDict = new HashMap<>();
 		viewDict.put(0, createContactPanel());
 		viewDict.put(1, createCallPanel());
@@ -55,12 +59,12 @@ public class InsertTab {
 
 		JButton btnEjecutar = new JButton("Insertar");
 		contactTypePanel.add(btnEjecutar);
-	
+
 		return contactTypePanel;
 	}
 
 	private JPanel createContactPanel() {
-		
+
 		JPanel contactPanel = new JPanel();
 		contactPanel.setLayout(new GridLayout(20, 2, 2, 2));
 
@@ -71,7 +75,7 @@ public class InsertTab {
 
 		JButton btnEjecutar = new JButton("Insertar");
 		contactPanel.add(btnEjecutar);
-		
+
 		return contactPanel;
 	}
 
@@ -91,7 +95,7 @@ public class InsertTab {
 			jTextField.setColumns(10);
 		}
 	}
-	
+
 	private JPanel createCallPanel() {
 		JPanel callPanel = new JPanel();
 		callPanel.setLayout(new GridLayout(5, 2, 2, 2));
@@ -102,21 +106,29 @@ public class InsertTab {
 		callPanel.add(label);
 
 		JButton btnEjecutar = new JButton("Insertar");
-		
+
+		btnEjecutar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Call call = new Call(new Contact(Integer.parseInt(callTextFields.get(0).getText()), null, null),
+						callTextFields.get(1).getText(), callTextFields.get(2).getText());
+				GUI.callPersitence.saveCall(call);
+			}
+		});
 		callPanel.add(btnEjecutar);
 		return callPanel;
-	}	
-	
+	}
+
 	private void createCallFields(JPanel callPanel) {
-		contactTextFields = new ArrayList<>();
-		String[] fieldsString = { "Contacto", "Fecha", "Asunto", "Notas"};
+		callTextFields = new ArrayList<>();
+		String[] fieldsString = { "Contacto", "Fecha", "Asunto", "Notas" };
 		List<String> fields = Arrays.asList(fieldsString);
 		for (String field : fields) {
 			JLabel fieldLabel = new JLabel(field);
 			callPanel.add(fieldLabel);
 
 			JTextField jTextField = new JTextField();
-			contactTextFields.add(jTextField);
+			callTextFields.add(jTextField);
 			callPanel.add(jTextField);
 			jTextField.setColumns(10);
 		}
@@ -126,7 +138,5 @@ public class InsertTab {
 		insertPanel.removeAll();
 		insertPanel.add(viewDict.get(view));
 	}
-	
-	
-	
+
 }
