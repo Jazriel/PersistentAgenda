@@ -74,11 +74,10 @@ public class MainWindow extends JFrame {
 		initializeMainWindow();
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 
-		initializeComboButsBar(tabbedPane, gl_contentPane);
+		initializeComboButsBarWithLayout(tabbedPane);
 
-		initializeTabBar(tabbedPane, gl_contentPane);
+		initializeTabBar(tabbedPane);
 
 		initializeActionListeners();
 	}
@@ -136,9 +135,7 @@ public class MainWindow extends JFrame {
 	 *            Panel sobre el que trabajar
 	 * @param gl_contentPane
 	 */
-	private void initializeTabBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
-
-		contentPane.setLayout(gl_contentPane);
+	private void initializeTabBar(JTabbedPane tabbedPane) {
 
 		insertTab = new InsertTab(tabbedPane);
 
@@ -153,7 +150,10 @@ public class MainWindow extends JFrame {
 	 * @param tabbedPane
 	 * @param gl_contentPane
 	 */
-	private void initializeComboButsBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
+	private void initializeComboButsBarWithLayout(JTabbedPane tabbedPane) {
+
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+
 		JPanel panel = new JPanel();
 		// Group layout generado automaticamente
 		gl_contentPane
@@ -179,6 +179,9 @@ public class MainWindow extends JFrame {
 
 		typeCombo.setModel(new DefaultComboBoxModel(types));
 		panel.add(typeCombo);
+
+		contentPane.setLayout(gl_contentPane);
+
 	}
 
 	/**

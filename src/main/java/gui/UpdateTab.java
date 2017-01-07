@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import model.Contact;
+import model.ContactType;
 /**
  * UpdateTab. Clase que se encarga de las actualizaciones.
  * 
@@ -127,7 +132,28 @@ public class UpdateTab {
 		JButton btnEjecutar = new JButton("Ejecutar");
 		contactPanel.add(btnEjecutar);
 		
+		insertContactListener(btnEjecutar, comboBox);
+		
 		return contactPanel;
+	}
+	
+	private void insertContactListener(JButton btnEjecutar, JComboBox comboBox) {
+		btnEjecutar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Lista de atributos del contacto
+				List<String> attribs = new ArrayList<>();
+
+				int i = 0;
+				for (; i < contactTextFields.size() - 1; i++) {
+					attribs.add(contactTextFields.get(i).getText());
+				}
+
+				Contact contact = new Contact(Integer.parseInt(comboBox.getSelectedItem().toString()), attribs,
+						new ContactType(Integer.parseInt(contactTextFields.get(i).getText()), ""));
+				MainGUI.contactPersitence.updateContact(contact);
+			}
+		});
 	}
 
 	/**
@@ -175,6 +201,7 @@ public class UpdateTab {
 
 		JButton btnEjecutar = new JButton("Ejecutar");
 		callPanel.add(btnEjecutar);
+		
 		return callPanel;
 	}	
 	

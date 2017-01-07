@@ -5,7 +5,14 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,8 +126,13 @@ public class SelectTab {
 						contacts = MainGUI.contactPersitence.getOrderContacts("surname");
 					}
 				}
+				String[] contactsStrings = new String[contacts.size()];
+				//
+				for (int i = 0; i < contactsStrings.length; i++) {
+					contactsStrings[i] = contacts.get(i).toString();
+				}
 				// Mostramos contactos
-				
+				SelectResultWindow srw = new SelectResultWindow(contactsStrings);
 			}
 		});
 	}
@@ -147,16 +159,66 @@ public class SelectTab {
 		selectPanel.add(fieldCombo);
 		selectPanel.add(filterTextField);
 
+		dateComboListener(fieldCombo, filterTextField);
+
 		Button button = new Button("Ejecutar");
 		selectPanel.add(button);
-		callListener(button);
+		callListener(button, fieldCombo, fieldCombo, filterTextField);
 
 		return selectPanel;
 	}
 
-	private void callListener(Button button) {
-		// TODO Auto-generated method stub
+	private void dateComboListener(JComboBox fieldCombo, JTextField filterTextField) {
+		fieldCombo.addItemListener(new ItemListener() {
 
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				filterTextField.setText("");
+				if (fieldCombo.getSelectedIndex() == 1) {
+					filterTextField.setText("dd/mm/yyyy");
+				}
+			}
+		});
+	}
+
+	private void callListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo, JTextField filterTextField) {
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Call> calls = new ArrayList<>();
+				if (filOrdCombo.getSelectedIndex() == 0) {
+					if (fieldCombo.getSelectedIndex() == 0) {
+						calls = MainGUI.callPersitence.getFilterCalls("contact_id",
+								Integer.parseInt(filterTextField.getText()));
+					} else {
+						String string = filterTextField.getText();
+						// Parseo a TimeStamp
+						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						Date date = null;
+						try {
+							date = dateFormat.parse(filterTextField.getText());
+						} catch (ParseException e) {
+							System.err.println(e.getMessage());
+						}
+						Timestamp timeStamp = new Timestamp(date.getTime());
+						System.out.println(timeStamp.toString());
+						calls = MainGUI.callPersitence.getFilterCalls("call_Date", timeStamp);
+					}
+				} else {
+					if (fieldCombo.getSelectedIndex() == 0) {
+						calls = MainGUI.callPersitence.getOrderCalls("contact_id");
+					} else {
+						calls = MainGUI.callPersitence.getOrderCalls("call_Date");
+					}
+				}
+				String[] contactsStrings = new String[calls.size()];
+				//
+				for (int i = 0; i < contactsStrings.length; i++) {
+					contactsStrings[i] = calls.get(i).toString();
+				}
+				// Mostramos contactos
+				SelectResultWindow srw = new SelectResultWindow(contactsStrings);
+			}
+		});
 	}
 
 	private JPanel createContactTypePanel() {
