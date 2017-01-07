@@ -49,27 +49,6 @@ public class IFacadeContactPersistenceTest {
 		PrintAtDepth.print(1, "saveContact pass");
 	}
 
-	@Test
-	public void testGetContactById() {
-		PrintAtDepth.print(1, "getContactById start");
-		for (IFactoryPersistence persistence : persistences) {
-			PrintAtDepth.print(2, persistence.getClass() + " start");
-			IFacadeContactPersistence facadeContactPersistence = persistence.createContactPersistence();
-			List<String> attribs = new ArrayList<>();
-			for (int i = 0; i < 20; i++) {
-				attribs.add(null);
-			}
-			int id = getIncMaxContactId(facadeContactPersistence);
-			facadeContactPersistence.saveContact(new Contact(id, attribs, null));
-			Contact contact = facadeContactPersistence.getContactById(id);
-			assertTrue(contact != null);
-			PrintAtDepth.print(3, "Contact was not null");
-			assertTrue(contact.getId() == id);
-			PrintAtDepth.print(3, "Id was correct.");
-			PrintAtDepth.print(2, persistence.getClass() + " pass");
-		}
-		PrintAtDepth.print(1, "getContactById pass");
-	}
 
 	@Test
 	public void testUpdateContact() {

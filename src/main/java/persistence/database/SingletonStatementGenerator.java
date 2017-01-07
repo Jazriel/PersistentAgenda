@@ -35,11 +35,11 @@ public class SingletonStatementGenerator {
 	// Contact Statements
 	public String insertContactStatement() {
 		return "INSERT INTO CONTACTS"
-				+ "( \"ID\", \"NAME\", \"SURNAME\", \"TITLE\", \"ADDRESS\", \"CITY\", \"PROVINCE\", "
+				+ "(\"NAME\", \"SURNAME\", \"TITLE\", \"ADDRESS\", \"CITY\", \"PROVINCE\", "
 				+ "\"POSTAL_CODE\", \"REGION\", \"COUNTRY\", \"COMPANY_NAME\", \"WORKSTATION\", "
 				+ "\"WORK_PHONE\", \"WORK_EXTENSION\", \"MOBILE_PHONE\", \"FAX_NUMBER\", \"EMAIL\", "
 				+ "\"CONTACT_TYPE_ID\", \"NOTES\" )"
-				+ "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	}
 
 	/**
@@ -85,8 +85,8 @@ public class SingletonStatementGenerator {
 	 */
 	// Call Statements
 	public String insertCallStatement() {
-		return "INSERT INTO CALLS" + "( \"ID\", \"CONTACT_ID\", \"CALL_DATE\", \"SUBJECT\", \"NOTES\" )"
-				+ " VALUES ( ?, ?, ?, ?, ?)";
+		return "INSERT INTO CALLS" + "(\"CONTACT_ID\", \"CALL_DATE\", \"SUBJECT\", \"NOTES\" )"
+				+ " VALUES (?, ?, ?, ?)";
 	}
 
 	/**
