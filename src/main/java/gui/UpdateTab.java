@@ -14,16 +14,47 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-
+/**
+ * UpdateTab. Clase que se encarga de las actualizaciones.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class UpdateTab {
 
+	/**
+	 * textField
+	 */
 	private JTextField textField;
+	/**
+	 * comboBoxModel
+	 */
 	private DefaultComboBoxModel comboBoxModel;
+	/**
+	 * comboStrings
+	 */
 	private String[] comboStrings;
+	/**
+	 * contactTextFields
+	 */
 	private List<JTextField> contactTextFields;
+	/**
+	 * updatePanel
+	 */
 	private JPanel updatePanel;
+	/**
+	 * viewDict
+	 */
 	private Map<Integer, JPanel> viewDict;
 
+	/**
+	 * Método UptadeTab. Constructor de la clase.
+	 * @param tabbedPane Panel sobre el que trabajar.
+	 */
 	public UpdateTab(JTabbedPane tabbedPane) {
 
 		updatePanel = new JPanel();
@@ -36,6 +67,10 @@ public class UpdateTab {
 		updatePanel.add(viewDict.get(0));
 	}
 
+	/**
+	 * Método createConatactTypePanel. Método que se encarga de especificar el panel para la creación de tipos de contacto.
+	 * @return contactTypePanel Se devuelve la instancia del panel de tipo de contacto.
+	 */
 	private JPanel createContactTypePanel() {
 		JPanel contactTypePanel = new JPanel();
 
@@ -66,6 +101,10 @@ public class UpdateTab {
 		return contactTypePanel;
 	}
 
+	/**
+	 * Método createConatactPanel. Método que se encarga de especificar el panel para la creación de contacto.
+	 * @return contactPanel Se devuelve la instancia del panel de contacto.
+	 */
 	private JPanel createContactPanel() {
 		
 		JPanel contactPanel = new JPanel();
@@ -91,6 +130,10 @@ public class UpdateTab {
 		return contactPanel;
 	}
 
+	/**
+	 * Método createContactFields. Método que se encarga de meter los campos de contacto dentro del panel de contactos.
+	 * @param contactPanel Panel sobre el que se quieren insertar los campos.
+	 */
 	private void createContactFields(JPanel contactPanel) {
 		contactTextFields = new ArrayList<>();
 		String[] fieldsString = { "Nombre", "Apellido", "Titulo", "Direccion", "Ciudad", "Provincia", "Codigo postal",
@@ -108,6 +151,10 @@ public class UpdateTab {
 		}
 	}
 	
+	/**
+	 * Método createCallPanel. Método que se encarga de especificar el panel para la creación de llamadas.
+	 * @return callPanel Se devuelve la instancia del panel de llamdas.
+	 */
 	private JPanel createCallPanel() {
 		JPanel callPanel = new JPanel();
 		callPanel.setLayout(new GridLayout(10, 2, 2, 2));
@@ -131,6 +178,10 @@ public class UpdateTab {
 		return callPanel;
 	}	
 	
+	/**
+	 * Método createCallFields. Método que se encarga de meter los campos de llamada dentro del panel de las llamadas.
+	 * @param callPanel Panel sobre el que se tendrán que meter los campos.
+	 */
 	private void createCallFields(JPanel callPanel) {
 		contactTextFields = new ArrayList<>();
 		String[] fieldsString = { "Contacto", "Fecha", "Asunto", "Notas"};
@@ -145,7 +196,11 @@ public class UpdateTab {
 			jTextField.setColumns(10);
 		}
 	}
-
+	
+	/**
+	 * Método setView. Método que se encarga de establecer una vista.
+	 * @param view Vista a establecer.
+	 */
 	public void setView(int view) {
 		updatePanel.removeAll();
 		updatePanel.add(viewDict.get(view));

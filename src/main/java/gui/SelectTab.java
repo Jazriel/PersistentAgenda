@@ -11,19 +11,52 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-
+/**
+ * SelectTab. Clase que se encarga de las selecciones.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class SelectTab {
 
+	/**
+	 * lblPor.
+	 */
 	private JLabel lblPor;
+	/**
+	 * filterTextField.
+	 */
 	private JTextField filterTextField;
+	/**
+	 * fieldCombo.
+	 */
 	private JComboBox fieldCombo;
+	/**
+	 * filOrdCombo.
+	 */
 	private JComboBox filOrdCombo;
+	/**
+	 * filOrdStrings.
+	 */
 	private final String[] filOrdStrings = new String[] { "Filtrar", "Ordenar" };
+	/**
+	 * fieldComboModel.
+	 */
 	private DefaultComboBoxModel[] fieldComboModel = { new DefaultComboBoxModel(new String[] { "Apellido", "Nombre" }),
 			new DefaultComboBoxModel(new String[] { "Contacto", "Fecha" }) };
+	/**
+	 * selectPanel.
+	 */
 	private JPanel selectPanel;
 
-	
+	/**
+	 * Método SelectTab. Contructor de la clase.
+	 * @param tabbedPane Panel sobre el que trabajar.
+	 */
 	public SelectTab(JTabbedPane tabbedPane) {
 
 		selectPanel = new JPanel();
@@ -55,7 +88,9 @@ public class SelectTab {
 		});
 	}
 	
-	
+	/**
+	 * Método setListeners. Método que se encarga de establecer los listeners.
+	 */
 	public void setListeners() {
 		filOrdCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -69,6 +104,10 @@ public class SelectTab {
 		});
 	}
 	
+	/**
+	 * Método serVisibility. Método que se encarga de definir la visibilidad.
+	 * @param visibility Valor de la visibilidad a establecer.
+	 */
 	public void setVisibility(boolean visibility) {
 		filOrdCombo.setSelectedIndex(0);
 		filterTextField.setVisible(visibility);
@@ -76,7 +115,11 @@ public class SelectTab {
 		fieldCombo.setVisible(visibility);
 		filOrdCombo.setVisible(visibility);
 	}
-	
+	/**
+	 * Método setVisibility. Método que se encarga de defini la visibilidad.
+	 * @param visibility Valor de la visibilidad a establecer.
+	 * @param index Posición donde poner la visibilidad.
+	 */
 	public void setVisibility(boolean visibility, int index) {
 		setVisibility(visibility);
 		fieldCombo.setModel(fieldComboModel[index]);
