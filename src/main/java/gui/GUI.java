@@ -9,14 +9,39 @@ import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * GUI. Clase main de nuestra api en modo gráfico.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class GUI {
 	
-	
+	/**
+	 * persistence
+	 */
 	private static IFactoryPersistence persistence;
+
+	/**
+	 * contactPersistence
+	 */
 	protected static IFacadeContactPersistence contactPersitence;
+	/**
+	 * callPersistence
+	 */
 	protected static IFacadeCallPersistence callPersitence;
+	/**
+	 * contactTypePersistence
+	 */
 	protected static IFacadeContactTypePersistence contactTypePersitence;
-	private static IAbstractPersistenceFactory abstractPersistenceFactory;
+	/**
+	 * abstractPersistenceFactory
+	 */
+	protected static IAbstractPersistenceFactory abstractPersistenceFactory;
 	/**
 	 * Launch the application.
 	 */
@@ -34,6 +59,9 @@ public class GUI {
 		
 	}
 
+	/**
+	 * Método runGUI. Método que se encarga de lanzar la interfaz gráfica de nuestra aplicación.
+	 */
 	private static void runGUI() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,6 +75,10 @@ public class GUI {
 		});
 	}
 	
+	/**
+	 * Método changePersistence. Método que se encarga de seleccionar la persistencia sobre la que se quiere trabajar.
+	 * @param selection Persistencia a elegir.
+	 */
 	protected static void changePersistence(int selection){
 		if(selection==0){
 			persistence = abstractPersistenceFactory.getDBPersistence();		

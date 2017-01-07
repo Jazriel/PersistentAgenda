@@ -20,16 +20,48 @@ import javax.swing.JTextField;
 import model.Call;
 import model.Contact;
 
+/**
+ * InsertTab. Clase que se encarga de las inserciones.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class InsertTab {
 
+	/**
+	 * textField
+	 */
 	private JTextField textField;
+	/**
+	 * comboBoxModel
+	 */
 	private DefaultComboBoxModel comboBoxModel;
+	/**
+	 * comboStrings
+	 */
 	private String[] comboStrings;
+	/**
+	 * contactTextFields
+	 */
 	private List<JTextField> contactTextFields;
+	/**
+	 * insertPanel
+	 */
 	private JPanel insertPanel;
+	/**
+	 * insertPanel
+	 */
 	private Map<Integer, JPanel> viewDict;
 	private ArrayList<JTextField> callTextFields;
 
+	/**
+	 * Método InsertTab. Método que es el contructor de la clase.
+	 * @param tabbedPane
+	 */
 	public InsertTab(JTabbedPane tabbedPane) {
 
 		insertPanel = new JPanel();
@@ -42,6 +74,10 @@ public class InsertTab {
 		insertPanel.add(viewDict.get(0));
 	}
 
+	/**
+	 * Método createConatactTypePanel. Método que se encarga de especificar el panel para la creación de tipos de contacto.
+	 * @return contactTypePanel Se devuelve la instancia del panel de tipo de contacto.
+	 */
 	private JPanel createContactTypePanel() {
 		JPanel contactTypePanel = new JPanel();
 
@@ -62,6 +98,10 @@ public class InsertTab {
 
 		return contactTypePanel;
 	}
+	/**
+	 * Método createConatactPanel. Método que se encarga de especificar el panel para la creación de contacto.
+	 * @return contactPanel Se devuelve la instancia del panel de contacto.
+	 */
 
 	private JPanel createContactPanel() {
 
@@ -79,6 +119,10 @@ public class InsertTab {
 		return contactPanel;
 	}
 
+	/**
+	 * Método createContactFields. Método que se encarga de meter los campos de contacto dentro del panel de contactos.
+	 * @param contactPanel Panel sobre el que se quieren insertar los campos.
+	 */
 	private void createContactFields(JPanel contactPanel) {
 		contactTextFields = new ArrayList<>();
 		String[] fieldsString = { "Nombre", "Apellido", "Titulo", "Direccion", "Ciudad", "Provincia", "Codigo postal",
@@ -95,7 +139,11 @@ public class InsertTab {
 			jTextField.setColumns(10);
 		}
 	}
-
+	
+	/**
+	 * Método createCallPanel. Método que se encarga de especificar el panel para la creación de llamadas.
+	 * @return callPanel Se devuelve la instancia del panel de llamdas.
+	 */
 	private JPanel createCallPanel() {
 		JPanel callPanel = new JPanel();
 		callPanel.setLayout(new GridLayout(5, 2, 2, 2));
@@ -118,7 +166,12 @@ public class InsertTab {
 		callPanel.add(btnEjecutar);
 		return callPanel;
 	}
-
+	
+	
+	/**
+	 * Método createCallFields. Método que se encarga de meter los campos de llamada dentro del panel de las llamadas.
+	 * @param callPanel Panel sobre el que se tendrán que meter los campos.
+	 */
 	private void createCallFields(JPanel callPanel) {
 		callTextFields = new ArrayList<>();
 		String[] fieldsString = { "Contacto", "Fecha", "Asunto", "Notas" };
@@ -134,6 +187,10 @@ public class InsertTab {
 		}
 	}
 
+	/**
+	 * Método setView. Método que se encarga de establecer una vista.
+	 * @param view Vista a establecer.
+	 */
 	public void setView(int view) {
 		insertPanel.removeAll();
 		insertPanel.add(viewDict.get(view));
