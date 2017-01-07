@@ -19,7 +19,7 @@ import persistence.IFactoryPersistence;
  * @author Oscar Fernandez
  *
  */
-public class GUI {
+public class MainGUI {
 	
 	/**
 	 * persistence

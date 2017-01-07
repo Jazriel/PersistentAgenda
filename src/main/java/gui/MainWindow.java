@@ -15,8 +15,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
 /**
- * MainWindow. Clase que se encarga de la gestion de la ventana principal de la interfaz gráfica.
+ * MainWindow. Clase que se encarga de la gestion de la ventana principal de la
+ * interfaz gráfica.
  * 
  * @author Javier Martinez
  * @author Daniel Puente
@@ -82,30 +84,29 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * Método initializeActionListeners. Método que se encarga de la inicialización de los listeners.
+	 * Método initializeActionListeners. Método que se encarga de la
+	 * inicialización de los listeners.
 	 */
 	private void initializeActionListeners() {
 		typeComboListener();
-		selectTab.setListeners();
 	}
 
-	
 	/**
-	 * Método typeComboListener. Método que se encarga de 
+	 * Método typeComboListener. Método que se encarga de
 	 */
 	private void typeComboListener() {
 		typeCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (typeCombo.getSelectedItem().toString() == types[0]) {
-					selectTab.setVisibility(true, 0);
+					selectTab.setView(0);
 					updateTab.setView(0);
 					insertTab.setView(0);
 				} else if (typeCombo.getSelectedItem().toString() == types[1]) {
-					selectTab.setVisibility(true, 1);
+					selectTab.setView(1);
 					updateTab.setView(1);
 					insertTab.setView(1);
 				} else {
-					selectTab.setVisibility(false);
+					selectTab.setView(2);
 					updateTab.setView(2);
 					insertTab.setView(2);
 				}
@@ -114,20 +115,25 @@ public class MainWindow extends JFrame {
 		});
 	}
 
-	//TODO Cuidado no es utiliza este método
+	// TODO Cuidado no es utiliza este método
 	/**
-	 * Método persistenceComboListener. Método que se encarga de cambiar la persistencia dentro del comboListener.
+	 * Método persistenceComboListener. Método que se encarga de cambiar la
+	 * persistencia dentro del comboListener.
 	 */
 	private void persistenceComboListener() {
 		persistCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI.changePersistence(persistCombo.getSelectedIndex());
+				MainGUI.changePersistence(persistCombo.getSelectedIndex());
 			}
 		});
 	}
+
 	/**
-	 * Método initializeTabBar. Método que se encarga de inizializar barra de pestañas.
-	 * @param tabbedPane Panel sobre el que trabajar
+	 * Método initializeTabBar. Método que se encarga de inizializar barra de
+	 * pestañas.
+	 * 
+	 * @param tabbedPane
+	 *            Panel sobre el que trabajar
 	 * @param gl_contentPane
 	 */
 	private void initializeTabBar(JTabbedPane tabbedPane, GroupLayout gl_contentPane) {
@@ -135,14 +141,15 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 
 		insertTab = new InsertTab(tabbedPane);
-		
+
 		updateTab = new UpdateTab(tabbedPane); // :D
-		
+
 		selectTab = new SelectTab(tabbedPane);
 	}
 
 	/**
-	 * Método initializeComboButsBar. Método que se encarga de 
+	 * Método initializeComboButsBar. Método que se encarga de
+	 * 
 	 * @param tabbedPane
 	 * @param gl_contentPane
 	 */
@@ -173,9 +180,10 @@ public class MainWindow extends JFrame {
 		typeCombo.setModel(new DefaultComboBoxModel(types));
 		panel.add(typeCombo);
 	}
-	
+
 	/**
-	 * Método initializeMainWindow. Método que se encarga de inicializar la ventana principal de la interfaz gráfica.
+	 * Método initializeMainWindow. Método que se encarga de inicializar la
+	 * ventana principal de la interfaz gráfica.
 	 */
 	private void initializeMainWindow() {
 		// Inicialización de la ventana principal
@@ -183,9 +191,9 @@ public class MainWindow extends JFrame {
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		JScrollPane scroll = new JScrollPane(contentPane);
-		
+
 		setContentPane(scroll);
 	}
 }

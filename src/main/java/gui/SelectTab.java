@@ -1,9 +1,14 @@
 package gui;
 
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -13,6 +18,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Call;
+import model.Contact;
 
 /**
  * SelectTab. Clase que se encarga de las selecciones.
@@ -30,18 +36,7 @@ public class SelectTab {
 	 * lblPor.
 	 */
 	private JLabel lblPor;
-	/**
-	 * filterTextField.
-	 */
-	private JTextField filterTextField;
-	/**
-	 * fieldCombo.
-	 */
-	private JComboBox fieldCombo;
-	/**
-	 * filOrdCombo.
-	 */
-	private JComboBox filOrdCombo;
+
 	/**
 	 * filOrdStrings.
 	 */
@@ -51,51 +46,139 @@ public class SelectTab {
 	 */
 	private DefaultComboBoxModel[] fieldComboModel = { new DefaultComboBoxModel(new String[] { "Apellido", "Nombre" }),
 			new DefaultComboBoxModel(new String[] { "Contacto", "Fecha" }) };
-	/**
-	 * selectPanel.
-	 */
+
+	private Map<Integer, JPanel> viewDict;
 	private JPanel selectPanel;
+	private DefaultComboBoxModel filOrdComboModel;
 
 	/**
 	 * Método SelectTab. Contructor de la clase.
-	 * @param tabbedPane Panel sobre el que trabajar.
+	 * 
+	 * @param tabbedPane
+	 *            Panel sobre el que trabajar.
 	 */
+
 	public SelectTab(JTabbedPane tabbedPane) {
 
 		selectPanel = new JPanel();
 		tabbedPane.addTab("Consultar", null, selectPanel, null);
-		
-		DefaultComboBoxModel filOrdComboModel = new DefaultComboBoxModel(filOrdStrings);
+
+		filOrdComboModel = new DefaultComboBoxModel(filOrdStrings);
+
+		viewDict = new HashMap<>();
+		viewDict.put(0, createContactPanel());
+		viewDict.put(1, createCallPanel());
+		viewDict.put(2, createContactTypePanel());
+		selectPanel.add(viewDict.get(0));
+	}
+
+	private JPanel createContactPanel() {
+
+		JPanel selectPanel = new JPanel();
 
 		lblPor = new JLabel("por");
 
-		filterTextField = new JTextField();
+		JTextField filterTextField = new JTextField();
 		filterTextField.setColumns(10);
 		selectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		filOrdCombo = new JComboBox();
+		JComboBox filOrdCombo = new JComboBox();
 		filOrdCombo.setModel(filOrdComboModel);
 		selectPanel.add(filOrdCombo);
 		selectPanel.add(lblPor);
 
-		fieldCombo = new JComboBox();
+		filOrdListener(filOrdCombo, filterTextField);
+
+		JComboBox fieldCombo = new JComboBox();
 		fieldCombo.setModel(fieldComboModel[0]);
 		selectPanel.add(fieldCombo);
 		selectPanel.add(filterTextField);
 
 		Button button = new Button("Ejecutar");
 		selectPanel.add(button);
+		contactListener(button, filOrdCombo, fieldCombo, filterTextField);
+
+		return selectPanel;
+	}
+
+	private void contactListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo,
+			JTextField filterTextField) {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				List<Contact> contacts = new ArrayList<>();
+				if (filOrdCombo.getSelectedIndex() == 0) {
+					if (fieldCombo.getSelectedIndex() == 0) {
+						contacts = MainGUI.contactPersitence.getFilterContacts("name", filterTextField.getText());
+					} else {
+						contacts = MainGUI.contactPersitence.getFilterContacts("surname", filterTextField.getText());
+					}
+				} else {
+					if (fieldCombo.getSelectedIndex() == 0) {
+						contacts = MainGUI.contactPersitence.getOrderContacts("name");
+					} else {
+						contacts = MainGUI.contactPersitence.getOrderContacts("surname");
+					}
+				}
+				// Mostramos contactos
+				
 			}
 		});
 	}
-	
+
+	private JPanel createCallPanel() {
+
+		JPanel selectPanel = new JPanel();
+
+		lblPor = new JLabel("por");
+
+		JTextField filterTextField = new JTextField();
+		filterTextField.setColumns(10);
+		selectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JComboBox filOrdCombo = new JComboBox();
+		filOrdCombo.setModel(filOrdComboModel);
+		selectPanel.add(filOrdCombo);
+		selectPanel.add(lblPor);
+
+		filOrdListener(filOrdCombo, filterTextField);
+
+		JComboBox fieldCombo = new JComboBox();
+		fieldCombo.setModel(fieldComboModel[1]);
+		selectPanel.add(fieldCombo);
+		selectPanel.add(filterTextField);
+
+		Button button = new Button("Ejecutar");
+		selectPanel.add(button);
+		callListener(button);
+
+		return selectPanel;
+	}
+
+	private void callListener(Button button) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private JPanel createContactTypePanel() {
+
+		JPanel selectPanel = new JPanel();
+
+		Button button = new Button("Ejecutar");
+		selectPanel.add(button);
+		contactTypeListener(button);
+
+		return selectPanel;
+	}
+
+	private void contactTypeListener(Button button) {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * Método setListeners. Método que se encarga de establecer los listeners.
 	 */
-	public void setListeners() {
+	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
 		filOrdCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (filOrdCombo.getSelectedItem().toString() == filOrdStrings[0]) {
@@ -107,26 +190,16 @@ public class SelectTab {
 			}
 		});
 	}
-	
+
 	/**
-	 * Método serVisibility. Método que se encarga de definir la visibilidad.
-	 * @param visibility Valor de la visibilidad a establecer.
+	 * Método setView. Método que se encarga de establecer una vista.
+	 * 
+	 * @param view
+	 *            Vista a establecer.
 	 */
-	public void setVisibility(boolean visibility) {
-		filOrdCombo.setSelectedIndex(0);
-		filterTextField.setVisible(visibility);
-		lblPor.setVisible(visibility);
-		fieldCombo.setVisible(visibility);
-		filOrdCombo.setVisible(visibility);
+	public void setView(int view) {
+		selectPanel.removeAll();
+		selectPanel.add(viewDict.get(view));
+
 	}
-	/**
-	 * Método setVisibility. Método que se encarga de defini la visibilidad.
-	 * @param visibility Valor de la visibilidad a establecer.
-	 * @param index Posición donde poner la visibilidad.
-	 */
-	public void setVisibility(boolean visibility, int index) {
-		setVisibility(visibility);
-		fieldCombo.setModel(fieldComboModel[index]);
-	}
-	
 }

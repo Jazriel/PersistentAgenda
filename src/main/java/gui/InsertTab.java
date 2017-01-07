@@ -111,7 +111,7 @@ public class InsertTab {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ContactType contactTypeName = new ContactType(contactTypeTextField.getText());
-				GUI.contactTypePersitence.saveContactType(contactTypeName );
+				MainGUI.contactTypePersitence.saveContactType(contactTypeName );
 			}
 		});
 	}
@@ -154,7 +154,7 @@ public class InsertTab {
 
 				Contact contact = new Contact(attribs,
 						new ContactType(Integer.parseInt(contactTextFields.get(i).getText()), ""));
-				GUI.contactPersitence.saveContact(contact);
+				MainGUI.contactPersitence.saveContact(contact);
 			}
 		});
 	}
@@ -211,7 +211,7 @@ public class InsertTab {
 			public void actionPerformed(ActionEvent e) {
 				Call call = new Call(new Contact(Integer.parseInt(callTextFields.get(0).getText()), null, null),
 						callTextFields.get(1).getText(), callTextFields.get(2).getText());
-				GUI.callPersitence.saveCall(call);
+				MainGUI.callPersitence.saveCall(call);
 			}
 		});
 	}
