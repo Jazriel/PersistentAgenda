@@ -8,6 +8,7 @@ import persistence.IFacadeCallPersistence;
 import persistence.IFacadeContactPersistence;
 import persistence.IFacadeContactTypePersistence;
 import persistence.IFactoryPersistence;
+import persistence.database.FactoryDataBase;
 
 /**
  * GUI. Clase main de nuestra api en modo gráfico.
@@ -66,7 +67,7 @@ public class MainGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow();
+					MainWindow frame = new MainWindow(new AbstractPersistenceFactory()); // TODO
 					frame.setVisible(true);
 				} catch (Exception e) {
 					System.err.println(e.getMessage());

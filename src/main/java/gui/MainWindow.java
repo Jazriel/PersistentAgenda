@@ -16,6 +16,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import gui.selectTab.SelectTab;
+import persistence.IAbstractPersistenceFactory;
+import persistence.IFactoryPersistence;
+
 /**
  * MainWindow. Clase que se encarga de la gestion de la ventana principal de la
  * interfaz gráfica.
@@ -65,11 +69,19 @@ public class MainWindow extends JFrame {
 	 * persistCombo
 	 */
 	private JComboBox persistCombo;
+	
+	private IAbstractPersistenceFactory persistenceFactory;
+	
+	private IFactoryPersistence persistence;
 
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {
+	public MainWindow(IAbstractPersistenceFactory persistenceFactory) {
+		
+		this.persistenceFactory = persistenceFactory;
+		this.persistence = persistenceFactory.getDBPersistence();
+		
 		setTitle("Persistent Agenda");
 		initializeMainWindow();
 
@@ -141,7 +153,7 @@ public class MainWindow extends JFrame {
 
 		updateTab = new UpdateTab(tabbedPane); // :D
 
-		selectTab = new SelectTab(tabbedPane);
+		selectTab = new SelectTab(persistence, tabbedPane);
 	}
 
 	/**
