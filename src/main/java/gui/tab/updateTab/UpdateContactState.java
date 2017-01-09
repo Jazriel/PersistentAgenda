@@ -14,11 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.tab.ICompPersistUpdatable;
 import model.Contact;
 import model.ContactType;
 import persistence.IFacadeContactPersistence;
+import persistence.IFactoryPersistence;
 
-public class UpdateContactState implements UpdateState {
+public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 
 	private IFacadeContactPersistence contactPersistence;
 	private JPanel view;
@@ -112,6 +114,11 @@ public class UpdateContactState implements UpdateState {
 	@Override
 	public JPanel getView() {
 		return view;
+	}
+
+	@Override
+	public void updatePersist(IFactoryPersistence persist) {
+		this.contactPersistence = persist.createContactPersistence();
 	}
 
 }

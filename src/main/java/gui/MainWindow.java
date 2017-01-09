@@ -16,6 +16,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import gui.tab.ICompPersistUpdatable;
 import gui.tab.ITab;
 import gui.tab.insertTab.InsertTab;
 import gui.tab.selectTab.SelectTab;
@@ -74,6 +75,8 @@ public class MainWindow extends JFrame {
 
 	private JTabbedPane tabbedPane;
 
+	private List<ICompPersistUpdatable> persistUpdatables;
+
 	/**
 	 * Create the frame.
 	 */
@@ -91,6 +94,9 @@ public class MainWindow extends JFrame {
 		initializeComboButsBarWithLayout();
 
 		tabs = new ArrayList<>();
+
+		persistUpdatables = new ArrayList<>();
+
 		
 		initializeTabBar();
 
@@ -142,11 +148,12 @@ public class MainWindow extends JFrame {
 						persistence = persistenceFactory.getDBPersistence();
 						currentPersistence = 0;
 					} else {
-						persistence = persistenceFactory.getBinPersistence();
+						persistence = persistenceFactory.getBinPersistence();			
 						currentPersistence = 1;
 					}
-					
-					initializeTabBar();
+					for (ICompPersistUpdatable updatable : persistUpdatables) {
+						updatable.updatePersist(persistence);
+					}
 				}
 			}
 		});
@@ -161,12 +168,18 @@ public class MainWindow extends JFrame {
 	 * @param gl_contentPane
 	 */
 	private void initializeTabBar() {
+		InsertTab iT = new InsertTab(persistence, tabbedPane);
+		UpdateTab uT = new UpdateTab(persistence, tabbedPane);
+		SelectTab sT = new SelectTab(persistence, tabbedPane);
+		
+		tabs.add(iT);
+		tabs.add(uT); // :D
+		tabs.add(sT);
 
-		tabs.add(new InsertTab(persistence, tabbedPane));
-
-		tabs.add(new UpdateTab(persistence, tabbedPane)); // :D
-
-		tabs.add(new SelectTab(persistence, tabbedPane));
+		persistUpdatables.add(iT);
+		persistUpdatables.add(uT);
+		persistUpdatables.add(sT);
+		
 	}
 
 	/**

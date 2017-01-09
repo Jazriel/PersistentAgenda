@@ -14,11 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import gui.SelectResultWindow;
-import gui.tab.IContactPersistUser;
+import gui.tab.ICompPersistUpdatable;
 import model.Contact;
 import persistence.IFacadeContactPersistence;
+import persistence.IFactoryPersistence;
 
-public class SelectContactState implements SelectState, IContactPersistUser {
+public class SelectContactState implements SelectState, ICompPersistUpdatable {
 
 	private IFacadeContactPersistence contactPersitence;
 	private JPanel view;
@@ -104,9 +105,8 @@ public class SelectContactState implements SelectState, IContactPersistUser {
 	}
 
 	@Override
-	public void setPersistence(IFacadeContactPersistence cp) {
-		this.contactPersitence = cp;
-		
+	public void updatePersist(IFactoryPersistence persist) {
+		this.contactPersitence = persist.createContactPersistence();
 	}
 
 }

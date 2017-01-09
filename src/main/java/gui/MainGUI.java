@@ -40,8 +40,7 @@ public class MainGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow(abstractPersistenceFactory); // TODO
-					frame.setVisible(true);
+					MainWindow frame = new MainWindow(abstractPersistenceFactory); 					frame.setVisible(true);
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}

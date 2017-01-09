@@ -21,11 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import gui.SelectResultWindow;
-import gui.tab.ICallPersistUser;
+import gui.tab.ICompPersistUpdatable;
 import model.Call;
 import persistence.IFacadeCallPersistence;
+import persistence.IFactoryPersistence;
 
-public class SelectCallState implements SelectState, ICallPersistUser {
+public class SelectCallState implements SelectState, ICompPersistUpdatable {
 
 	private IFacadeCallPersistence callPersistence;
 
@@ -139,8 +140,9 @@ public class SelectCallState implements SelectState, ICallPersistUser {
 	}
 
 	@Override
-	public void setPersistence(IFacadeCallPersistence cp) {
-		this.callPersistence = cp;
-		
+	public void updatePersist(IFactoryPersistence persist) {
+		this.callPersistence = persist.createCallPersistence();
 	}
+
+	
 }

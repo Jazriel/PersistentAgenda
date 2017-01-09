@@ -12,12 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import gui.tab.IContactPersistUser;
+import gui.tab.ICompPersistUpdatable;
 import model.Contact;
 import model.ContactType;
 import persistence.IFacadeContactPersistence;
+import persistence.IFactoryPersistence;
 
-public class InsertContactState implements InsertState, IContactPersistUser {
+public class InsertContactState implements InsertState, ICompPersistUpdatable {
 
 	private IFacadeContactPersistence contactPersistence;
 	private JPanel view;
@@ -95,8 +96,8 @@ public class InsertContactState implements InsertState, IContactPersistUser {
 	}
 
 	@Override
-	public void setPersistence(IFacadeContactPersistence cp) {
-		this.contactPersistence = cp;
+	public void updatePersist(IFactoryPersistence cp) {
+		this.contactPersistence = cp.createContactPersistence();
 
 	}
 

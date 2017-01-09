@@ -8,11 +8,12 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import gui.SelectResultWindow;
-import gui.tab.IContactTypePersistUser;
+import gui.tab.ICompPersistUpdatable;
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
+import persistence.IFactoryPersistence;
 
-public class SelectContactTypeState implements SelectState, IContactTypePersistUser {
+public class SelectContactTypeState implements SelectState, ICompPersistUpdatable {
 	
 	private JPanel view;
 	private IFacadeContactTypePersistence contactTypePersistence;
@@ -54,7 +55,7 @@ public class SelectContactTypeState implements SelectState, IContactTypePersistU
 	}
 
 	@Override
-	public void setPersistence(IFacadeContactTypePersistence cp) {
-		this.contactTypePersistence = cp;	
+	public void updatePersist(IFactoryPersistence persist) {
+		this.contactTypePersistence = persist.createContactTypePersistence();	
 	}
 }
