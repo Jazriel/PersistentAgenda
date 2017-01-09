@@ -1,27 +1,18 @@
-package gui.updateTab;
+package gui.tab.insertTab;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import javax.swing.AbstractButton;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import gui.MainGUI;
-import model.Call;
-import model.Contact;
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 
-public class UpdateContactTypeState implements UpdateState {
+public class InsertContactTypeState implements InsertState {
 	
 	private JPanel view;
 	private IFacadeContactTypePersistence contactTypePersistence;
@@ -35,22 +26,13 @@ public class UpdateContactTypeState implements UpdateState {
 	 * @return contactTypePanel Se devuelve la instancia del panel de tipo de
 	 *         contacto.
 	 */
-	public UpdateContactTypeState(IFacadeContactTypePersistence contactTypePersistence) {
+	public InsertContactTypeState(IFacadeContactTypePersistence contactTypePersistence) {
 		
 		this.contactTypePersistence = contactTypePersistence;
 		
 		JPanel contactTypePanel = new JPanel();
 
 		contactTypePanel.setLayout(new GridLayout(3, 2, 2, 2));
-
-		JLabel lblTipoDeContacto = new JLabel("Tipo de contacto a modificar:");
-		contactTypePanel.add(lblTipoDeContacto);
-
-		JComboBox comboBox = new JComboBox();
-		String[] comboStrings = new String[] { "a", "b" }; // TODO llamar persistencia.
-		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
-		contactTypePanel.add(comboBox);
 
 		JLabel lblNombreDelTipo = new JLabel("Nombre del tipo de contacto:");
 		contactTypePanel.add(lblNombreDelTipo);
@@ -62,26 +44,24 @@ public class UpdateContactTypeState implements UpdateState {
 		JLabel label = new JLabel("");
 		contactTypePanel.add(label);
 
-		JButton btnEjecutar = new JButton("Ejecutar");
+		JButton btnEjecutar = new JButton("Insertar");
 		contactTypePanel.add(btnEjecutar);
-
-		insertContactTypeListener(btnEjecutar, comboBox);
-
+		
+		insertContactTypeListener(btnEjecutar);
+		
 		view = contactTypePanel;
 	}
 
-	private void insertContactTypeListener(JButton btnEjecutar, JComboBox comboBox) {
+	private void insertContactTypeListener(JButton btnEjecutar) {
 		btnEjecutar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ContactType contactType = new ContactType(Integer.parseInt(comboBox.getSelectedItem().toString()),
-						contactTypeTextField.getText());
-				contactTypePersistence.updateContactType(contactType);
+				ContactType contactTypeName = new ContactType(contactTypeTextField.getText());
+				contactTypePersistence.saveContactType(contactTypeName );
 			}
 		});
 	}
-
+	
 	public JPanel getView(){
 		return view;
 	}

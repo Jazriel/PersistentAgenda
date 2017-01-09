@@ -4,11 +4,6 @@ import java.awt.EventQueue;
 
 import persistence.AbstractPersistenceFactory;
 import persistence.IAbstractPersistenceFactory;
-import persistence.IFacadeCallPersistence;
-import persistence.IFacadeContactPersistence;
-import persistence.IFacadeContactTypePersistence;
-import persistence.IFactoryPersistence;
-import persistence.database.FactoryDataBase;
 
 /**
  * GUI. Clase main de nuestra api en modo gráfico.
@@ -26,18 +21,20 @@ public class MainGUI {
 	 * abstractPersistenceFactory
 	 */
 	protected static IAbstractPersistenceFactory abstractPersistenceFactory;
+
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {		
-		
+	public static void main(String[] args) {
+
 		abstractPersistenceFactory = new AbstractPersistenceFactory();
 		runGUI();
-		
+
 	}
 
 	/**
-	 * Método runGUI. Método que se encarga de lanzar la interfaz gráfica de nuestra aplicación.
+	 * Método runGUI. Método que se encarga de lanzar la interfaz gráfica de
+	 * nuestra aplicación.
 	 */
 	private static void runGUI() {
 		EventQueue.invokeLater(new Runnable() {

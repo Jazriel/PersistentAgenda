@@ -1,4 +1,4 @@
-package gui.insertTab;
+package gui.tab.updateTab;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,15 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import gui.MainGUI;
 import model.Call;
 import model.Contact;
 import persistence.IFacadeCallPersistence;
 
-public class InsertCallState implements InsertState {
+public class UpdateCallState implements UpdateState {
 
 	private IFacadeCallPersistence callPersistence;
-	
+
 	private JPanel view;
 
 	private List<JTextField> callTextFields;
@@ -33,31 +32,52 @@ public class InsertCallState implements InsertState {
 	 * 
 	 * @return callPanel Se devuelve la instancia del panel de llamdas.
 	 */
-	public InsertCallState(IFacadeCallPersistence callPersistence) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public UpdateCallState(IFacadeCallPersistence callPersistence) {
 		this.callPersistence = callPersistence;
-		
+
 		JPanel callPanel = new JPanel();
-		callPanel.setLayout(new GridLayout(4, 2, 2, 2));
+		callPanel.setLayout(new GridLayout(10, 2, 2, 2));
+
+		JLabel lblTipoDeContacto = new JLabel("Llamada a modificar:");
+		callPanel.add(lblTipoDeContacto);
+
+		JComboBox comboBox = new JComboBox();
+		List<Call> calls = callPersistence.getAllCalls();
+
+		String[] comboStrings = new String[calls.size()];
+
+		for (int i = 0; i < calls.size(); i++) {
+			comboStrings[i] = String.valueOf(calls.get(i).getId());
+		}
+
+		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
+		comboBox.setModel(comboBoxModel);
+		callPanel.add(comboBox);
 
 		createCallFields(callPanel);
 
 		JLabel label = new JLabel("");
 		callPanel.add(label);
 
-		JButton btnEjecutar = new JButton("Insertar");
-
-		insertCallListener(btnEjecutar);
+		JButton btnEjecutar = new JButton("Ejecutar");
 		callPanel.add(btnEjecutar);
+
+		insertCallListener(btnEjecutar, comboBox);
+
 		view = callPanel;
 	}
 
-	private void insertCallListener(JButton btnEjecutar) {
+	@SuppressWarnings("rawtypes")
+	private void insertCallListener(JButton btnEjecutar, JComboBox comboBox) {
 		btnEjecutar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Call call = new Call(new Contact(Integer.parseInt(callTextFields.get(0).getText()), null, null),
-						callTextFields.get(1).getText(), callTextFields.get(2).getText());
-				callPersistence.saveCall(call);
+				Call call = new Call(Integer.parseInt(comboBox.getSelectedItem().toString()),
+						new Contact(Integer.parseInt(callTextFields.get(0).toString()), null, null),
+						callTextFields.get(1).getText(), callTextFields.get(2).getText(),
+						callTextFields.get(3).getText());
+				callPersistence.updateCall(call);
 			}
 		});
 	}
@@ -71,7 +91,7 @@ public class InsertCallState implements InsertState {
 	 */
 	private void createCallFields(JPanel callPanel) {
 		callTextFields = new ArrayList<>();
-		String[] fieldsString = { "Contacto", "Asunto", "Notas" };
+		String[] fieldsString = { "Contacto", "Fecha", "Asunto", "Notas" };
 		List<String> fields = Arrays.asList(fieldsString);
 		for (String field : fields) {
 			JLabel fieldLabel = new JLabel(field);
@@ -83,7 +103,6 @@ public class InsertCallState implements InsertState {
 			jTextField.setColumns(10);
 		}
 	}
-
 
 	@Override
 	public JPanel getView() {

@@ -1,4 +1,4 @@
-package gui.insertTab;
+package gui.tab.insertTab;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package gui.insertTab;
+package gui.tab.insertTab;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import gui.tab.ITab;
 import persistence.IFactoryPersistence;
+
 
 /**
  * UpdateTab. Clase que se encarga de las actualizaciones.
@@ -18,7 +20,7 @@ import persistence.IFactoryPersistence;
  * @author Oscar Fernandez
  *
  */
-public class InsertTab {
+public class InsertTab implements ITab {
 
 	/**
 	 * updatePanel

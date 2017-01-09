@@ -1,4 +1,4 @@
-package gui.selectTab;
+package gui.tab.selectTab;
 
 import javax.swing.JPanel;
 

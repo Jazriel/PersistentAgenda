@@ -1,4 +1,4 @@
-package gui.updateTab;
+package gui.tab.updateTab;
 
 import javax.swing.JPanel;
 

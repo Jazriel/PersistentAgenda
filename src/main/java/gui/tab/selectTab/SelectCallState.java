@@ -1,4 +1,4 @@
-package gui.selectTab;
+package gui.tab.selectTab;
 
 import java.awt.Button;
 import java.awt.FlowLayout;
@@ -30,6 +30,7 @@ public class SelectCallState implements SelectState {
 	
 	private JPanel view;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SelectCallState(IFacadeCallPersistence callPersistence) {
 		this.callPersistence = callPersistence;
 
@@ -62,6 +63,8 @@ public class SelectCallState implements SelectState {
 		this.view = selectPanel;
 	}
 
+	
+	@SuppressWarnings("rawtypes")
 	private void callListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo, JTextField filterTextField) {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -71,7 +74,6 @@ public class SelectCallState implements SelectState {
 						calls = callPersistence.getFilterCalls("contact_id",
 								Integer.parseInt(filterTextField.getText()));
 					} else {
-						String string = filterTextField.getText();
 						// Parseo a TimeStamp
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date = null;
@@ -103,6 +105,7 @@ public class SelectCallState implements SelectState {
 		});
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void dateComboListener(JComboBox fieldCombo, JTextField filterTextField) {
 		fieldCombo.addItemListener(new ItemListener() {
 
@@ -116,6 +119,7 @@ public class SelectCallState implements SelectState {
 		});
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
 		filOrdCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,7 +128,7 @@ public class SelectCallState implements SelectState {
 				} else {
 					filterTextField.setVisible(false);
 				}
-				// TODO This was tried before and didnt
+				// This was tried before and didnt
 				// work->selectPanel.repaint();
 			}
 		});

@@ -1,4 +1,4 @@
-package gui.selectTab;
+package gui.tab.selectTab;
 
 import java.awt.Button;
 import java.awt.FlowLayout;
@@ -22,6 +22,7 @@ public class SelectContactState implements SelectState {
 	private IFacadeContactPersistence contactPersitence;
 	private JPanel view;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SelectContactState(IFacadeContactPersistence contactPersitence) {
 
 		this.contactPersitence = contactPersitence;
@@ -53,6 +54,7 @@ public class SelectContactState implements SelectState {
 		this.view = selectPanel;
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void contactListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo,
 			JTextField filterTextField) {
 		button.addActionListener(new ActionListener() {
@@ -82,6 +84,7 @@ public class SelectContactState implements SelectState {
 		});
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
 		filOrdCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

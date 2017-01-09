@@ -1,4 +1,4 @@
-package gui.selectTab;
+package gui.tab.selectTab;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import gui.tab.ITab;
 import persistence.IFactoryPersistence;
 
 /**
@@ -18,7 +19,7 @@ import persistence.IFactoryPersistence;
  * @author Oscar Fernandez
  *
  */
-public class SelectTab {
+public class SelectTab implements ITab {
 
 	private Map<Integer, SelectState> viewDict;
 	private JPanel selectPanel;
@@ -35,14 +36,12 @@ public class SelectTab {
 		selectPanel = new JPanel();
 		tabbedPane.addTab("Consultar", null, selectPanel, null);
 
-
 		viewDict = new HashMap<>();
 		viewDict.put(0, new SelectContactState(persistence.createContactPersistence()));
 		viewDict.put(1, new SelectCallState(persistence.createCallPersistence()));
 		viewDict.put(2, new SelectContactTypeState(persistence.createContactTypePersistence()));
 		selectPanel.add(viewDict.get(0).getView());
 	}
-
 
 	/**
 	 * Método setView. Método que se encarga de establecer una vista.

@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -14,9 +16,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import gui.insertTab.InsertTab;
-import gui.selectTab.SelectTab;
-import gui.updateTab.UpdateTab;
+import gui.tab.ITab;
+import gui.tab.insertTab.InsertTab;
+import gui.tab.selectTab.SelectTab;
+import gui.tab.updateTab.UpdateTab;
 import persistence.IAbstractPersistenceFactory;
 import persistence.IFactoryPersistence;
 
@@ -49,6 +52,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * typeCombo
 	 */
+	@SuppressWarnings("rawtypes")
 	private JComboBox typeCombo;
 	/**
 	 * types
@@ -58,26 +62,17 @@ public class MainWindow extends JFrame {
 	 * persistenceTypes
 	 */
 	private static final String[] persistenceTypes = new String[] { "Base de datos", "Ficheros binario" };
-	/**
-	 * selectTab
-	 */
-	private SelectTab selectTab;
-	/**
-	 * updateTab
-	 */
-	private UpdateTab updateTab;
-	/**
-	 * insertTab
-	 */
-	private InsertTab insertTab;
-	/**
-	 * persistCombo
-	 */
+	
+	private List<ITab> tabs;
+	
+	@SuppressWarnings("rawtypes")
 	private JComboBox persistCombo;
 
 	private IAbstractPersistenceFactory persistenceFactory;
 
 	private IFactoryPersistence persistence;
+
+	private JTabbedPane tabbedPane;
 
 	/**
 	 * Create the frame.
@@ -91,11 +86,13 @@ public class MainWindow extends JFrame {
 		setTitle("Persistent Agenda");
 		initializeMainWindow();
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		initializeComboButsBarWithLayout(tabbedPane);
+		initializeComboButsBarWithLayout();
 
-		initializeTabBar(tabbedPane);
+		tabs = new ArrayList<>();
+		
+		initializeTabBar();
 
 		initializeActionListeners();
 	}
@@ -106,6 +103,7 @@ public class MainWindow extends JFrame {
 	 */
 	private void initializeActionListeners() {
 		typeComboListener();
+		persistenceComboListener();
 	}
 
 	/**
@@ -115,39 +113,40 @@ public class MainWindow extends JFrame {
 		typeCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (typeCombo.getSelectedItem().toString() == types[0]) {
-					selectTab.setView(0);
-					updateTab.setView(0);
-					insertTab.setView(0);
+					for (ITab tab : tabs) {
+						tab.setView(0);
+					}
 				} else if (typeCombo.getSelectedItem().toString() == types[1]) {
-					selectTab.setView(1);
-					updateTab.setView(1);
-					insertTab.setView(1);
+					for (ITab tab : tabs) {
+						tab.setView(1);
+					}
 				} else {
-					selectTab.setView(2);
-					updateTab.setView(2);
-					insertTab.setView(2);
+					for (ITab tab : tabs) {
+						tab.setView(2);
+					}
 				}
 				contentPane.repaint();
 			}
 		});
 	}
 
-	// TODO Cuidado no es utiliza este método
 	/**
 	 * Método persistenceComboListener. Método que se encarga de cambiar la
 	 * persistencia dentro del comboListener.
 	 */
 	private void persistenceComboListener() {
 		persistCombo.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-				if (persistCombo.getSelectedIndex() != currentPersistence){
+				if (persistCombo.getSelectedIndex() != currentPersistence) {
 					if (persistCombo.getSelectedIndex() == 0) {
 						persistence = persistenceFactory.getDBPersistence();
+						currentPersistence = 0;
 					} else {
 						persistence = persistenceFactory.getBinPersistence();
+						currentPersistence = 1;
 					}
-					// TODO actualiza ventanas
+
+					initializeTabBar();
 				}
 			}
 		});
@@ -161,13 +160,13 @@ public class MainWindow extends JFrame {
 	 *            Panel sobre el que trabajar
 	 * @param gl_contentPane
 	 */
-	private void initializeTabBar(JTabbedPane tabbedPane) {
+	private void initializeTabBar() {
 
-		insertTab = new InsertTab(persistence, tabbedPane);
+		tabs.add(new InsertTab(persistence, tabbedPane));
 
-		updateTab = new UpdateTab(persistence, tabbedPane); // :D
+		tabs.add(new UpdateTab(persistence, tabbedPane)); // :D
 
-		selectTab = new SelectTab(persistence, tabbedPane);
+		tabs.add(new SelectTab(persistence, tabbedPane));
 	}
 
 	/**
@@ -176,7 +175,8 @@ public class MainWindow extends JFrame {
 	 * @param tabbedPane
 	 * @param gl_contentPane
 	 */
-	private void initializeComboButsBarWithLayout(JTabbedPane tabbedPane) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void initializeComboButsBarWithLayout() {
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 

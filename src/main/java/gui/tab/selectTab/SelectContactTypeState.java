@@ -1,4 +1,4 @@
-package gui.selectTab;
+package gui.tab.selectTab;
 
 import java.awt.Button;
 import java.awt.event.ActionEvent;
