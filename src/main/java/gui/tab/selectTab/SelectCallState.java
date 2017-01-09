@@ -21,13 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import gui.SelectResultWindow;
+import gui.tab.ICallPersistUser;
 import model.Call;
 import persistence.IFacadeCallPersistence;
 
-public class SelectCallState implements SelectState {
+public class SelectCallState implements SelectState, ICallPersistUser {
 
 	private IFacadeCallPersistence callPersistence;
-	
+
 	private JPanel view;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -63,7 +64,6 @@ public class SelectCallState implements SelectState {
 		this.view = selectPanel;
 	}
 
-	
 	@SuppressWarnings("rawtypes")
 	private void callListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo, JTextField filterTextField) {
 		button.addActionListener(new ActionListener() {
@@ -136,5 +136,11 @@ public class SelectCallState implements SelectState {
 
 	public JPanel getView() {
 		return view;
+	}
+
+	@Override
+	public void setPersistence(IFacadeCallPersistence cp) {
+		this.callPersistence = cp;
+		
 	}
 }

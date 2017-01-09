@@ -145,7 +145,7 @@ public class MainWindow extends JFrame {
 						persistence = persistenceFactory.getBinPersistence();
 						currentPersistence = 1;
 					}
-
+					
 					initializeTabBar();
 				}
 			}

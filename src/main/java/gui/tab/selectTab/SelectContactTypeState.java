@@ -8,10 +8,11 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import gui.SelectResultWindow;
+import gui.tab.IContactTypePersistUser;
 import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 
-public class SelectContactTypeState implements SelectState {
+public class SelectContactTypeState implements SelectState, IContactTypePersistUser {
 	
 	private JPanel view;
 	private IFacadeContactTypePersistence contactTypePersistence;
@@ -50,5 +51,10 @@ public class SelectContactTypeState implements SelectState {
 	
 	public JPanel getView() {
 		return view;
+	}
+
+	@Override
+	public void setPersistence(IFacadeContactTypePersistence cp) {
+		this.contactTypePersistence = cp;	
 	}
 }

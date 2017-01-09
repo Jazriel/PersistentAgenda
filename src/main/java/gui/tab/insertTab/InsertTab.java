@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import gui.tab.IPersistenceUser;
 import gui.tab.ITab;
 import persistence.IFactoryPersistence;
 
@@ -20,7 +21,7 @@ import persistence.IFactoryPersistence;
  * @author Oscar Fernandez
  *
  */
-public class InsertTab implements ITab {
+public class InsertTab implements ITab, IPersistenceUser {
 
 	/**
 	 * updatePanel
@@ -58,6 +59,11 @@ public class InsertTab implements ITab {
 		insertPanel.removeAll();
 		insertPanel.add(viewDict.get(view).getView());
 
+	}
+
+	@Override
+	public void setPersistence(IFactoryPersistence persistence) {
+		
 	}
 
 }

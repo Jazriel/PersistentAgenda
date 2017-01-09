@@ -12,11 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.tab.ICallPersistUser;
 import model.Call;
 import model.Contact;
 import persistence.IFacadeCallPersistence;
 
-public class InsertCallState implements InsertState {
+public class InsertCallState implements InsertState, ICallPersistUser {
 
 	private IFacadeCallPersistence callPersistence;
 	
@@ -85,5 +86,11 @@ public class InsertCallState implements InsertState {
 	@Override
 	public JPanel getView() {
 		return view;
+	}
+
+	@Override
+	public void setPersistence(IFacadeCallPersistence cp) {
+		this.callPersistence = cp;
+		
 	}
 }
