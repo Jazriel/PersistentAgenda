@@ -42,7 +42,7 @@ public class SelectCallState implements SelectState {
 		selectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JComboBox filOrdCombo = new JComboBox();
-		filOrdCombo.setModel(new DefaultComboBoxModel(new String[] { "Apellido", "Nombre" }));
+		filOrdCombo.setModel(new DefaultComboBoxModel(new String[] { "Filtrar", "Ordenar" }));
 		selectPanel.add(filOrdCombo);
 		selectPanel.add(lblPor);
 
@@ -130,7 +130,6 @@ public class SelectCallState implements SelectState {
 		});
 	}
 
-	@Override
 	public JPanel getView() {
 		return view;
 	}

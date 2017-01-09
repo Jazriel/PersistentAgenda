@@ -1,8 +1,8 @@
-package gui.selectTab;
+package gui.updateTab;
 
 import javax.swing.JPanel;
 
-public interface SelectState {
+public interface UpdateState {
 	
 	public JPanel getView();
 	

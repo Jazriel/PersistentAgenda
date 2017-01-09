@@ -21,24 +21,7 @@ import persistence.database.FactoryDataBase;
  *
  */
 public class MainGUI {
-	
-	/**
-	 * persistence
-	 */
-	private static IFactoryPersistence persistence;
 
-	/**
-	 * contactPersistence
-	 */
-	protected static IFacadeContactPersistence contactPersitence;
-	/**
-	 * callPersistence
-	 */
-	protected static IFacadeCallPersistence callPersitence;
-	/**
-	 * contactTypePersistence
-	 */
-	protected static IFacadeContactTypePersistence contactTypePersitence;
 	/**
 	 * abstractPersistenceFactory
 	 */
@@ -46,16 +29,9 @@ public class MainGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		
 		abstractPersistenceFactory = new AbstractPersistenceFactory();
-		
-		persistence = abstractPersistenceFactory.getDBPersistence();
-		
-		contactPersitence = persistence.createContactPersistence();
-		callPersitence = persistence.createCallPersistence();
-		contactTypePersitence = persistence.createContactTypePersistence();
 		runGUI();
 		
 	}
@@ -67,28 +43,13 @@ public class MainGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow(new AbstractPersistenceFactory()); // TODO
+					MainWindow frame = new MainWindow(abstractPersistenceFactory); // TODO
 					frame.setVisible(true);
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}
 			}
 		});
-	}
-	
-	/**
-	 * Método changePersistence. Método que se encarga de seleccionar la persistencia sobre la que se quiere trabajar.
-	 * @param selection Persistencia a elegir.
-	 */
-	protected static void changePersistence(int selection){
-		if(selection==0){
-			persistence = abstractPersistenceFactory.getDBPersistence();		
-		}else{
-			persistence = abstractPersistenceFactory.getBinPersistence();
-		}
-		contactPersitence = persistence.createContactPersistence();
-		callPersitence = persistence.createCallPersistence();
-		contactTypePersitence = persistence.createContactTypePersistence();
 	}
 
 }

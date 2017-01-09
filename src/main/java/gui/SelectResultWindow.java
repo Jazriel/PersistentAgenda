@@ -1,16 +1,13 @@
-package gui;
+	package gui;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JList;
 
 public class SelectResultWindow  extends JFrame {
 

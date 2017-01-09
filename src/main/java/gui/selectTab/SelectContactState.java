@@ -35,7 +35,7 @@ public class SelectContactState implements SelectState {
 		selectPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JComboBox filOrdCombo = new JComboBox();
-		filOrdCombo.setModel(new DefaultComboBoxModel(new String[] { "Contacto", "Fecha" }));
+		filOrdCombo.setModel(new DefaultComboBoxModel(new String[] { "Filtrar", "Ordenar" }));
 		selectPanel.add(filOrdCombo);
 		selectPanel.add(lblPor);
 
@@ -59,18 +59,16 @@ public class SelectContactState implements SelectState {
 
 			public void actionPerformed(ActionEvent arg0) {
 				List<Contact> contacts = new ArrayList<>();
+				String field;
+				if (fieldCombo.getSelectedIndex() == 0) {
+					field = "name";
+				}else{
+					field = "surname";
+				}
 				if (filOrdCombo.getSelectedIndex() == 0) {
-					if (fieldCombo.getSelectedIndex() == 0) {
-						contacts = contactPersitence.getFilterContacts("name", filterTextField.getText());
-					} else {
-						contacts = contactPersitence.getFilterContacts("surname", filterTextField.getText());
-					}
+					contacts = contactPersitence.getFilterContacts(field, filterTextField.getText());
 				} else {
-					if (fieldCombo.getSelectedIndex() == 0) {
-						contacts = contactPersitence.getOrderContacts("name");
-					} else {
-						contacts = contactPersitence.getOrderContacts("surname");
-					}
+					contacts = contactPersitence.getOrderContacts(field);
 				}
 				String[] contactsStrings = new String[contacts.size()];
 				//
@@ -97,7 +95,6 @@ public class SelectContactState implements SelectState {
 		});
 	}
 
-	@Override
 	public JPanel getView() {
 		return view;
 	}

@@ -3,20 +3,23 @@ package gui.selectTab;
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
+import gui.SelectResultWindow;
+import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 
 public class SelectContactTypeState implements SelectState {
 	
 	private JPanel view;
+	private IFacadeContactTypePersistence contactTypePersistence;
 
+	public SelectContactTypeState(IFacadeContactTypePersistence contactTypePersistence) {
 
-	public SelectContactTypeState(IFacadeContactTypePersistence iFacadeContactTypePersistence) {
-
+		this.contactTypePersistence = contactTypePersistence;
+		
 		JPanel selectPanel = new JPanel();
 
 		Button button = new Button("Ejecutar");
@@ -27,24 +30,24 @@ public class SelectContactTypeState implements SelectState {
 	}
 
 	private void contactTypeListener(Button button) {
-		// TODO Auto-generated method stub
-	}
-	
-	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
-		filOrdCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (filOrdCombo.getSelectedIndex() == 1) {
-					filterTextField.setVisible(true);
-				} else {
-					filterTextField.setVisible(false);
+		button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				List<ContactType> contactTypes = contactTypePersistence.getAllContactTypes();
+				
+				
+				String[] contactsStrings = new String[contactTypes.size()];
+				//
+				for (int i = 0; i < contactsStrings.length; i++) {
+					contactsStrings[i] = contactTypes.get(i).toString();
 				}
-				// selectPanel.repaint();
+				// Mostramos contactos
+				@SuppressWarnings("unused")
+				SelectResultWindow srw = new SelectResultWindow(contactsStrings);
 			}
 		});
 	}
 	
-	
-	@Override
 	public JPanel getView() {
 		return view;
 	}
