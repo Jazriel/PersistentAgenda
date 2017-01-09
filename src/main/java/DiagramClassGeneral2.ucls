@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.13" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="persistence.database.FacadeContactDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeContactDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="243" x="3379" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="persistence.database.FacadeContactTypeDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeContactTypeDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="219" x="7689" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="persistence.database.FacadeCallDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FacadeCallDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="226" x="8222" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="gui.tab.ITab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/ITab.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="109" x="5335" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="gui.MainGUI" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/MainGUI.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="113" x="9788" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="gui.tab.insertTab.InsertState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab/InsertState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="109" x="5016" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="persistence.database.FactoryDataBase" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/FactoryDataBase.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="340" x="9028" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="gui.tab.updateTab.UpdateContactState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab/UpdateContactState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="262" x="4521" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="gui.tab.insertTab.InsertTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab/InsertTab.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="241" x="4240" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="persistence.database.CallResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/CallResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="202" x="2375" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="persistence.database.ABCResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ABCResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="190" x="2909" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="model.Call" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/Call.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="200" x="3139" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="13" language="java" name="model" project="PersistentAgenda" file="/PersistentAgenda/src/main/java/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="244" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="14" language="java" name="gui.tab.updateTab.UpdateTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab/UpdateTab.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="248" x="4823" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="gui.tab.selectTab.SelectTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab/SelectTab.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="244" x="5484" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="persistence.database.StatementManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/StatementManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="495" width="298" x="385" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="gui.tab.selectTab.SelectState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab/SelectState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="109" x="6230" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="persistence.database.ContactTypeResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ContactTypeResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="294" x="2617" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="gui.tab.insertTab.InsertContactState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab/InsertContactState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="255" x="3945" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="persistence.bin.FactoryBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FactoryBinFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="340" x="9408" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="gui.tab.insertTab.InsertCallState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab/InsertCallState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="219" x="6109" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="22" language="java" name="persistence.IFacadeCallPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeCallPersistence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="226" x="7336" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="23" language="java" name="gui.tab.ICompPersistUpdatable" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/ICompPersistUpdatable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="219" x="5484" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="gui.tab.selectTab.SelectContactTypeState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab/SelectContactTypeState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="304" x="6992" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="gui.tab.updateTab.UpdateContactTypeState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab/UpdateContactTypeState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="308" x="6368" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="26" language="java" name="persistence.IFacadeContactPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeContactPersistence.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="243" x="3945" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="27" language="java" name="persistence.IFactoryPersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFactoryPersistence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="340" x="9028" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="28" language="java" name="persistence.database.SingletonStatementGenerator" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/SingletonStatementGenerator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="234" x="723" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="gui.SelectResultWindow" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/SelectResultWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="209" x="1007" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="model.ContactType" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/ContactType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="167" x="3233" y="1790"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="31" language="java" name="gui.tab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="1256" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="32" language="java" name="persistence.bin.FacadeContactTypeBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeContactTypeBinFile.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="234" x="7948" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="33" language="java" name="persistence.IFacadeContactTypePersistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IFacadeContactTypePersistence.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="219" x="6992" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="34" language="java" name="model.Contact" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/model/Contact.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1215" width="672" x="3233" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="persistence.bin.FacadeCallBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeCallBinFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="226" x="8488" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="gui.tab.updateTab.UpdateCallState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab/UpdateCallState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="236" x="6716" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="37" language="java" name="gui.tab.updateTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="124" x="1397" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="38" language="java" name="gui.tab.insertTab.InsertContactTypeState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab/InsertContactTypeState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="301" x="5768" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="initializeBinFiles.BinFilesInitialize" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/initializeBinFiles/BinFilesInitialize.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="114" x="1561" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="gui.MainWindow" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="234" x="8754" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="41" language="java" name="gui.tab.selectTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="120" x="1715" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="42" language="java" name="persistence.bin" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="112" x="1875" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="43" language="java" name="gui.tab.selectTab.SelectCallState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab/SelectCallState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="313" x="7336" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="persistence.database.ContactResultSetManager" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/ContactResultSetManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="242" x="2951" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="45" language="java" name="gui.tab.insertTab" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/insertTab" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="118" x="2027" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="46" language="java" name="persistence.bin.FacadeContactBinFile" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/bin/FacadeContactBinFile.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="261" width="243" x="3662" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="47" language="java" name="initializeBinFiles" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/initializeBinFiles" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="114" x="2185" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="48" language="java" name="persistence" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="2339" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="49" language="java" name="persistence.IAbstractPersistenceFactory" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/IAbstractPersistenceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="220" x="9788" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="50" language="java" name="persistence.database" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="148" x="2480" y="0"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <interface id="51" language="java" name="gui.tab.updateTab.UpdateState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/updateTab/UpdateState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="109" x="5743" y="535"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="52" language="java" name="persistence.AbstractPersistenceFactory" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/AbstractPersistenceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="220" x="9941" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="persistence.database.SingletonConnection" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/persistence/database/SingletonConnection.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="191" x="2668" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="gui.tab.selectTab.SelectContactState" project="PersistentAgenda" 
+    file="/PersistentAgenda/src/main/java/gui/tab/selectTab/SelectContactState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="333" x="5111" y="0"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="55">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="56" name="connectionInstance"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="58">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="51"/>  
+  </realization>  
+  <realization id="59">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="60">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="51"/>  
+  </realization>  
+  <realization id="61">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="62">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="63" name="persistUpdatables"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="65">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="66">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="67">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="68">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="33"/>  
+  </realization>  
+  <association id="69">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="70" name="statementGeneratorInstance"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="72">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="73">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="74" name="persistUpdatables"/>      
+      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="77" name="contactPersistence"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="79">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <realization id="80">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="81">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="82" name="contactPersitence"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="84">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="85">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="51"/>  
+  </realization>  
+  <realization id="86">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="87">    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="88" name="contactType"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="90">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="91">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="92" name="callPersistence"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <realization id="95">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <realization id="96">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="97">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="98">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="99" name="persistenceFactory"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="101">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="49"/>  
+  </realization>  
+  <association id="102">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="103" name="viewDict"/>      
+      <multiplicity id="104" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="106" name="contact"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="109" name="persistence"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="112" name="contactTypePersistence"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="115" name="callPersistence"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="117">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="118">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="119" name="callPersistence"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="121">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="122">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="123">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="124" name="persistUpdatables"/>      
+      <multiplicity id="125" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="127" name="viewDict"/>      
+      <multiplicity id="128" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="129">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="130">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="131" name="tabs"/>      
+      <multiplicity id="132" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="133">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="134" name="persistUpdatables"/>      
+      <multiplicity id="135" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="136">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="137">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="139">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="140">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="141" name="abstractPersistenceFactory"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="143">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="144">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="145" name="contactPersistence"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="147">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="148">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="149">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="150">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="151" name="contactTypePersistence"/>      
+      <multiplicity id="152" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="153">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="154">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="155" name="viewDict"/>      
+      <multiplicity id="156" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="157">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="33"/>  
+  </realization>  
+  <realization id="158">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="159">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="160" name="contactTypePersistence"/>      
+      <multiplicity id="161" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="162">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
