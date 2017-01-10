@@ -20,19 +20,38 @@ import model.Contact;
 import persistence.IFacadeCallPersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * UpdateCallTypeState. Clase que se encarga de la actualización de llamadas.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 
+	/**
+	 * Persistencia de llamadas
+	 */
 	private IFacadeCallPersistence callPersistence;
 
+	/**
+	 * Vista
+	 */
 	private JPanel view;
 
+	/**
+	 * Campos de llamadas.
+	 */
 	private List<JTextField> callTextFields;
 
 	/**
-	 * Método createCallPanel. Método que se encarga de especificar el panel
-	 * para la creación de llamadas.
+	 * Méto UpdateCallState. Constructor de la clase.
 	 * 
-	 * @return callPanel Se devuelve la instancia del panel de llamdas.
+	 * @param callPersistence
+	 *            Persistencia de llamadas.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public UpdateCallState(IFacadeCallPersistence callPersistence) {
@@ -70,6 +89,15 @@ public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 		view = callPanel;
 	}
 
+	/**
+	 * Método updateCallListener. Método que se encarga de de realizar el
+	 * actualizado de llamadas.
+	 * 
+	 * @param btnEjecutar
+	 *            Botón asociado.
+	 * @param comboBox
+	 *            Combo box de selección de llamada.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void insertCallListener(JButton btnEjecutar, JComboBox comboBox) {
 		btnEjecutar.addActionListener(new ActionListener() {

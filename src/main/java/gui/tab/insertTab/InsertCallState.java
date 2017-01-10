@@ -17,20 +17,36 @@ import model.Call;
 import model.Contact;
 import persistence.IFacadeCallPersistence;
 import persistence.IFactoryPersistence;
-
+/**
+ * InsertCallState. Clase que se encarga de insertar llamadas.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class InsertCallState implements InsertState, ICompPersistUpdatable {
 
+	/**
+	 * Persistencia de llamada.
+	 */
 	private IFacadeCallPersistence callPersistence;
-	
+
+	/**
+	 * Vista.
+	 */
 	private JPanel view;
 
+	/**
+	 * Campos de llamada.
+	 */
 	private List<JTextField> callTextFields;
 
 	/**
-	 * Método createCallPanel. Método que se encarga de especificar el panel
-	 * para la creación de llamadas.
-	 * 
-	 * @return callPanel Se devuelve la instancia del panel de llamdas.
+	 * Método InsertCallState. Constructor de la clase.
+	 * @param callPersistence Persistencia sobre la que trabajamos.
 	 */
 	public InsertCallState(IFacadeCallPersistence callPersistence) {
 		this.callPersistence = callPersistence;
@@ -50,6 +66,10 @@ public class InsertCallState implements InsertState, ICompPersistUpdatable {
 		view = callPanel;
 	}
 
+	/**
+	 * Método insertCallListener. Método que se encarga de insertar una llamada.
+	 * @param btnEjecutar Boton asociado a insertar llamada.
+	 */
 	private void insertCallListener(JButton btnEjecutar) {
 		btnEjecutar.addActionListener(new ActionListener() {
 			@Override

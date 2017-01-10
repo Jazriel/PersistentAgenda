@@ -17,18 +17,37 @@ import model.ContactType;
 import persistence.IFacadeContactTypePersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * UpdateContactTypeState. Clase que se encarga de la actualización de tipos de
+ * contacto.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatable {
 
+	/**
+	 * Vista.
+	 */
 	private JPanel view;
+	/**
+	 * Persistencia de tipo de contacto.
+	 */
 	private IFacadeContactTypePersistence contactTypePersistence;
+	/**
+	 * Campo de tipo de contacto.
+	 */
 	private JTextField contactTypeTextField;
 
 	/**
-	 * Método createConatactTypePanel. Método que se encarga de especificar el
-	 * panel para la creación de tipos de contacto.
+	 * Método UpdateContactTypeState. Constructor de la clase.
 	 * 
-	 * @return contactTypePanel Se devuelve la instancia del panel de tipo de
-	 *         contacto.
+	 * @param contactTypePersistence
+	 *            Peristencia de tipos de contacto.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UpdateContactTypeState(IFacadeContactTypePersistence contactTypePersistence) {
@@ -51,7 +70,7 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 		for (int i = 0; i < contactTypes.size(); i++) {
 			comboStrings[i] = String.valueOf(contactTypes.get(i).getId());
 		}
-		
+
 		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
 		comboBox.setModel(comboBoxModel);
 		contactTypePanel.add(comboBox);
@@ -69,13 +88,22 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 		JButton btnEjecutar = new JButton("Ejecutar");
 		contactTypePanel.add(btnEjecutar);
 
-		insertContactTypeListener(btnEjecutar, comboBox);
+		updateContactTypeListener(btnEjecutar, comboBox);
 
 		view = contactTypePanel;
 	}
 
+	/**
+	 * Método updateContactTypeListener. Método que se encarga de realizar la
+	 * actualización de un tipo de contacto.
+	 * 
+	 * @param btnEjecutar
+	 *            Botón asociado.
+	 * @param comboBox
+	 *            Combo box de actualizar.
+	 */
 	@SuppressWarnings("rawtypes")
-	private void insertContactTypeListener(JButton btnEjecutar, JComboBox comboBox) {
+	private void updateContactTypeListener(JButton btnEjecutar, JComboBox comboBox) {
 		btnEjecutar.addActionListener(new ActionListener() {
 
 			@Override
@@ -87,6 +115,7 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 		});
 	}
 
+	@Override
 	public JPanel getView() {
 		return view;
 	}

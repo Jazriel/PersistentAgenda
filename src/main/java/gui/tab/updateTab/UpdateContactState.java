@@ -20,6 +20,16 @@ import model.ContactType;
 import persistence.IFacadeContactPersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * UpdateContactState. Clase que se encarga de la actualización de contacto.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 
 	private IFacadeContactPersistence contactPersistence;
@@ -27,10 +37,10 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 	private List<JTextField> contactTextFields;
 
 	/**
-	 * Método createConatactPanel. Método que se encarga de especificar el panel
-	 * para la creación de contacto.
+	 * Método UpdateContactState. Constructor de la clse.
 	 * 
-	 * @return contactPanel Se devuelve la instancia del panel de contacto.
+	 * @param contactPersistence
+	 *            Persistencia de contacto.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public UpdateContactState(IFacadeContactPersistence contactPersistence) {
@@ -62,13 +72,22 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 		JButton btnEjecutar = new JButton("Ejecutar");
 		contactPanel.add(btnEjecutar);
 
-		insertContactListener(btnEjecutar, comboBox);
+		updateContactListener(btnEjecutar, comboBox);
 
 		view = contactPanel;
 	}
 
+	/**
+	 * Método updateContactListener. Método que se encarga de la actualización
+	 * de contactos.
+	 * 
+	 * @param btnEjecutar
+	 *            Botón asociado.
+	 * @param comboBox
+	 *            Combo box de selección de contacto.
+	 */
 	@SuppressWarnings("rawtypes")
-	private void insertContactListener(JButton btnEjecutar, JComboBox comboBox) {
+	private void updateContactListener(JButton btnEjecutar, JComboBox comboBox) {
 		btnEjecutar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -6,7 +6,7 @@ import persistence.AbstractPersistenceFactory;
 import persistence.IAbstractPersistenceFactory;
 
 /**
- * GUI. Clase main de nuestra api en modo gráfico.
+ * MainGUI. Clase main de nuestra api en modo gráfico.
  * 
  * @author Javier Martinez
  * @author Daniel Puente
@@ -18,7 +18,7 @@ import persistence.IAbstractPersistenceFactory;
 public class MainGUI {
 
 	/**
-	 * abstractPersistenceFactory
+	 * Persistencia sobre la que trabajar
 	 */
 	protected static IAbstractPersistenceFactory abstractPersistenceFactory;
 
@@ -40,7 +40,8 @@ public class MainGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow(abstractPersistenceFactory); 					frame.setVisible(true);
+					MainWindow frame = new MainWindow(abstractPersistenceFactory);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}

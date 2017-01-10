@@ -19,11 +19,33 @@ import model.Contact;
 import persistence.IFacadeContactPersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * SelectContactState. Clase que se encarga de la selección de contactos.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class SelectContactState implements SelectState, ICompPersistUpdatable {
 
+	/**
+	 * Persistencia de contacto.
+	 */
 	private IFacadeContactPersistence contactPersitence;
+	/**
+	 * Vista.
+	 */
 	private JPanel view;
 
+	/**
+	 * Método SelectContactState. Constructor de la clase.
+	 * 
+	 * @param contactPersitence
+	 *            Persistencia de contacto.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SelectContactState(IFacadeContactPersistence contactPersitence) {
 
@@ -56,6 +78,18 @@ public class SelectContactState implements SelectState, ICompPersistUpdatable {
 		this.view = selectPanel;
 	}
 
+	/**
+	 * Método contactListener. Método que se encarga de la selección.
+	 * 
+	 * @param button
+	 *            Botón asociado.
+	 * @param filOrdCombo
+	 *            Tipo de operación.
+	 * @param fieldCombo
+	 *            Campo por que que realizar la operación.
+	 * @param filterTextField
+	 *            Texto por el que filtrar.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void contactListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo,
 			JTextField filterTextField) {
@@ -66,7 +100,7 @@ public class SelectContactState implements SelectState, ICompPersistUpdatable {
 				String field;
 				if (fieldCombo.getSelectedIndex() == 0) {
 					field = "name";
-				}else{
+				} else {
 					field = "surname";
 				}
 				if (filOrdCombo.getSelectedIndex() == 0) {
@@ -86,6 +120,15 @@ public class SelectContactState implements SelectState, ICompPersistUpdatable {
 		});
 	}
 
+	/**
+	 * Método filOrdListener. Método que se encarga de la visibilidad del cuadro
+	 * de texto.
+	 * 
+	 * @param filOrdCombo
+	 *            Tipo de operación.
+	 * @param filterTextField
+	 *            Objeto a cambiar de visiblidad.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
 		filOrdCombo.addActionListener(new ActionListener() {
@@ -100,6 +143,7 @@ public class SelectContactState implements SelectState, ICompPersistUpdatable {
 		});
 	}
 
+	@Override
 	public JPanel getView() {
 		return view;
 	}

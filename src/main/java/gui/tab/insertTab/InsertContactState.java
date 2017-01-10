@@ -18,19 +18,37 @@ import model.ContactType;
 import persistence.IFacadeContactPersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * InsertContactState. Clase que se encarga de insertar contactos.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class InsertContactState implements InsertState, ICompPersistUpdatable {
 
+	/**
+	 * Persistencia del contacto.
+	 */
 	private IFacadeContactPersistence contactPersistence;
+	/**
+	 * Vista sobre la que trabajamos.
+	 */
 	private JPanel view;
+	/**
+	 * Conjunto de campos de contacto.
+	 */
 	private List<JTextField> contactTextFields;
 
 	/**
-	 * Método createConatactPanel. Método que se encarga de especificar el panel
-	 * para la creación de contacto.
+	 * Constructor de la clase.
 	 * 
-	 * @return contactPanel Se devuelve la instancia del panel de contacto.
+	 * @param contactPersistence
+	 *            Persistencia de contacto.
 	 */
-
 	public InsertContactState(IFacadeContactPersistence contactPersistence) {
 		this.contactPersistence = contactPersistence;
 		JPanel contactPanel = new JPanel();
@@ -48,6 +66,13 @@ public class InsertContactState implements InsertState, ICompPersistUpdatable {
 		view = contactPanel;
 	}
 
+	/**
+	 * Método insertConcatactListener. Método que se encarga de guardar el
+	 * contacto.
+	 * 
+	 * @param btnEjecutar
+	 *            Boton asociado a insertar.
+	 */
 	private void insertContactListener(JButton btnEjecutar) {
 		btnEjecutar.addActionListener(new ActionListener() {
 			@Override
@@ -90,7 +115,7 @@ public class InsertContactState implements InsertState, ICompPersistUpdatable {
 			jTextField.setColumns(10);
 		}
 	}
-
+	@Override
 	public JPanel getView() {
 		return view;
 	}

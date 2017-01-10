@@ -13,7 +13,7 @@ import gui.tab.ITab;
 import persistence.IFactoryPersistence;
 
 /**
- * SelectTab. Clase que se encarga de las selecciones.
+ * SelectTab. Clase que se encarga del tab de las selecciones.
  * 
  * @author Javier Martinez
  * @author Daniel Puente
@@ -60,10 +60,10 @@ public class SelectTab implements ITab, ICompPersistUpdatable {
 	}
 
 	/**
-	 * Método setView. Método que se encarga de establecer una vista.
+	 * Método setView. Se encarga de establecer la vista.
 	 * 
-	 * @param view
-	 *            Vista a establecer.
+	 * @param Vista
+	 *            a establecer.
 	 */
 	public void setView(int view) {
 		selectPanel.removeAll();

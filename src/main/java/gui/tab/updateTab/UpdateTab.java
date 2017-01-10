@@ -16,7 +16,7 @@ import gui.tab.selectTab.SelectContactTypeState;
 import persistence.IFactoryPersistence;
 
 /**
- * UpdateTab. Clase que se encarga de las actualizaciones.
+ * UpdateTab. Clase que se encarga del tab de las actualizaciones.
  * 
  * @author Javier Martinez
  * @author Daniel Puente
@@ -28,13 +28,16 @@ import persistence.IFactoryPersistence;
 public class UpdateTab implements ITab, ICompPersistUpdatable {
 
 	/**
-	 * updatePanel
+	 * Panel para las actualizaciones.
 	 */
 	private JPanel updatePanel;
 	/**
-	 * viewDict
+	 * Vista.
 	 */
 	private Map<Integer, UpdateState> viewDict;
+	/**
+	 * Persistencias de los updates.
+	 */
 	private List<ICompPersistUpdatable> persistUpdatables;
 
 	/**

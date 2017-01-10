@@ -12,9 +12,8 @@ import gui.tab.ICompPersistUpdatable;
 import gui.tab.ITab;
 import persistence.IFactoryPersistence;
 
-
 /**
- * UpdateTab. Clase que se encarga de las actualizaciones.
+ * InsertTab. Clase que se encarga del tab de las inserciones.
  * 
  * @author Javier Martinez
  * @author Daniel Puente
@@ -30,16 +29,22 @@ public class InsertTab implements ITab, ICompPersistUpdatable {
 	 */
 	private JPanel insertPanel;
 	/**
-	 * viewDict
+	 * Vista
 	 */
 	private Map<Integer, InsertState> viewDict;
 
+	/**
+	 * Lista con los states de insert
+	 */
 	private List<ICompPersistUpdatable> persistUpdatables;
-	
+
 	/**
 	 * Método InsertTab. Método que es el contructor de la clase.
 	 * 
+	 * @param persistence
+	 *            Persistencia.
 	 * @param tabbedPane
+	 *            Panel sobre el que se trabaja.
 	 */
 	public InsertTab(IFactoryPersistence persistence, JTabbedPane tabbedPane) {
 
@@ -48,19 +53,20 @@ public class InsertTab implements ITab, ICompPersistUpdatable {
 
 		InsertContactState insertContactState = new InsertContactState(persistence.createContactPersistence());
 		InsertCallState insertCallState = new InsertCallState(persistence.createCallPersistence());
-		InsertContactTypeState insertContactTypeState = new InsertContactTypeState(persistence.createContactTypePersistence());
-		
+		InsertContactTypeState insertContactTypeState = new InsertContactTypeState(
+				persistence.createContactTypePersistence());
+
 		viewDict = new HashMap<>();
 		viewDict.put(0, insertContactState);
 		viewDict.put(1, insertCallState);
 		viewDict.put(2, insertContactTypeState);
 		insertPanel.add(viewDict.get(0).getView());
-		
+
 		persistUpdatables = new ArrayList<>();
 		persistUpdatables.add(insertContactTypeState);
 		persistUpdatables.add(insertCallState);
 		persistUpdatables.add(insertContactState);
-		
+
 	}
 
 	/**
@@ -77,7 +83,7 @@ public class InsertTab implements ITab, ICompPersistUpdatable {
 
 	@Override
 	public void updatePersist(IFactoryPersistence persistence) {
-		for (ICompPersistUpdatable persistUpdate: persistUpdatables) {
+		for (ICompPersistUpdatable persistUpdate : persistUpdatables) {
 			persistUpdate.updatePersist(persistence);
 		}
 	}

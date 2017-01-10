@@ -26,12 +26,34 @@ import model.Call;
 import persistence.IFacadeCallPersistence;
 import persistence.IFactoryPersistence;
 
+/**
+ * SelectCallState. Clase que se encarga de la selección de llamadas.
+ * 
+ * @author Javier Martinez
+ * @author Daniel Puente
+ * @author Jaime Sagüillo
+ * @author Jorge Zamora
+ * @author Oscar Fernandez
+ *
+ */
 public class SelectCallState implements SelectState, ICompPersistUpdatable {
 
+	/**
+	 * Persistencia de llamada.
+	 */
 	private IFacadeCallPersistence callPersistence;
 
+	/**
+	 * Vista sobre la que se trabaja.
+	 */
 	private JPanel view;
 
+	/**
+	 * Método SelectCallState. Constructor de la clase.
+	 * 
+	 * @param callPersistence
+	 *            Persistencia de la llamada.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SelectCallState(IFacadeCallPersistence callPersistence) {
 		this.callPersistence = callPersistence;
@@ -65,6 +87,19 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 		this.view = selectPanel;
 	}
 
+	/**
+	 * Método callListener. Método que se encarga de realizar los select de
+	 * llamada.
+	 * 
+	 * @param button
+	 *            Boton asociado.
+	 * @param filOrdCombo
+	 *            Combo de seleción.
+	 * @param fieldCombo
+	 *            Combo2 de seleción.
+	 * @param filterTextField
+	 *            Texto introducido a filtrar.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void callListener(Button button, JComboBox filOrdCombo, JComboBox fieldCombo, JTextField filterTextField) {
 		button.addActionListener(new ActionListener() {
@@ -106,6 +141,14 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 		});
 	}
 
+	/**
+	 * Método dateComboListener. Método que se encarga de listener para fecha.
+	 * 
+	 * @param fieldCombo
+	 *            Combo de campo.
+	 * @param filterTextField
+	 *            Texto introducido para filtrar.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void dateComboListener(JComboBox fieldCombo, JTextField filterTextField) {
 		fieldCombo.addItemListener(new ItemListener() {
@@ -120,6 +163,15 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 		});
 	}
 
+	/**
+	 * Método filOrdListener. Método que se encarga de la visibilidad del cuadro
+	 * de texto.
+	 * 
+	 * @param filOrdCombo
+	 *            Combo de selección.
+	 * @param filterTextField
+	 *            Cuadro de filtrado para cambiar su visiblidad.
+	 */
 	@SuppressWarnings("rawtypes")
 	private void filOrdListener(JComboBox filOrdCombo, JTextField filterTextField) {
 		filOrdCombo.addActionListener(new ActionListener() {
@@ -135,6 +187,7 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 		});
 	}
 
+	@Override
 	public JPanel getView() {
 		return view;
 	}
@@ -144,5 +197,4 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 		this.callPersistence = persist.createCallPersistence();
 	}
 
-	
 }
