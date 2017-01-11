@@ -82,7 +82,7 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 
 		Button button = new Button("Ejecutar");
 		selectPanel.add(button);
-		callListener(button, fieldCombo, fieldCombo, filterTextField);
+		callListener(button, filOrdCombo, fieldCombo, filterTextField);
 
 		this.view = selectPanel;
 	}
@@ -119,7 +119,6 @@ public class SelectCallState implements SelectState, ICompPersistUpdatable {
 							System.err.println(e.getMessage());
 						}
 						Timestamp timeStamp = new Timestamp(date.getTime());
-						System.out.println(timeStamp.toString());
 						calls = callPersistence.getFilterCalls("call_Date", timeStamp);
 					}
 				} else {
