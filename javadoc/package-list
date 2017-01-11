@@ -1,6 +1,11 @@
 gui
+gui.tab
+gui.tab.insertTab
+gui.tab.selectTab
+gui.tab.updateTab
 initializeBinFiles
 model
 persistence
 persistence.bin
 persistence.database
+persistence.util
