@@ -69,6 +69,7 @@ public class SelectResultWindow extends JFrame {
 	 * Inicializa el contenido del panel.
 	 * 
 	 * @param list
+	 *            Lista para el contenido del panel.
 	 */
 	private void initialize(String[] list) {
 		setBounds(100, 100, 450, 300);

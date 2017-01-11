@@ -29,14 +29,16 @@ public class SelectTab implements ITab, ICompPersistUpdatable {
 	private JPanel selectPanel;
 
 	private List<ICompPersistUpdatable> persistUpdatables;
-
+	
 	/**
 	 * Método SelectTab. Contructor de la clase.
 	 * 
+	 * @param persistence
+	 * 			Persistencia sobre la que trabajar.
+	 * 
 	 * @param tabbedPane
-	 *            Panel sobre el que trabajar.
+	 * 			 Panel sobre el que trabajar.
 	 */
-
 	public SelectTab(IFactoryPersistence persistence, JTabbedPane tabbedPane) {
 
 		selectPanel = new JPanel();
@@ -62,8 +64,8 @@ public class SelectTab implements ITab, ICompPersistUpdatable {
 	/**
 	 * Método setView. Se encarga de establecer la vista.
 	 * 
-	 * @param Vista
-	 *            a establecer.
+	 * @param view
+	 *            Vista a establecer.
 	 */
 	public void setView(int view) {
 		selectPanel.removeAll();

@@ -10,9 +10,6 @@ import javax.swing.JTabbedPane;
 
 import gui.tab.ICompPersistUpdatable;
 import gui.tab.ITab;
-import gui.tab.selectTab.SelectCallState;
-import gui.tab.selectTab.SelectContactState;
-import gui.tab.selectTab.SelectContactTypeState;
 import persistence.IFactoryPersistence;
 
 /**
@@ -43,6 +40,8 @@ public class UpdateTab implements ITab, ICompPersistUpdatable {
 	/**
 	 * Método UptadeTab. Constructor de la clase.
 	 * 
+	 * @param persistence
+	 *            Persistencia que usar.
 	 * @param tabbedPane
 	 *            Panel sobre el que trabajar.
 	 */

@@ -13,7 +13,7 @@ public interface ITab {
 
 	/**
 	 * Método setView. Método que se encarga de establecer una vista.
-	 * @param view
+	 * @param view vista que establecer.
 	 */
 	public void setView(int view);
 	

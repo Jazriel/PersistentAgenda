@@ -37,12 +37,18 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 	private List<JTextField> contactTextFields;
 
 	/**
+	 * Combo box para seleccionar la llamada a modificar.
+	 */
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboBox;
+
+	/**
 	 * Método UpdateContactState. Constructor de la clse.
 	 * 
 	 * @param contactPersistence
 	 *            Persistencia de contacto.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public UpdateContactState(IFacadeContactPersistence contactPersistence) {
 		this.contactPersistence = contactPersistence;
 
@@ -52,16 +58,10 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 		JLabel lblTipoDeContacto = new JLabel("Contacto a modificar:");
 		contactPanel.add(lblTipoDeContacto);
 
-		JComboBox comboBox = new JComboBox();
-		List<Contact> contacts = contactPersistence.getAllContacts();
+		comboBox = new JComboBox();
 
-		String[] comboStrings = new String[contacts.size()];
+		updateComboBox(contactPersistence);
 
-		for (int i = 0; i < contacts.size(); i++) {
-			comboStrings[i] = String.valueOf(contacts.get(i).getId());
-		}
-		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
 		contactPanel.add(comboBox);
 
 		createContactFields(contactPanel);
@@ -75,6 +75,25 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 		updateContactListener(btnEjecutar, comboBox);
 
 		view = contactPanel;
+	}
+
+	/**
+	 * Metodo para actualizar la combo box
+	 * 
+	 * @param contactPersistence
+	 *            Persistencia de contactos.
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void updateComboBox(IFacadeContactPersistence contactPersistence) {
+		List<Contact> contacts = contactPersistence.getAllContacts();
+
+		String[] comboStrings = new String[contacts.size()];
+
+		for (int i = 0; i < contacts.size(); i++) {
+			comboStrings[i] = String.valueOf(contacts.get(i).getId());
+		}
+		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
+		comboBox.setModel(comboBoxModel);
 	}
 
 	/**
@@ -138,6 +157,7 @@ public class UpdateContactState implements UpdateState, ICompPersistUpdatable {
 	@Override
 	public void updatePersist(IFactoryPersistence persist) {
 		this.contactPersistence = persist.createContactPersistence();
+		updateComboBox(contactPersistence);
 	}
 
 }

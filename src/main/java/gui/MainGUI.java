@@ -24,6 +24,9 @@ public class MainGUI {
 
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args
+	 *            argumentos de ejecucion (no hacen nada).
 	 */
 	public static void main(String[] args) {
 

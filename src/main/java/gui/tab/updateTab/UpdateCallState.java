@@ -48,12 +48,18 @@ public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 	private List<JTextField> callTextFields;
 
 	/**
+	 * Combo box para seleccionar la llamada a modificar.
+	 */
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboBox;
+
+	/**
 	 * Méto UpdateCallState. Constructor de la clase.
 	 * 
 	 * @param callPersistence
 	 *            Persistencia de llamadas.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public UpdateCallState(IFacadeCallPersistence callPersistence) {
 		this.callPersistence = callPersistence;
 
@@ -63,17 +69,10 @@ public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 		JLabel lblTipoDeContacto = new JLabel("Llamada a modificar:");
 		callPanel.add(lblTipoDeContacto);
 
-		JComboBox comboBox = new JComboBox();
-		List<Call> calls = callPersistence.getAllCalls();
+		comboBox = new JComboBox();
 
-		String[] comboStrings = new String[calls.size()];
+		updateComboBox(callPersistence);
 
-		for (int i = 0; i < calls.size(); i++) {
-			comboStrings[i] = String.valueOf(calls.get(i).getId());
-		}
-
-		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
 		callPanel.add(comboBox);
 
 		createCallFields(callPanel);
@@ -87,6 +86,26 @@ public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 		insertCallListener(btnEjecutar, comboBox);
 
 		view = callPanel;
+	}
+
+	/**
+	 * Metodo para actualizar la combo box
+	 * 
+	 * @param callPersistence
+	 *            Persistencia de llamadas.
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void updateComboBox(IFacadeCallPersistence callPersistence) {
+		List<Call> calls = callPersistence.getAllCalls();
+
+		String[] comboStrings = new String[calls.size()];
+
+		for (int i = 0; i < calls.size(); i++) {
+			comboStrings[i] = String.valueOf(calls.get(i).getId());
+		}
+
+		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
+		comboBox.setModel(comboBoxModel);
 	}
 
 	/**
@@ -142,5 +161,6 @@ public class UpdateCallState implements UpdateState, ICompPersistUpdatable {
 	@Override
 	public void updatePersist(IFactoryPersistence persist) {
 		this.callPersistence = persist.createCallPersistence();
+		updateComboBox(callPersistence);
 	}
 }

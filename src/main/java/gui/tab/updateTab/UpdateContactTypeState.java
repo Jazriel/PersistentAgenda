@@ -34,14 +34,22 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 	 * Vista.
 	 */
 	private JPanel view;
+
 	/**
 	 * Persistencia de tipo de contacto.
 	 */
 	private IFacadeContactTypePersistence contactTypePersistence;
+
 	/**
 	 * Campo de tipo de contacto.
 	 */
 	private JTextField contactTypeTextField;
+
+	/**
+	 * Combo box para seleccionar la llamada a modificar.
+	 */
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboBox;
 
 	/**
 	 * Método UpdateContactTypeState. Constructor de la clase.
@@ -49,7 +57,7 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 	 * @param contactTypePersistence
 	 *            Peristencia de tipos de contacto.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	public UpdateContactTypeState(IFacadeContactTypePersistence contactTypePersistence) {
 
 		this.contactTypePersistence = contactTypePersistence;
@@ -61,18 +69,10 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 		JLabel lblTipoDeContacto = new JLabel("Tipo de contacto a modificar:");
 		contactTypePanel.add(lblTipoDeContacto);
 
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 
-		List<ContactType> contactTypes = contactTypePersistence.getAllContactTypes();
+		updateComboBox(contactTypePersistence);
 
-		String[] comboStrings = new String[contactTypes.size()];
-
-		for (int i = 0; i < contactTypes.size(); i++) {
-			comboStrings[i] = String.valueOf(contactTypes.get(i).getId());
-		}
-
-		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
-		comboBox.setModel(comboBoxModel);
 		contactTypePanel.add(comboBox);
 
 		JLabel lblNombreDelTipo = new JLabel("Nombre del tipo de contacto:");
@@ -91,6 +91,26 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 		updateContactTypeListener(btnEjecutar, comboBox);
 
 		view = contactTypePanel;
+	}
+
+	/**
+	 * Metodo para actualizar la combo box
+	 * 
+	 * @param contactTypePersistence
+	 *            Persistencia de tipos de contactos.
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void updateComboBox(IFacadeContactTypePersistence contactTypePersistence) {
+		List<ContactType> contactTypes = contactTypePersistence.getAllContactTypes();
+
+		String[] comboStrings = new String[contactTypes.size()];
+
+		for (int i = 0; i < contactTypes.size(); i++) {
+			comboStrings[i] = String.valueOf(contactTypes.get(i).getId());
+		}
+
+		DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(comboStrings);
+		comboBox.setModel(comboBoxModel);
 	}
 
 	/**
@@ -123,5 +143,6 @@ public class UpdateContactTypeState implements UpdateState, ICompPersistUpdatabl
 	@Override
 	public void updatePersist(IFactoryPersistence persist) {
 		this.contactTypePersistence = persist.createContactTypePersistence();
+		updateComboBox(contactTypePersistence);
 	}
 }

@@ -182,10 +182,6 @@ public class MainWindow extends JFrame {
 	/**
 	 * Método initializeTabBar. Método que se encarga de inizializar barra de
 	 * pestañas.
-	 * 
-	 * @param tabbedPane
-	 *            Panel sobre el que trabajar
-	 * @param gl_contentPane
 	 */
 	private void initializeTabBar() {
 		InsertTab iT = new InsertTab(persistence, tabbedPane);
@@ -205,11 +201,6 @@ public class MainWindow extends JFrame {
 	/**
 	 * Método initializeComboButsBar. Método que se encarga de inicializar la
 	 * barra de selecciones.
-	 * 
-	 * @param tabbedPane
-	 *            Panel sobre el que se trabaja.
-	 * @param gl_contentPane
-	 *            Contenido del panel.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initializeComboButsBarWithLayout() {
